@@ -1,0 +1,519 @@
+{
+  "startDate": "2026-07-12",
+  "puzzles": [
+    {
+      "date": "2026-07-12",
+      "theme": "Paris",
+      "themeAnswers": [
+        "paris",
+        "the word paris",
+        "things called paris",
+        "paris france"
+      ],
+      "themeBlurb": "A museum, a Trojan prince, a plaster cast, a Texas town, and a wine upset — every answer carries the same name.",
+      "questions": [
+        {
+          "category": "Art",
+          "difficulty": 1,
+          "question": "Which famous Leonardo da Vinci portrait hangs behind glass in the Louvre?",
+          "options": [
+            "The Birth of Venus",
+            "Girl with a Pearl Earring",
+            "The Mona Lisa",
+            "Whistler's Mother"
+          ],
+          "correct": 2,
+          "accept": [
+            "monalisa",
+            "la gioconda"
+          ],
+          "connection": "The Louvre — and the Mona Lisa — live in Paris."
+        },
+        {
+          "category": "Mythology",
+          "difficulty": 2,
+          "question": "In Greek myth, which Trojan prince's abduction of Helen sparked the Trojan War?",
+          "options": [
+            "Hector",
+            "Paris",
+            "Aeneas",
+            "Achilles"
+          ],
+          "correct": 1,
+          "connection": "Paris of Troy."
+        },
+        {
+          "category": "Science",
+          "difficulty": 3,
+          "question": "What is the common name of the white powder (calcium sulfate hemihydrate) used to make casts and molds?",
+          "options": [
+            "Quicklime",
+            "Plaster of Paris",
+            "Portland cement",
+            "Talcum"
+          ],
+          "correct": 1,
+          "accept": [
+            "plaster"
+          ],
+          "connection": "Plaster of Paris, named for the gypsum quarried under the city."
+        },
+        {
+          "category": "Movies",
+          "difficulty": 4,
+          "question": "Which Wim Wenders road movie won the Palme d'Or in 1984?",
+          "options": [
+            "Badlands",
+            "Paris, Texas",
+            "Two-Lane Blacktop",
+            "Wild at Heart"
+          ],
+          "correct": 1,
+          "accept": [
+            "paris texas"
+          ],
+          "connection": "Paris, Texas — a small town sharing the famous name."
+        },
+        {
+          "category": "History",
+          "difficulty": 5,
+          "question": "What is the nickname of the famous 1976 blind wine tasting in which California wines beat the French?",
+          "options": [
+            "The Bordeaux Upset",
+            "The Judgment of Paris",
+            "The Napa Verdict",
+            "The Great Decanting"
+          ],
+          "correct": 1,
+          "accept": [
+            "judgement of paris"
+          ],
+          "connection": "The Judgment of Paris — itself named after the myth."
+        }
+      ]
+    },
+    {
+      "date": "2026-07-13",
+      "theme": "Seven",
+      "themeAnswers": [
+        "seven",
+        "7",
+        "the number seven",
+        "number 7",
+        "sevens",
+        "the number 7"
+      ],
+      "themeBlurb": "Ancient wonders, a gunslinger posse, Olympic rugby, a stadium riff, and Shakespeare's ages of man — count them.",
+      "questions": [
+        {
+          "category": "History",
+          "difficulty": 1,
+          "question": "The Great Pyramid of Giza is the only surviving member of which famous ancient list?",
+          "options": [
+            "The Seven Wonders of the World",
+            "The Twelve Labors",
+            "The Great Library Index",
+            "The Colossi of Antiquity"
+          ],
+          "correct": 0,
+          "accept": [
+            "seven wonders",
+            "7 wonders",
+            "seven wonders of the ancient world"
+          ],
+          "connection": "The Seven Wonders of the Ancient World."
+        },
+        {
+          "category": "Movies",
+          "difficulty": 2,
+          "question": "Which 1960 western is a remake of Akira Kurosawa's 'Seven Samurai'?",
+          "options": [
+            "The Wild Bunch",
+            "The Magnificent Seven",
+            "True Grit",
+            "Rio Bravo"
+          ],
+          "correct": 1,
+          "accept": [
+            "magnificent 7"
+          ],
+          "connection": "The Magnificent Seven."
+        },
+        {
+          "category": "Sports",
+          "difficulty": 3,
+          "question": "Which fast-paced rugby format became an Olympic sport at Rio 2016?",
+          "options": [
+            "Rugby league",
+            "Touch rugby",
+            "Rugby sevens",
+            "Beach rugby"
+          ],
+          "correct": 2,
+          "accept": [
+            "sevens",
+            "rugby 7s",
+            "7s"
+          ],
+          "connection": "Rugby sevens — seven players a side."
+        },
+        {
+          "category": "Music",
+          "difficulty": 4,
+          "question": "Which White Stripes song's bass-like guitar riff became a global stadium chant?",
+          "options": [
+            "Seven Nation Army",
+            "Icky Thump",
+            "Blue Orchid",
+            "Fell in Love with a Girl"
+          ],
+          "correct": 0,
+          "accept": [
+            "7 nation army"
+          ],
+          "connection": "Seven Nation Army."
+        },
+        {
+          "category": "Literature",
+          "difficulty": 5,
+          "question": "The 'All the world's a stage' speech, describing the seven ages of man, appears in which Shakespeare play?",
+          "options": [
+            "Twelfth Night",
+            "The Tempest",
+            "As You Like It",
+            "Much Ado About Nothing"
+          ],
+          "correct": 2,
+          "connection": "The speech walks through the seven ages of man."
+        }
+      ]
+    },
+    {
+      "date": "2026-07-14",
+      "theme": "1969",
+      "themeAnswers": [
+        "1969",
+        "the year 1969",
+        "nineteen sixty nine",
+        "things from 1969",
+        "year 1969",
+        "60s",
+        "the sixties"
+      ],
+      "themeBlurb": "Every answer traces back to one remarkable year: the Moon landing, Woodstock, Broadway Joe, the birth of the internet, and the Duke's only Oscar.",
+      "questions": [
+        {
+          "category": "History",
+          "difficulty": 1,
+          "question": "Who was the first person to walk on the Moon?",
+          "options": [
+            "Buzz Aldrin",
+            "Neil Armstrong",
+            "John Glenn",
+            "Yuri Gagarin"
+          ],
+          "correct": 1,
+          "connection": "Apollo 11 landed on July 20, 1969."
+        },
+        {
+          "category": "Music",
+          "difficulty": 2,
+          "question": "Which legendary music festival took place on Max Yasgur's dairy farm in upstate New York?",
+          "options": [
+            "Monterey Pop",
+            "Woodstock",
+            "Altamont",
+            "Isle of Wight"
+          ],
+          "correct": 1,
+          "connection": "Woodstock ran for three days in August 1969."
+        },
+        {
+          "category": "Sports",
+          "difficulty": 3,
+          "question": "Which quarterback famously guaranteed — and delivered — a Super Bowl III upset win for the New York Jets?",
+          "options": [
+            "Johnny Unitas",
+            "Bart Starr",
+            "Joe Namath",
+            "Roger Staubach"
+          ],
+          "correct": 2,
+          "connection": "Super Bowl III was played in January 1969."
+        },
+        {
+          "category": "Technology",
+          "difficulty": 4,
+          "question": "What was the name of the pioneering network that sent its first message between UCLA and Stanford?",
+          "options": [
+            "ARPANET",
+            "NSFNET",
+            "Ethernet",
+            "BITNET"
+          ],
+          "correct": 0,
+          "connection": "ARPANET's first message was sent on October 29, 1969.",
+          "accept": [
+            "arpa net"
+          ]
+        },
+        {
+          "category": "Movies",
+          "difficulty": 5,
+          "question": "Which film earned John Wayne his only Academy Award for Best Actor?",
+          "options": [
+            "The Searchers",
+            "Stagecoach",
+            "Rio Bravo",
+            "True Grit"
+          ],
+          "correct": 3,
+          "connection": "True Grit was released in 1969."
+        }
+      ]
+    },
+    {
+      "date": "2026-07-15",
+      "theme": "The color blue",
+      "themeAnswers": [
+        "blue",
+        "the color blue",
+        "the colour blue",
+        "things that are blue",
+        "blue things"
+      ],
+      "themeBlurb": "From the Delta to deep space, every answer today wears the same color.",
+      "questions": [
+        {
+          "category": "Music",
+          "difficulty": 1,
+          "question": "Which genre, born in the American Deep South, gave rock and roll its 12-bar structure?",
+          "options": [
+            "Jazz",
+            "The blues",
+            "Gospel",
+            "Country"
+          ],
+          "correct": 1,
+          "connection": "The blues — it's right there in the name."
+        },
+        {
+          "category": "Geography",
+          "difficulty": 2,
+          "question": "Lake Tana in Ethiopia is the source of which river?",
+          "options": [
+            "The Congo",
+            "The Zambezi",
+            "The Blue Nile",
+            "The Niger"
+          ],
+          "correct": 2,
+          "connection": "The Blue Nile supplies most of the Nile's water."
+        },
+        {
+          "category": "Technology",
+          "difficulty": 3,
+          "question": "Which IBM computer defeated world chess champion Garry Kasparov in 1997?",
+          "options": [
+            "Watson",
+            "Deep Blue",
+            "ENIAC",
+            "HAL 9000"
+          ],
+          "correct": 1,
+          "connection": "Deep Blue was the first computer to beat a reigning world champion in a match."
+        },
+        {
+          "category": "Art",
+          "difficulty": 4,
+          "question": "Which period of Picasso's career (1901–1904) was defined by somber, monochromatic paintings?",
+          "options": [
+            "The Rose Period",
+            "The Cubist Period",
+            "The Blue Period",
+            "The Crystal Period"
+          ],
+          "correct": 2,
+          "connection": "Picasso's Blue Period was painted almost entirely in shades of blue.",
+          "accept": [
+            "deeper blue"
+          ]
+        },
+        {
+          "category": "History",
+          "difficulty": 5,
+          "question": "What is the name of the famous 45.5-carat diamond housed at the Smithsonian Institution?",
+          "options": [
+            "The Koh-i-Noor",
+            "The Hope Diamond",
+            "The Cullinan",
+            "The Regent"
+          ],
+          "correct": 1,
+          "connection": "The Hope Diamond is famous for its deep blue color."
+        }
+      ]
+    },
+    {
+      "date": "2026-07-16",
+      "theme": "Kings",
+      "themeAnswers": [
+        "kings",
+        "king",
+        "royalty",
+        "things called king",
+        "the king"
+      ],
+      "themeBlurb": "Rock royalty, a giant ape, a boy pharaoh, a master of horror, and the world's longest venomous snake — all crowned.",
+      "questions": [
+        {
+          "category": "Music",
+          "difficulty": 1,
+          "question": "Which 'King of Rock and Roll' recorded his first songs at Sun Studio in Memphis?",
+          "options": [
+            "Chuck Berry",
+            "Elvis Presley",
+            "Little Richard",
+            "Buddy Holly"
+          ],
+          "correct": 1,
+          "connection": "Elvis is 'The King.'"
+        },
+        {
+          "category": "Movies",
+          "difficulty": 2,
+          "question": "Which giant ape first climbed the Empire State Building in a 1933 film?",
+          "options": [
+            "Godzilla",
+            "Mighty Joe Young",
+            "King Kong",
+            "Donkey Kong"
+          ],
+          "correct": 2,
+          "connection": "King Kong — the king of Skull Island."
+        },
+        {
+          "category": "History",
+          "difficulty": 3,
+          "question": "Whose nearly intact tomb did archaeologist Howard Carter discover in 1922?",
+          "options": [
+            "Ramses II",
+            "Tutankhamun",
+            "Cleopatra",
+            "Nefertiti"
+          ],
+          "correct": 1,
+          "connection": "Tutankhamun is better known as King Tut.",
+          "accept": [
+            "king tut",
+            "tut"
+          ]
+        },
+        {
+          "category": "Literature",
+          "difficulty": 4,
+          "question": "Which author's first published novel was 'Carrie' in 1974?",
+          "options": [
+            "Dean Koontz",
+            "Peter Straub",
+            "Anne Rice",
+            "Stephen King"
+          ],
+          "correct": 3,
+          "connection": "Stephen King, the king of horror."
+        },
+        {
+          "category": "Science",
+          "difficulty": 5,
+          "question": "'Ophiophagus hannah' is the scientific name of which animal?",
+          "options": [
+            "Black mamba",
+            "King cobra",
+            "Komodo dragon",
+            "Harpy eagle"
+          ],
+          "correct": 1,
+          "connection": "The king cobra is the world's longest venomous snake."
+        }
+      ]
+    },
+    {
+      "date": "2026-07-17",
+      "theme": "Fire",
+      "themeAnswers": [
+        "fire",
+        "flames",
+        "things on fire",
+        "fire related"
+      ],
+      "themeBlurb": "A volcanic ring, a defiant titan, a song of ice and its opposite, an Olympic sprint, and an emperor with a fiddle.",
+      "questions": [
+        {
+          "category": "Geography",
+          "difficulty": 1,
+          "question": "What is the name of the horseshoe-shaped belt of volcanoes and earthquakes circling the Pacific Ocean?",
+          "options": [
+            "The Ring of Fire",
+            "The Mariana Arc",
+            "The Pacific Rim",
+            "The Volcano Belt"
+          ],
+          "correct": 0,
+          "connection": "The Ring of Fire."
+        },
+        {
+          "category": "Mythology",
+          "difficulty": 2,
+          "question": "In Greek myth, which titan stole from the gods and gave humanity a forbidden gift?",
+          "options": [
+            "Atlas",
+            "Prometheus",
+            "Cronus",
+            "Hyperion"
+          ],
+          "correct": 1,
+          "connection": "Prometheus stole fire from the gods."
+        },
+        {
+          "category": "Literature",
+          "difficulty": 3,
+          "question": "'Game of Thrones' is based on which George R.R. Martin book series?",
+          "options": [
+            "The Kingkiller Chronicle",
+            "The Wheel of Time",
+            "A Song of Ice and Fire",
+            "The Stormlight Archive"
+          ],
+          "correct": 2,
+          "connection": "A Song of Ice and Fire."
+        },
+        {
+          "category": "Movies",
+          "difficulty": 4,
+          "question": "Which film about British runners at the 1924 Paris Olympics won the Academy Award for Best Picture?",
+          "options": [
+            "Gallipoli",
+            "Chariots of Fire",
+            "The Loneliness of the Long Distance Runner",
+            "Without Limits"
+          ],
+          "correct": 1,
+          "connection": "Chariots of Fire."
+        },
+        {
+          "category": "History",
+          "difficulty": 5,
+          "question": "Which Roman emperor was in power during the Great Fire of Rome in 64 AD — and allegedly 'fiddled' while the city burned?",
+          "options": [
+            "Caligula",
+            "Claudius",
+            "Nero",
+            "Domitian"
+          ],
+          "correct": 2,
+          "connection": "Nero and the Great Fire of Rome."
+        }
+      ]
+    }
+  ]
+}

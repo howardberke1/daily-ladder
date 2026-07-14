@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Ladder — 5 questions, 1 hidden theme, every day</title>
+  <meta name="description" content="Daily Ladder: climb 5 trivia questions across 5 categories, then guess the hidden theme that connects them. A new ladder every day at dailyladder.app." />
+  <meta name="theme-color" content="#101418" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="canonical" href="https://dailyladder.app/" />
+  <meta property="og:title" content="Daily Ladder" />
+  <meta property="og:description" content="5 trivia questions, 5 categories, 1 hidden theme. Can you crack it?" />
+  <meta property="og:url" content="https://dailyladder.app/" />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="18" fill="%23101418"/><rect x="26" y="14" width="8" height="72" rx="4" fill="%23e8e4da"/><rect x="66" y="14" width="8" height="72" rx="4" fill="%23e8e4da"/><rect x="30" y="24" width="40" height="8" rx="4" fill="%234fae62"/><rect x="30" y="46" width="40" height="8" rx="4" fill="%23d8a02c"/><rect x="30" y="68" width="40" height="8" rx="4" fill="%23e8e4da"/></svg>' />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="icon-btn" id="btn-help" aria-label="How to play">?</button>
+      <button class="icon-btn" id="btn-archive" aria-label="Past ladders">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M8 3v4M16 3v4M4 9h16M6 5h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg>
+      </button>
+    </div>
+    <h1 class="wordmark">Daily Ladder</h1>
+    <div class="topbar-right">
+      <button class="icon-btn" id="btn-practice" aria-label="Practice mode — random questions">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M16 3h5v5M21 3l-7.5 7.5M8 21H3v-5M3 21l7.5-7.5M16 21h5v-5M21 21l-6-6M8 3H3v5M3 3l6 6"/></svg>
+      </button>
+      <button class="icon-btn" id="btn-stats" aria-label="Statistics">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M4 20V10h4v10H4zm6 0V4h4v16h-4zm6 0v-7h4v7h-4z"/></svg>
+      </button>
+      <button class="icon-btn" id="btn-theme" aria-label="Toggle dark mode">
+        <svg class="ico-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="ico-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="game" id="game">
+
+    <!-- Loading / error -->
+    <section class="screen" id="screen-loading">
+      <p class="muted">Setting up today's ladder…</p>
+    </section>
+
+    <!-- Play screen -->
+    <section class="screen hidden" id="screen-play">
+      <p class="mode-banner hidden" id="mode-banner"></p>
+      <div class="play-layout">
+
+        <!-- The ladder rail: 5 rungs, lit as you climb -->
+        <aside class="ladder" aria-label="Ladder progress">
+          <div class="ladder-rail">
+            <div class="rung rung-cap" title="Bonus: guess the theme"><span class="rung-num">?</span></div>
+            <div class="rung" data-rung="5"><span class="rung-num">5</span></div>
+            <div class="rung" data-rung="4"><span class="rung-num">4</span></div>
+            <div class="rung" data-rung="3"><span class="rung-num">3</span></div>
+            <div class="rung" data-rung="2"><span class="rung-num">2</span></div>
+            <div class="rung" data-rung="1"><span class="rung-num">1</span></div>
+          </div>
+        </aside>
+
+        <div class="question-area">
+          <div class="q-meta">
+            <span class="category-chip" id="q-category">Category</span>
+            <span class="points-meta"><span class="points-worth" id="q-worth">worth 3 pts</span><span class="guesses" id="q-points" aria-label="Points remaining"></span></span>
+          </div>
+          <h2 class="q-text" id="q-text">Question text</h2>
+
+          <div class="answer-box" id="answer-box">
+            <input type="text" id="q-input" class="answer-input" placeholder="Type your answer…"
+                   autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                   enterkeyhint="go" aria-label="Type your answer" />
+            <button class="btn btn-primary btn-guess" id="btn-guess">Guess</button>
+          </div>
+
+          <button class="link-btn" id="btn-choices">Not sure? Show 4 choices <span class="cost">−1 pt</span></button>
+
+          <div class="options hidden" id="q-options" role="group" aria-label="Answer choices"></div>
+          <p class="q-feedback" id="q-feedback" aria-live="polite"></p>
+          <button class="btn btn-primary hidden" id="btn-next">Next rung ↑</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Bonus theme rung -->
+    <section class="screen hidden" id="screen-bonus">
+      <div class="results bonus">
+        <p class="results-eyebrow">Bonus rung</p>
+        <h2 class="bonus-title">All five answers share one hidden theme.<br />What is it?</h2>
+        <p class="muted bonus-sub">One guess · +3 points if you nail it</p>
+        <div class="answer-box bonus-box">
+          <input type="text" id="b-input" class="answer-input" placeholder="The theme is…"
+                 autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                 enterkeyhint="go" aria-label="Guess the theme" />
+          <button class="btn btn-primary btn-guess" id="btn-b-guess">Lock it in</button>
+        </div>
+        <button class="link-btn" id="btn-b-skip">Just show me the theme</button>
+      </div>
+    </section>
+
+    <!-- Results screen -->
+    <section class="screen hidden" id="screen-results">
+      <div class="results">
+        <p class="results-eyebrow" id="r-eyebrow">You reached the top</p>
+        <div class="score-line"><span id="r-score">0</span><span class="score-max" id="r-score-max">/18</span></div>
+
+        <div class="theme-reveal" id="theme-reveal">
+          <p class="reveal-label">The hidden theme was</p>
+          <p class="reveal-theme" id="r-theme">…</p>
+          <p class="theme-verdict" id="r-theme-verdict"></p>
+          <p class="reveal-blurb" id="r-blurb"></p>
+        </div>
+
+        <ul class="connections" id="r-connections"></ul>
+
+        <div class="result-grid" id="r-grid" aria-label="Your result grid"></div>
+
+        <div class="results-actions">
+          <button class="btn btn-primary" id="btn-share">Share result</button>
+          <button class="btn btn-primary hidden" id="btn-again">New round</button>
+          <button class="btn hidden" id="btn-today">Today's ladder</button>
+          <button class="btn" id="btn-see-stats">Statistics</button>
+        </div>
+
+        <p class="countdown">Next ladder in <span id="r-countdown">--:--:--</span></p>
+      </div>
+    </section>
+
+    <!-- No puzzle available -->
+    <section class="screen hidden" id="screen-empty">
+      <div class="results">
+        <p class="results-eyebrow">No ladder today</p>
+        <p class="muted">There's no puzzle published for today's date yet. Check back tomorrow — or add one to <code>data/puzzles.json</code>.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Help modal -->
+  <dialog class="modal" id="modal-help">
+    <div class="modal-inner">
+      <button class="modal-close" data-close aria-label="Close">×</button>
+      <h2>How to play</h2>
+      <p>Climb a ladder of <strong>5 trivia questions</strong>, one rung at a time. Rung 1 is easy; rung 5 is hard.</p>
+      <ul class="help-list">
+        <li>Each rung starts <strong>worth 3 points</strong>. Type your answer — or tap <em>Show 4 choices</em> if you're stuck (costs 1 point). Every wrong guess costs 1 point too. Hit zero and the rung is missed, but you keep climbing.</li>
+        <li><span class="sq sq-green"></span> Solved at full 3 pts&ensp;·&ensp;<span class="sq sq-yellow"></span> solved for 1–2 pts&ensp;·&ensp;<span class="sq sq-gray"></span> missed.</li>
+        <li>Every rung comes from a <strong>different category</strong> — but all five answers secretly connect to one hidden theme.</li>
+        <li><span class="sq sq-purple"></span> At the top, you get <strong>one guess at the theme</strong>: +3 bonus points and a purple square if you crack it. Max score 18.</li>
+      </ul>
+      <p>One ladder per day, the same for everyone. Come back tomorrow to keep your streak alive.</p>
+    </div>
+  </dialog>
+
+  <!-- Stats modal -->
+  <dialog class="modal" id="modal-stats">
+    <div class="modal-inner">
+      <button class="modal-close" data-close aria-label="Close">×</button>
+      <h2>Statistics</h2>
+      <div class="stats-row">
+        <div class="stat"><span class="stat-num" id="s-played">0</span><span class="stat-label">Played</span></div>
+        <div class="stat"><span class="stat-num" id="s-winrate">0</span><span class="stat-label">Win %</span></div>
+        <div class="stat"><span class="stat-num" id="s-streak">0</span><span class="stat-label">Streak</span></div>
+        <div class="stat"><span class="stat-num" id="s-maxstreak">0</span><span class="stat-label">Best</span></div>
+      </div>
+      <h3>Rungs cleared</h3>
+      <div class="dist" id="s-dist"></div>
+      <p class="stats-note" id="s-themes"></p>
+      <p class="stats-note">A win = clearing all 5 rungs. Stats live in this browser only.</p>
+    </div>
+  </dialog>
+
+  <!-- Archive modal -->
+  <dialog class="modal" id="modal-archive">
+    <div class="modal-inner">
+      <button class="modal-close" data-close aria-label="Close">×</button>
+      <h2>Past ladders</h2>
+      <p class="muted archive-note">Replay any day you missed. Archive games don't affect your streak or stats.</p>
+      <div class="archive-list" id="archive-list"></div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
