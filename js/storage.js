@@ -53,6 +53,7 @@ const EMPTY_STATS = {
   lastWinDate: null,
   lastPlayedDate: null,
   themesGuessed: 0,
+  fastestWinMs: null,
   // distribution[n] = games where the player cleared exactly n rungs (0–5)
   distribution: [0, 0, 0, 0, 0, 0],
 };
@@ -66,7 +67,7 @@ export function getStats() {
  * touch stats or streaks. A "win" = all 5 rungs cleared; streak = consecutive
  * calendar days with a win.
  */
-export function recordResult(dateKey, rungsCleared, themeCorrect = false) {
+export function recordResult(dateKey, rungsCleared, themeCorrect = false, timeMs = null) {
   const stats = getStats();
   if (stats.lastPlayedDate === dateKey) return stats; // already recorded
 
@@ -78,6 +79,9 @@ export function recordResult(dateKey, rungsCleared, themeCorrect = false) {
   const won = rungsCleared === 5;
   if (won) {
     stats.wins += 1;
+    if (timeMs != null && (stats.fastestWinMs == null || timeMs < stats.fastestWinMs)) {
+      stats.fastestWinMs = timeMs;
+    }
     stats.currentStreak = isYesterday(stats.lastWinDate, dateKey)
       ? stats.currentStreak + 1
       : 1;

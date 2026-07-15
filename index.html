@@ -55,13 +55,28 @@
 
         <!-- The ladder rail: 5 rungs, lit as you climb -->
         <aside class="ladder" aria-label="Ladder progress">
-          <div class="ladder-rail">
-            <div class="rung rung-cap" title="Bonus: guess the theme"><span class="rung-num">?</span></div>
-            <div class="rung" data-rung="5"><span class="rung-num">5</span></div>
-            <div class="rung" data-rung="4"><span class="rung-num">4</span></div>
-            <div class="rung" data-rung="3"><span class="rung-num">3</span></div>
-            <div class="rung" data-rung="2"><span class="rung-num">2</span></div>
-            <div class="rung" data-rung="1"><span class="rung-num">1</span></div>
+          <div class="ladder-scene" id="ladder-scene" data-progress="0">
+            <div class="sky-night"></div>
+            <div class="stars"></div>
+            <div class="rail rail-l"></div>
+            <div class="rail rail-r"></div>
+            <div class="ladder-rail">
+              <div class="rung rung-cap" title="Bonus: guess the theme"><span class="rung-num">?</span></div>
+              <div class="rung" data-rung="5"><span class="rung-num">5</span></div>
+              <div class="rung" data-rung="4"><span class="rung-num">4</span></div>
+              <div class="rung" data-rung="3"><span class="rung-num">3</span></div>
+              <div class="rung" data-rung="2"><span class="rung-num">2</span></div>
+              <div class="rung" data-rung="1"><span class="rung-num">1</span></div>
+            </div>
+            <svg class="climber" id="climber" viewBox="0 0 40 48" aria-hidden="true">
+              <circle cx="20" cy="9" r="6" class="c-head"/>
+              <line x1="20" y1="15" x2="20" y2="31" class="c-body"/>
+              <line x1="20" y1="19" x2="10" y2="12" class="c-arm c-arm-l"/>
+              <line x1="20" y1="19" x2="30" y2="12" class="c-arm c-arm-r"/>
+              <line x1="20" y1="31" x2="12" y2="43" class="c-leg c-leg-l"/>
+              <line x1="20" y1="31" x2="28" y2="43" class="c-leg c-leg-r"/>
+            </svg>
+            <div class="ground"></div>
           </div>
         </aside>
 
@@ -110,6 +125,7 @@
       <div class="results">
         <p class="results-eyebrow" id="r-eyebrow">You reached the top</p>
         <div class="score-line"><span id="r-score">0</span><span class="score-max" id="r-score-max">/18</span></div>
+        <p class="time-line" id="r-time"></p>
 
         <div class="theme-reveal" id="theme-reveal">
           <p class="reveal-label">The hidden theme was</p>
@@ -172,6 +188,7 @@
       </div>
       <h3>Rungs cleared</h3>
       <div class="dist" id="s-dist"></div>
+      <p class="stats-note" id="s-fastest"></p>
       <p class="stats-note" id="s-themes"></p>
       <p class="stats-note">A win = clearing all 5 rungs. Stats live in this browser only.</p>
     </div>

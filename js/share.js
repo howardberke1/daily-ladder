@@ -7,11 +7,17 @@ const SQ_DARK = { green: "🟩", yellow: "🟨", gray: "⬛", purple: "🟪", em
 
 export const MAX_SCORE = 18;
 
-export function buildShareText({ number, score, results, themeCorrect, dark }) {
+export function buildShareText({ number, score, results, themeCorrect, timeMs = null, dark }) {
   const s = dark ? SQ_DARK : SQ;
   const row = results.map((r) => s[r]).join("");
   const theme = themeCorrect ? s.purple : s.empty;
-  return `Daily Ladder #${number} — ${score}/${MAX_SCORE}\n${row} ${theme}\n`;
+  const time = timeMs != null ? ` · ${fmtTime(timeMs)}` : "";
+  return `Daily Ladder #${number} — ${score}/${MAX_SCORE}${time}\n${row} ${theme}\nhttps://dailyladder.app\n`;
+}
+
+function fmtTime(ms) {
+  const total = Math.max(0, Math.round(ms / 1000));
+  return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, "0")}`;
 }
 
 export async function share(text) {

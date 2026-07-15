@@ -6,7 +6,7 @@ import {
   listArchive, buildPractice, todayKey, prettyDate,
 } from "./puzzles.js";
 import { getSettings, saveSettings, getStats, getDayState } from "./storage.js";
-import { Game, toast } from "./game.js";
+import { Game, toast, formatTime } from "./game.js";
 
 const $ = (id) => document.getElementById(id);
 
@@ -134,6 +134,10 @@ function renderStats() {
   $("s-streak").textContent = s.currentStreak;
   $("s-maxstreak").textContent = s.maxStreak;
 
+  $("s-fastest").textContent = s.fastestWinMs != null
+    ? `Fastest full clear: ${formatTime(s.fastestWinMs)}`
+    : "Fastest full clear: —";
+
   $("s-themes").textContent = s.played
     ? `Themes cracked: ${s.themesGuessed} of ${s.played} (${Math.round((s.themesGuessed / s.played) * 100)}%)`
     : "Themes cracked: —";
@@ -171,6 +175,8 @@ async function boot() {
   $("btn-b-guess").addEventListener("click", () => game?.guessTheme());
   $("b-input").addEventListener("keydown", (e) => { if (e.key === "Enter") game?.guessTheme(); });
   $("btn-b-skip").addEventListener("click", () => game?.skipTheme());
+
+  window.addEventListener("resize", () => game?.positionClimber?.());
 
   // results actions
   $("btn-again").addEventListener("click", () => startPractice());

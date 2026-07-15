@@ -39,6 +39,8 @@ export class Game {
       results: [],              // "green" | "yellow" | "gray"
       scores: [],               // 0–3
       theme: { guessed: false, correct: false, guess: "" },
+      startedAt: Date.now(),
+      timeMs: null,
       recorded: false,
     };
 
@@ -157,6 +159,13 @@ export class Game {
   }
 
   renderLadder() {
+    const scene = document.getElementById("ladder-scene");
+    if (scene) {
+      const completed = this.state.results.filter(Boolean).length;
+      const summit = this.state.stage === "done" && this.state.theme.correct;
+      scene.dataset.progress = String(summit ? 6 : completed);
+    }
+
     document.querySelectorAll(".rung:not(.rung-cap)").forEach((el) => {
       const idx = Number(el.dataset.rung) - 1;
       el.classList.remove("green", "yellow", "gray", "active");
@@ -175,6 +184,51 @@ export class Game {
         if (this.state.theme.correct) cap.classList.add("purple");
         else if (this.state.theme.guessed) cap.classList.add("gray");
       }
+    }
+
+    this.positionClimber();
+  }
+
+  /**
+   * Moves the climber to their current spot: ground before rung 1, on the
+   * highest completed rung mid-climb, at the summit cap when done.
+   */
+  positionClimber() {
+    const scene = document.getElementById("ladder-scene");
+    const climber = document.getElementById("climber");
+    if (!scene || !climber || typeof scene.getBoundingClientRect !== "function") return;
+
+    const completed = this.state.results.filter(Boolean).length;
+    const done = this.state.stage === "done";
+    let target = null;
+
+    if (done || this.state.stage === "bonus") {
+      target = scene.querySelector(".rung-cap");
+    } else if (completed > 0) {
+      target = scene.querySelector(`.rung[data-rung="${completed}"]`);
+    }
+
+    const sceneRect = scene.getBoundingClientRect();
+    let top;
+    if (target && typeof target.getBoundingClientRect === "function") {
+      const r = target.getBoundingClientRect();
+      top = r.top - sceneRect.top - 30; // feet on the rung
+    } else {
+      top = sceneRect.height - 18 - 34; // standing on the ground
+    }
+    if (!Number.isFinite(top)) return;
+
+    const prev = climber.style.top;
+    climber.style.top = `${Math.max(4, top)}px`;
+
+    if (prev && prev !== climber.style.top) {
+      climber.classList.remove("moving");
+      void climber.offsetWidth; // restart animation
+      climber.classList.add("moving");
+      climber.addEventListener("animationend", () => climber.classList.remove("moving"), { once: true });
+    }
+    if (done && this.state.theme.correct) {
+      climber.classList.add("celebrating");
     }
   }
 
@@ -355,9 +409,12 @@ export class Game {
 
   finish() {
     this.state.stage = "done";
+    if (this.state.timeMs == null && this.state.startedAt) {
+      this.state.timeMs = Date.now() - this.state.startedAt;
+    }
     if (this.mode === "daily" && !this.state.recorded) {
       const rungsCleared = this.state.results.filter((r) => r !== "gray").length;
-      recordResult(this.dateKey, rungsCleared, this.state.theme.correct);
+      recordResult(this.dateKey, rungsCleared, this.state.theme.correct, this.state.timeMs);
       this.state.recorded = true;
     }
     this.save();
@@ -387,6 +444,9 @@ export class Game {
 
     $("r-score").textContent = score;
     $("r-score-max").textContent = `/${this.maxScore()}`;
+    $("r-time").innerHTML = this.state.timeMs != null
+      ? `Climbed in <strong>${formatTime(this.state.timeMs)}</strong>`
+      : "";
 
     // theme card + connections hidden entirely in practice
     $("theme-reveal").classList.toggle("hidden", practice);
@@ -456,6 +516,22 @@ export class Game {
     this.renderLadder();
     if (!practice) this.wireShare(score);
     if (this.mode === "daily") this.startCountdown();
+    if (animateReveal && t.correct) this.celebrate();
+  }
+
+  celebrate() {
+    const host = $("theme-reveal");
+    if (!host || !host.appendChild) return;
+    const colors = ["#4fae62", "#d8a02c", "#8458c9", "#6aa9e9"];
+    for (let i = 0; i < 26; i++) {
+      const bit = document.createElement("div");
+      bit.className = "confetti";
+      bit.style.left = `${Math.random() * 100}%`;
+      bit.style.background = colors[i % colors.length];
+      bit.style.animationDelay = `${Math.random() * 350}ms`;
+      host.appendChild(bit);
+      setTimeout(() => bit.remove(), 1800);
+    }
   }
 
   wireShare(score) {
@@ -466,6 +542,7 @@ export class Game {
         score,
         results: this.state.results,
         themeCorrect: this.state.theme.correct,
+        timeMs: this.state.timeMs,
         dark,
       });
       const outcome = await share(text);
@@ -497,6 +574,13 @@ export function toast(message, ms = 2200) {
   el.classList.add("show");
   clearTimeout(el._t);
   el._t = setTimeout(() => el.classList.remove("show"), ms);
+}
+
+export function formatTime(ms) {
+  const total = Math.max(0, Math.round(ms / 1000));
+  const m = Math.floor(total / 60);
+  const sec = String(total % 60).padStart(2, "0");
+  return `${m}:${sec}`;
 }
 
 function escapeHtml(s) {
