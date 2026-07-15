@@ -1,0 +1,1755 @@
+{
+  "startDate": "2026-07-12",
+  "puzzles": [
+    {
+      "date": "2026-07-12",
+      "theme": "Paris",
+      "themeAnswers": [
+        "paris",
+        "the word paris",
+        "things called paris",
+        "paris france"
+      ],
+      "themeBlurb": "A museum, a Trojan prince, a plaster cast, a Texas town, and a wine upset — every answer carries the same name.",
+      "questions": [
+        {
+          "category": "Art",
+          "difficulty": 1,
+          "question": "Which famous Leonardo da Vinci portrait hangs behind glass in the Louvre?",
+          "options": [
+            "The Birth of Venus",
+            "Girl with a Pearl Earring",
+            "The Mona Lisa",
+            "Whistler's Mother"
+          ],
+          "correct": 2,
+          "accept": [
+            "monalisa",
+            "la gioconda"
+          ],
+          "connection": "The Louvre — and the Mona Lisa — live in Paris."
+        },
+        {
+          "category": "Mythology",
+          "difficulty": 2,
+          "question": "In Greek myth, which Trojan prince's abduction of Helen sparked the Trojan War?",
+          "options": [
+            "Hector",
+            "Paris",
+            "Aeneas",
+            "Achilles"
+          ],
+          "correct": 1,
+          "connection": "Paris of Troy."
+        },
+        {
+          "category": "Science",
+          "difficulty": 3,
+          "question": "What is the common name of the white powder (calcium sulfate hemihydrate) used to make casts and molds?",
+          "options": [
+            "Quicklime",
+            "Plaster of Paris",
+            "Portland cement",
+            "Talcum"
+          ],
+          "correct": 1,
+          "accept": [
+            "plaster"
+          ],
+          "connection": "Plaster of Paris, named for the gypsum quarried under the city."
+        },
+        {
+          "category": "Movies",
+          "difficulty": 4,
+          "question": "Which Wim Wenders road movie won the Palme d'Or in 1984?",
+          "options": [
+            "Badlands",
+            "Paris, Texas",
+            "Two-Lane Blacktop",
+            "Wild at Heart"
+          ],
+          "correct": 1,
+          "accept": [
+            "paris texas"
+          ],
+          "connection": "Paris, Texas — a small town sharing the famous name."
+        },
+        {
+          "category": "History",
+          "difficulty": 5,
+          "question": "What is the nickname of the famous 1976 blind wine tasting in which California wines beat the French?",
+          "options": [
+            "The Bordeaux Upset",
+            "The Judgment of Paris",
+            "The Napa Verdict",
+            "The Great Decanting"
+          ],
+          "correct": 1,
+          "accept": [
+            "judgement of paris"
+          ],
+          "connection": "The Judgment of Paris — itself named after the myth."
+        }
+      ]
+    },
+    {
+      "date": "2026-07-13",
+      "theme": "Seven",
+      "themeAnswers": [
+        "seven",
+        "7",
+        "the number seven",
+        "number 7",
+        "sevens",
+        "the number 7"
+      ],
+      "themeBlurb": "Ancient wonders, a gunslinger posse, Olympic rugby, a stadium riff, and Shakespeare's ages of man — count them.",
+      "questions": [
+        {
+          "category": "History",
+          "difficulty": 1,
+          "question": "The Great Pyramid of Giza is the only surviving member of which famous ancient list?",
+          "options": [
+            "The Seven Wonders of the World",
+            "The Twelve Labors",
+            "The Great Library Index",
+            "The Colossi of Antiquity"
+          ],
+          "correct": 0,
+          "accept": [
+            "seven wonders",
+            "7 wonders",
+            "seven wonders of the ancient world"
+          ],
+          "connection": "The Seven Wonders of the Ancient World."
+        },
+        {
+          "category": "Movies",
+          "difficulty": 2,
+          "question": "Which 1960 western is a remake of Akira Kurosawa's 'Seven Samurai'?",
+          "options": [
+            "The Wild Bunch",
+            "The Magnificent Seven",
+            "True Grit",
+            "Rio Bravo"
+          ],
+          "correct": 1,
+          "accept": [
+            "magnificent 7"
+          ],
+          "connection": "The Magnificent Seven."
+        },
+        {
+          "category": "Sports",
+          "difficulty": 3,
+          "question": "Which fast-paced rugby format became an Olympic sport at Rio 2016?",
+          "options": [
+            "Rugby league",
+            "Touch rugby",
+            "Rugby sevens",
+            "Beach rugby"
+          ],
+          "correct": 2,
+          "accept": [
+            "sevens",
+            "rugby 7s",
+            "7s"
+          ],
+          "connection": "Rugby sevens — seven players a side."
+        },
+        {
+          "category": "Music",
+          "difficulty": 4,
+          "question": "Which White Stripes song's bass-like guitar riff became a global stadium chant?",
+          "options": [
+            "Seven Nation Army",
+            "Icky Thump",
+            "Blue Orchid",
+            "Fell in Love with a Girl"
+          ],
+          "correct": 0,
+          "accept": [
+            "7 nation army"
+          ],
+          "connection": "Seven Nation Army."
+        },
+        {
+          "category": "Literature",
+          "difficulty": 5,
+          "question": "The 'All the world's a stage' speech, describing the seven ages of man, appears in which Shakespeare play?",
+          "options": [
+            "Twelfth Night",
+            "The Tempest",
+            "As You Like It",
+            "Much Ado About Nothing"
+          ],
+          "correct": 2,
+          "connection": "The speech walks through the seven ages of man."
+        }
+      ]
+    },
+    {
+      "date": "2026-07-14",
+      "theme": "1969",
+      "themeAnswers": [
+        "1969",
+        "the year 1969",
+        "nineteen sixty nine",
+        "things from 1969",
+        "year 1969",
+        "60s",
+        "the sixties"
+      ],
+      "themeBlurb": "Every answer traces back to one remarkable year: the Moon landing, Woodstock, Broadway Joe, the birth of the internet, and the Duke's only Oscar.",
+      "questions": [
+        {
+          "category": "History",
+          "difficulty": 1,
+          "question": "Who was the first person to walk on the Moon?",
+          "options": [
+            "Buzz Aldrin",
+            "Neil Armstrong",
+            "John Glenn",
+            "Yuri Gagarin"
+          ],
+          "correct": 1,
+          "connection": "Apollo 11 landed on July 20, 1969."
+        },
+        {
+          "category": "Music",
+          "difficulty": 2,
+          "question": "Which legendary music festival took place on Max Yasgur's dairy farm in upstate New York?",
+          "options": [
+            "Monterey Pop",
+            "Woodstock",
+            "Altamont",
+            "Isle of Wight"
+          ],
+          "correct": 1,
+          "connection": "Woodstock ran for three days in August 1969."
+        },
+        {
+          "category": "Sports",
+          "difficulty": 3,
+          "question": "Which quarterback famously guaranteed — and delivered — a Super Bowl III upset win for the New York Jets?",
+          "options": [
+            "Johnny Unitas",
+            "Bart Starr",
+            "Joe Namath",
+            "Roger Staubach"
+          ],
+          "correct": 2,
+          "connection": "Super Bowl III was played in January 1969."
+        },
+        {
+          "category": "Technology",
+          "difficulty": 4,
+          "question": "What was the name of the pioneering network that sent its first message between UCLA and Stanford?",
+          "options": [
+            "ARPANET",
+            "NSFNET",
+            "Ethernet",
+            "BITNET"
+          ],
+          "correct": 0,
+          "connection": "ARPANET's first message was sent on October 29, 1969.",
+          "accept": [
+            "arpa net"
+          ]
+        },
+        {
+          "category": "Movies",
+          "difficulty": 5,
+          "question": "Which film earned John Wayne his only Academy Award for Best Actor?",
+          "options": [
+            "The Searchers",
+            "Stagecoach",
+            "Rio Bravo",
+            "True Grit"
+          ],
+          "correct": 3,
+          "connection": "True Grit was released in 1969."
+        }
+      ]
+    },
+    {
+      "date": "2026-07-15",
+      "theme": "The color blue",
+      "themeAnswers": [
+        "blue",
+        "the color blue",
+        "the colour blue",
+        "things that are blue",
+        "blue things"
+      ],
+      "themeBlurb": "From the Delta to deep space, every answer today wears the same color.",
+      "questions": [
+        {
+          "category": "Music",
+          "difficulty": 1,
+          "question": "Which genre, born in the American Deep South, gave rock and roll its 12-bar structure?",
+          "options": [
+            "Jazz",
+            "The blues",
+            "Gospel",
+            "Country"
+          ],
+          "correct": 1,
+          "connection": "The blues — it's right there in the name."
+        },
+        {
+          "category": "Geography",
+          "difficulty": 2,
+          "question": "Lake Tana in Ethiopia is the source of which river?",
+          "options": [
+            "The Congo",
+            "The Zambezi",
+            "The Blue Nile",
+            "The Niger"
+          ],
+          "correct": 2,
+          "connection": "The Blue Nile supplies most of the Nile's water."
+        },
+        {
+          "category": "Technology",
+          "difficulty": 3,
+          "question": "Which IBM computer defeated world chess champion Garry Kasparov in 1997?",
+          "options": [
+            "Watson",
+            "Deep Blue",
+            "ENIAC",
+            "HAL 9000"
+          ],
+          "correct": 1,
+          "connection": "Deep Blue was the first computer to beat a reigning world champion in a match."
+        },
+        {
+          "category": "Art",
+          "difficulty": 4,
+          "question": "Which period of Picasso's career (1901–1904) was defined by somber, monochromatic paintings?",
+          "options": [
+            "The Rose Period",
+            "The Cubist Period",
+            "The Blue Period",
+            "The Crystal Period"
+          ],
+          "correct": 2,
+          "connection": "Picasso's Blue Period was painted almost entirely in shades of blue.",
+          "accept": [
+            "deeper blue"
+          ]
+        },
+        {
+          "category": "History",
+          "difficulty": 5,
+          "question": "What is the name of the famous 45.5-carat diamond housed at the Smithsonian Institution?",
+          "options": [
+            "The Koh-i-Noor",
+            "The Hope Diamond",
+            "The Cullinan",
+            "The Regent"
+          ],
+          "correct": 1,
+          "connection": "The Hope Diamond is famous for its deep blue color."
+        }
+      ]
+    },
+    {
+      "date": "2026-07-16",
+      "theme": "Kings",
+      "themeAnswers": [
+        "kings",
+        "king",
+        "royalty",
+        "things called king",
+        "the king"
+      ],
+      "themeBlurb": "Rock royalty, a giant ape, a boy pharaoh, a master of horror, and the world's longest venomous snake — all crowned.",
+      "questions": [
+        {
+          "category": "Music",
+          "difficulty": 1,
+          "question": "Which 'King of Rock and Roll' recorded his first songs at Sun Studio in Memphis?",
+          "options": [
+            "Chuck Berry",
+            "Elvis Presley",
+            "Little Richard",
+            "Buddy Holly"
+          ],
+          "correct": 1,
+          "connection": "Elvis is 'The King.'"
+        },
+        {
+          "category": "Movies",
+          "difficulty": 2,
+          "question": "Which giant ape first climbed the Empire State Building in a 1933 film?",
+          "options": [
+            "Godzilla",
+            "Mighty Joe Young",
+            "King Kong",
+            "Donkey Kong"
+          ],
+          "correct": 2,
+          "connection": "King Kong — the king of Skull Island."
+        },
+        {
+          "category": "History",
+          "difficulty": 3,
+          "question": "Whose nearly intact tomb did archaeologist Howard Carter discover in 1922?",
+          "options": [
+            "Ramses II",
+            "Tutankhamun",
+            "Cleopatra",
+            "Nefertiti"
+          ],
+          "correct": 1,
+          "connection": "Tutankhamun is better known as King Tut.",
+          "accept": [
+            "king tut",
+            "tut"
+          ]
+        },
+        {
+          "category": "Literature",
+          "difficulty": 4,
+          "question": "Which author's first published novel was 'Carrie' in 1974?",
+          "options": [
+            "Dean Koontz",
+            "Peter Straub",
+            "Anne Rice",
+            "Stephen King"
+          ],
+          "correct": 3,
+          "connection": "Stephen King, the king of horror."
+        },
+        {
+          "category": "Science",
+          "difficulty": 5,
+          "question": "'Ophiophagus hannah' is the scientific name of which animal?",
+          "options": [
+            "Black mamba",
+            "King cobra",
+            "Komodo dragon",
+            "Harpy eagle"
+          ],
+          "correct": 1,
+          "connection": "The king cobra is the world's longest venomous snake."
+        }
+      ]
+    },
+    {
+      "date": "2026-07-17",
+      "theme": "Fire",
+      "themeAnswers": [
+        "fire",
+        "flames",
+        "things on fire",
+        "fire related"
+      ],
+      "themeBlurb": "A volcanic ring, a defiant titan, a song of ice and its opposite, an Olympic sprint, and an emperor with a fiddle.",
+      "questions": [
+        {
+          "category": "Geography",
+          "difficulty": 1,
+          "question": "What is the name of the horseshoe-shaped belt of volcanoes and earthquakes circling the Pacific Ocean?",
+          "options": [
+            "The Ring of Fire",
+            "The Mariana Arc",
+            "The Pacific Rim",
+            "The Volcano Belt"
+          ],
+          "correct": 0,
+          "connection": "The Ring of Fire."
+        },
+        {
+          "category": "Mythology",
+          "difficulty": 2,
+          "question": "In Greek myth, which titan stole from the gods and gave humanity a forbidden gift?",
+          "options": [
+            "Atlas",
+            "Prometheus",
+            "Cronus",
+            "Hyperion"
+          ],
+          "correct": 1,
+          "connection": "Prometheus stole fire from the gods."
+        },
+        {
+          "category": "Literature",
+          "difficulty": 3,
+          "question": "'Game of Thrones' is based on which George R.R. Martin book series?",
+          "options": [
+            "The Kingkiller Chronicle",
+            "The Wheel of Time",
+            "A Song of Ice and Fire",
+            "The Stormlight Archive"
+          ],
+          "correct": 2,
+          "connection": "A Song of Ice and Fire."
+        },
+        {
+          "category": "Movies",
+          "difficulty": 4,
+          "question": "Which film about British runners at the 1924 Paris Olympics won the Academy Award for Best Picture?",
+          "options": [
+            "Gallipoli",
+            "Chariots of Fire",
+            "The Loneliness of the Long Distance Runner",
+            "Without Limits"
+          ],
+          "correct": 1,
+          "connection": "Chariots of Fire."
+        },
+        {
+          "category": "History",
+          "difficulty": 5,
+          "question": "Which Roman emperor was in power during the Great Fire of Rome in 64 AD — and allegedly 'fiddled' while the city burned?",
+          "options": [
+            "Caligula",
+            "Claudius",
+            "Nero",
+            "Domitian"
+          ],
+          "correct": 2,
+          "connection": "Nero and the Great Fire of Rome."
+        }
+      ]
+    },
+    {
+      "date": "2026-07-18",
+      "theme": "Gold",
+      "themeAnswers": [
+        "gold",
+        "golden",
+        "things that are gold",
+        "the color gold"
+      ],
+      "themeBlurb": "A famous bridge, hopeful prospectors, a Bond villain, a Neil Young classic, and the alchemists' impossible dream — all glittering.",
+      "questions": [
+        {
+          "category": "Geography",
+          "difficulty": 1,
+          "question": "Which famous orange-red suspension bridge spans the entrance to San Francisco Bay?",
+          "options": [
+            "The Bay Bridge",
+            "The Golden Gate Bridge",
+            "The Brooklyn Bridge",
+            "The George Washington Bridge"
+          ],
+          "correct": 1,
+          "accept": [
+            "golden gate"
+          ],
+          "connection": "The Golden Gate Bridge."
+        },
+        {
+          "category": "History",
+          "difficulty": 2,
+          "question": "What nickname was given to the prospectors who flooded into California in 1849?",
+          "options": [
+            "Sooners",
+            "Wildcatters",
+            "Forty-niners",
+            "Boomers"
+          ],
+          "correct": 2,
+          "accept": [
+            "49ers",
+            "forty niners"
+          ],
+          "connection": "The forty-niners chased the California Gold Rush."
+        },
+        {
+          "category": "Movies",
+          "difficulty": 3,
+          "question": "Which 1964 James Bond villain plotted to contaminate the US gold reserve at Fort Knox?",
+          "options": [
+            "Dr. No",
+            "Blofeld",
+            "Goldfinger",
+            "Scaramanga"
+          ],
+          "correct": 2,
+          "connection": "Auric Goldfinger, obsessed with gold."
+        },
+        {
+          "category": "Music",
+          "difficulty": 4,
+          "question": "Which song became Neil Young's only #1 hit in the United States?",
+          "options": [
+            "Old Man",
+            "Heart of Gold",
+            "Harvest Moon",
+            "Rockin' in the Free World"
+          ],
+          "correct": 1,
+          "connection": "Heart of Gold topped the chart in 1972."
+        },
+        {
+          "category": "Science",
+          "difficulty": 5,
+          "question": "What legendary substance did alchemists believe could turn base metals into gold?",
+          "options": [
+            "The Elixir of Life",
+            "Aqua regia",
+            "The Philosopher's Stone",
+            "Quintessence"
+          ],
+          "correct": 2,
+          "accept": [
+            "philosophers stone",
+            "the philosophers stone"
+          ],
+          "connection": "The Philosopher's Stone — the dream of making gold."
+        }
+      ]
+    },
+    {
+      "date": "2026-07-19",
+      "theme": "Apples",
+      "themeAnswers": [
+        "apples",
+        "apple",
+        "the word apple",
+        "things called apple"
+      ],
+      "themeBlurb": "A falling fruit, a big city, a golden grudge, a Beatles label, and a Super Bowl ad — one fruit runs through it all.",
+      "questions": [
+        {
+          "category": "Science",
+          "difficulty": 1,
+          "question": "According to legend, a falling apple inspired which scientist's theory of gravity?",
+          "options": [
+            "Galileo Galilei",
+            "Isaac Newton",
+            "Albert Einstein",
+            "Johannes Kepler"
+          ],
+          "correct": 1,
+          "accept": [
+            "newton"
+          ],
+          "connection": "Newton and the famous apple."
+        },
+        {
+          "category": "Geography",
+          "difficulty": 2,
+          "question": "Which US city is nicknamed 'The Big Apple'?",
+          "options": [
+            "Chicago",
+            "Los Angeles",
+            "New York City",
+            "Boston"
+          ],
+          "correct": 2,
+          "accept": [
+            "new york",
+            "nyc"
+          ],
+          "connection": "The Big Apple."
+        },
+        {
+          "category": "Mythology",
+          "difficulty": 3,
+          "question": "In Greek myth, which goddess of discord tossed a golden apple inscribed 'to the fairest'?",
+          "options": [
+            "Hera",
+            "Athena",
+            "Aphrodite",
+            "Eris"
+          ],
+          "correct": 3,
+          "connection": "Eris's golden apple sparked the Judgment of Paris."
+        },
+        {
+          "category": "Music",
+          "difficulty": 4,
+          "question": "The Beatles founded which record label in 1968?",
+          "options": [
+            "Parlophone",
+            "Apple Records",
+            "Capitol Records",
+            "Abbey Road Records"
+          ],
+          "correct": 1,
+          "accept": [
+            "apple",
+            "apple corps"
+          ],
+          "connection": "Apple Records."
+        },
+        {
+          "category": "Technology",
+          "difficulty": 5,
+          "question": "Apple's famous '1984' Super Bowl commercial introduced which computer?",
+          "options": [
+            "The Apple II",
+            "The Lisa",
+            "The Macintosh",
+            "The PowerBook"
+          ],
+          "correct": 2,
+          "accept": [
+            "mac",
+            "apple macintosh"
+          ],
+          "connection": "The Macintosh — Apple's landmark launch."
+        }
+      ]
+    },
+    {
+      "date": "2026-07-20",
+      "theme": "The Moon",
+      "themeAnswers": [
+        "the moon",
+        "moon",
+        "lunar",
+        "things about the moon"
+      ],
+      "themeBlurb": "On the anniversary of Apollo 11's landing — tides, an Oscar shocker, a sonata, an Eagle, and a Greek goddess, all pulled by the same object.",
+      "questions": [
+        {
+          "category": "Science",
+          "difficulty": 1,
+          "question": "The gravitational pull of which celestial body is the main cause of Earth's ocean tides?",
+          "options": [
+            "The Sun",
+            "The Moon",
+            "Jupiter",
+            "Mars"
+          ],
+          "correct": 1,
+          "connection": "The Moon drives the tides."
+        },
+        {
+          "category": "Movies",
+          "difficulty": 2,
+          "question": "Which film won Best Picture in 2017 after 'La La Land' was announced by mistake?",
+          "options": [
+            "Manchester by the Sea",
+            "Arrival",
+            "Moonlight",
+            "Fences"
+          ],
+          "correct": 2,
+          "connection": "Moonlight."
+        },
+        {
+          "category": "Music",
+          "difficulty": 3,
+          "question": "'Quasi una fantasia,' Beethoven's Piano Sonata No. 14, is far better known by what nickname?",
+          "options": [
+            "The Pathétique",
+            "The Moonlight Sonata",
+            "The Appassionata",
+            "The Tempest"
+          ],
+          "correct": 1,
+          "accept": [
+            "moonlight"
+          ],
+          "connection": "The Moonlight Sonata."
+        },
+        {
+          "category": "History",
+          "difficulty": 4,
+          "question": "What was the name of the Apollo 11 lunar module that landed on July 20, 1969?",
+          "options": [
+            "Columbia",
+            "Falcon",
+            "Eagle",
+            "Intrepid"
+          ],
+          "correct": 2,
+          "accept": [
+            "the eagle"
+          ],
+          "connection": "The Eagle landed — on the Moon."
+        },
+        {
+          "category": "Mythology",
+          "difficulty": 5,
+          "question": "Which Greek goddess personified the Moon and drove a chariot across the night sky?",
+          "options": [
+            "Artemis",
+            "Hecate",
+            "Selene",
+            "Nyx"
+          ],
+          "correct": 2,
+          "connection": "Selene, the Moon herself."
+        }
+      ]
+    },
+    {
+      "date": "2026-07-21",
+      "theme": "Red",
+      "themeAnswers": [
+        "red",
+        "the color red",
+        "things that are red",
+        "scarlet"
+      ],
+      "themeBlurb": "A rusty planet, a Moscow landmark, a WWI ace, a Taylor Swift era, and Hawthorne's famous letter — all the same shade.",
+      "questions": [
+        {
+          "category": "Science",
+          "difficulty": 1,
+          "question": "Which planet is nicknamed 'the Red Planet'?",
+          "options": [
+            "Venus",
+            "Jupiter",
+            "Mars",
+            "Mercury"
+          ],
+          "correct": 2,
+          "connection": "Mars, the Red Planet."
+        },
+        {
+          "category": "Geography",
+          "difficulty": 2,
+          "question": "Which famous square sits beside the Kremlin in Moscow?",
+          "options": [
+            "Victory Square",
+            "Red Square",
+            "Palace Square",
+            "Lenin Square"
+          ],
+          "correct": 1,
+          "connection": "Red Square."
+        },
+        {
+          "category": "History",
+          "difficulty": 3,
+          "question": "What was the nickname of Manfred von Richthofen, WWI's most famous fighter ace?",
+          "options": [
+            "The Black Knight",
+            "The Red Baron",
+            "The Iron Eagle",
+            "The Crimson Count"
+          ],
+          "correct": 1,
+          "accept": [
+            "red baron"
+          ],
+          "connection": "The Red Baron."
+        },
+        {
+          "category": "Music",
+          "difficulty": 4,
+          "question": "Which Taylor Swift album, later re-recorded as a 'Taylor's Version,' features 'All Too Well'?",
+          "options": [
+            "Fearless",
+            "1989",
+            "Red",
+            "Speak Now"
+          ],
+          "correct": 2,
+          "connection": "Red."
+        },
+        {
+          "category": "Literature",
+          "difficulty": 5,
+          "question": "In Nathaniel Hawthorne's novel, what letter is Hester Prynne forced to wear?",
+          "options": [
+            "A scarlet A",
+            "A crimson S",
+            "A red H",
+            "A scarlet P"
+          ],
+          "correct": 0,
+          "accept": [
+            "scarlet a",
+            "the scarlet letter",
+            "a"
+          ],
+          "connection": "The Scarlet Letter — scarlet is red."
+        }
+      ]
+    },
+    {
+      "date": "2026-07-22",
+      "theme": "Pi",
+      "themeAnswers": [
+        "pi",
+        "the number pi",
+        "3.14",
+        "pie",
+        "pi and pie",
+        "3.14159"
+      ],
+      "themeBlurb": "It's July 22 — 22/7, Pi Approximation Day. A constant, a castaway, a slice of Americana, a tiny computer, and the Greek who squeezed the circle.",
+      "questions": [
+        {
+          "category": "Science",
+          "difficulty": 1,
+          "question": "What is the name of the mathematical constant that begins 3.14159?",
+          "options": [
+            "Euler's number",
+            "Pi",
+            "The golden ratio",
+            "Avogadro's number"
+          ],
+          "correct": 1,
+          "accept": [
+            "π"
+          ],
+          "connection": "Pi itself."
+        },
+        {
+          "category": "Literature",
+          "difficulty": 2,
+          "question": "Which Yann Martel novel strands a boy on a lifeboat with a Bengal tiger?",
+          "options": [
+            "Kon-Tiki",
+            "The Old Man and the Sea",
+            "Life of Pi",
+            "Robinson Crusoe"
+          ],
+          "correct": 2,
+          "connection": "Life of Pi."
+        },
+        {
+          "category": "Music",
+          "difficulty": 3,
+          "question": "Which 8-minute Don McLean epic mourns 'the day the music died'?",
+          "options": [
+            "Vincent",
+            "American Pie",
+            "The Boxer",
+            "Piano Man"
+          ],
+          "correct": 1,
+          "connection": "American Pie — pi's homophone earns a slice."
+        },
+        {
+          "category": "Technology",
+          "difficulty": 4,
+          "question": "What is the name of the credit-card-sized computer built to teach programming?",
+          "options": [
+            "Arduino Uno",
+            "BeagleBone",
+            "Raspberry Pi",
+            "Micro:bit"
+          ],
+          "correct": 2,
+          "accept": [
+            "raspberry pie"
+          ],
+          "connection": "The Raspberry Pi."
+        },
+        {
+          "category": "History",
+          "difficulty": 5,
+          "question": "Which ancient Greek used polygons to calculate pi more precisely than anyone before him?",
+          "options": [
+            "Euclid",
+            "Pythagoras",
+            "Archimedes",
+            "Eratosthenes"
+          ],
+          "correct": 2,
+          "connection": "Archimedes of Syracuse, pi's first great calculator."
+        }
+      ]
+    },
+    {
+      "date": "2026-07-23",
+      "theme": "Bridges",
+      "themeAnswers": [
+        "bridges",
+        "bridge",
+        "the word bridge",
+        "things called bridge"
+      ],
+      "themeBlurb": "An 1883 marvel, The Dude, a card table, a song's turning point, and a London landmark that moved to the desert.",
+      "questions": [
+        {
+          "category": "Geography",
+          "difficulty": 1,
+          "question": "Which famous bridge, opened in 1883, connects Brooklyn and Manhattan?",
+          "options": [
+            "The Manhattan Bridge",
+            "The Brooklyn Bridge",
+            "The Williamsburg Bridge",
+            "The Queensboro Bridge"
+          ],
+          "correct": 1,
+          "connection": "The Brooklyn Bridge."
+        },
+        {
+          "category": "Movies",
+          "difficulty": 2,
+          "question": "Which actor played 'The Dude' in The Big Lebowski?",
+          "options": [
+            "John Goodman",
+            "Jeff Bridges",
+            "Kevin Costner",
+            "Sam Elliott"
+          ],
+          "correct": 1,
+          "accept": [
+            "bridges"
+          ],
+          "connection": "Jeff Bridges."
+        },
+        {
+          "category": "Games",
+          "difficulty": 3,
+          "question": "Which classic trick-taking card game is played by two partnerships seated North–South and East–West?",
+          "options": [
+            "Hearts",
+            "Euchre",
+            "Bridge",
+            "Spades"
+          ],
+          "correct": 2,
+          "connection": "Bridge."
+        },
+        {
+          "category": "Music",
+          "difficulty": 4,
+          "question": "In songwriting, what is the contrasting section that connects a verse to the final chorus called?",
+          "options": [
+            "The hook",
+            "The refrain",
+            "The bridge",
+            "The coda"
+          ],
+          "correct": 2,
+          "connection": "The bridge."
+        },
+        {
+          "category": "History",
+          "difficulty": 5,
+          "question": "In 1968, the old London Bridge was sold, dismantled, and rebuilt in which US state?",
+          "options": [
+            "Nevada",
+            "Texas",
+            "Arizona",
+            "California"
+          ],
+          "correct": 2,
+          "connection": "It stands in Lake Havasu City, Arizona — a relocated bridge."
+        }
+      ]
+    },
+    {
+      "date": "2026-07-24",
+      "theme": "Phoenix",
+      "themeAnswers": [
+        "phoenix",
+        "the phoenix",
+        "things called phoenix"
+      ],
+      "themeBlurb": "A desert capital, an Oscar-winning Joker, a secret order, a Mars lander, and a French band — all rising from the same ashes.",
+      "questions": [
+        {
+          "category": "Geography",
+          "difficulty": 1,
+          "question": "What is the capital of Arizona?",
+          "options": [
+            "Tucson",
+            "Phoenix",
+            "Flagstaff",
+            "Scottsdale"
+          ],
+          "correct": 1,
+          "connection": "Phoenix."
+        },
+        {
+          "category": "Movies",
+          "difficulty": 2,
+          "question": "For which 2019 role did Joaquin Phoenix win the Best Actor Oscar?",
+          "options": [
+            "The Master",
+            "Walk the Line",
+            "Joker",
+            "Her"
+          ],
+          "correct": 2,
+          "accept": [
+            "the joker"
+          ],
+          "connection": "Joaquin Phoenix — the surname is the link."
+        },
+        {
+          "category": "Literature",
+          "difficulty": 3,
+          "question": "Complete the fifth Harry Potter title: 'Harry Potter and the Order of the ___.'",
+          "options": [
+            "Griffin",
+            "Phoenix",
+            "Dragon",
+            "Basilisk"
+          ],
+          "correct": 1,
+          "connection": "The Order of the Phoenix."
+        },
+        {
+          "category": "Science",
+          "difficulty": 4,
+          "question": "Which 2008 NASA Mars lander confirmed the presence of water ice near the planet's north pole?",
+          "options": [
+            "Viking 2",
+            "Pathfinder",
+            "Phoenix",
+            "InSight"
+          ],
+          "correct": 2,
+          "connection": "NASA's Phoenix lander."
+        },
+        {
+          "category": "Music",
+          "difficulty": 5,
+          "question": "Which Grammy-winning French band behind '1901' and 'Lisztomania' shares its name with the mythical firebird?",
+          "options": [
+            "Air",
+            "Daft Punk",
+            "Phoenix",
+            "Justice"
+          ],
+          "correct": 2,
+          "connection": "Phoenix, the band."
+        }
+      ]
+    },
+    {
+      "date": "2026-07-25",
+      "theme": "Jack",
+      "themeAnswers": [
+        "jack",
+        "jacks",
+        "the name jack",
+        "things called jack"
+      ],
+      "themeBlurb": "A pirate captain, a flag, a hand worth 21, a Tennessee distillery, and golf's greatest — same name on every rung.",
+      "questions": [
+        {
+          "category": "Movies",
+          "difficulty": 1,
+          "question": "Which eccentric pirate captain does Johnny Depp play in Pirates of the Caribbean?",
+          "options": [
+            "Captain Barbossa",
+            "Captain Jack Sparrow",
+            "Captain Flint",
+            "Captain Hook"
+          ],
+          "correct": 1,
+          "accept": [
+            "jack sparrow",
+            "captain jack"
+          ],
+          "connection": "Captain Jack Sparrow."
+        },
+        {
+          "category": "Geography",
+          "difficulty": 2,
+          "question": "What is the common name for the national flag of the United Kingdom?",
+          "options": [
+            "The Royal Standard",
+            "The Union Jack",
+            "The St. George's Cross",
+            "The Britannia"
+          ],
+          "correct": 1,
+          "accept": [
+            "union jack",
+            "union flag"
+          ],
+          "connection": "The Union Jack."
+        },
+        {
+          "category": "Games",
+          "difficulty": 3,
+          "question": "In which casino card game do players try to reach 21 without going over?",
+          "options": [
+            "Poker",
+            "Baccarat",
+            "Blackjack",
+            "Rummy"
+          ],
+          "correct": 2,
+          "connection": "Blackjack — jack included."
+        },
+        {
+          "category": "Food & Drink",
+          "difficulty": 4,
+          "question": "Which Tennessee whiskey has been distilled in Lynchburg since the 1800s?",
+          "options": [
+            "Jim Beam",
+            "Maker's Mark",
+            "Jack Daniel's",
+            "Wild Turkey"
+          ],
+          "correct": 2,
+          "accept": [
+            "jack daniels"
+          ],
+          "connection": "Jack Daniel's."
+        },
+        {
+          "category": "Sports",
+          "difficulty": 5,
+          "question": "Which golfer holds the record for the most major championship wins, with 18?",
+          "options": [
+            "Arnold Palmer",
+            "Tiger Woods",
+            "Jack Nicklaus",
+            "Gary Player"
+          ],
+          "correct": 2,
+          "accept": [
+            "nicklaus"
+          ],
+          "connection": "Jack Nicklaus, the Golden Bear."
+        }
+      ]
+    },
+    {
+      "date": "2026-07-26",
+      "theme": "Storms",
+      "themeAnswers": [
+        "storms",
+        "storm",
+        "the word storm",
+        "stormy weather"
+      ],
+      "themeBlurb": "A hurricane scale, a Doors closer, a Gulf War operation, Prospero's island, and the cape sailors feared — weather warning on every rung.",
+      "questions": [
+        {
+          "category": "Science",
+          "difficulty": 1,
+          "question": "The Saffir-Simpson scale rates the intensity of which weather events?",
+          "options": [
+            "Tornadoes",
+            "Hurricanes",
+            "Blizzards",
+            "Earthquakes"
+          ],
+          "correct": 1,
+          "accept": [
+            "hurricane"
+          ],
+          "connection": "Hurricanes — the most violent storms."
+        },
+        {
+          "category": "Music",
+          "difficulty": 2,
+          "question": "Which Doors song, complete with rain and thunder sounds, closes the album 'L.A. Woman'?",
+          "options": [
+            "Light My Fire",
+            "The End",
+            "Riders on the Storm",
+            "Break On Through"
+          ],
+          "correct": 2,
+          "connection": "Riders on the Storm."
+        },
+        {
+          "category": "History",
+          "difficulty": 3,
+          "question": "What was the code name of the US-led 1991 operation to liberate Kuwait?",
+          "options": [
+            "Operation Overlord",
+            "Operation Desert Storm",
+            "Operation Rolling Thunder",
+            "Operation Eagle Claw"
+          ],
+          "correct": 1,
+          "accept": [
+            "desert storm"
+          ],
+          "connection": "Operation Desert Storm."
+        },
+        {
+          "category": "Literature",
+          "difficulty": 4,
+          "question": "Which Shakespeare play opens with a shipwreck conjured by the sorcerer Prospero?",
+          "options": [
+            "Macbeth",
+            "The Winter's Tale",
+            "The Tempest",
+            "Pericles"
+          ],
+          "correct": 2,
+          "accept": [
+            "tempest"
+          ],
+          "connection": "The Tempest — a storm by another name."
+        },
+        {
+          "category": "Geography",
+          "difficulty": 5,
+          "question": "Before being renamed the Cape of Good Hope, what did Portuguese sailors call the stormy cape?",
+          "options": [
+            "The Cape of Sorrows",
+            "The Cape of Storms",
+            "The Devil's Cape",
+            "The Cape of Winds"
+          ],
+          "correct": 1,
+          "accept": [
+            "cape of storms"
+          ],
+          "connection": "The Cape of Storms (Cabo das Tormentas)."
+        }
+      ]
+    },
+    {
+      "date": "2026-07-27",
+      "theme": "Keys",
+      "themeAnswers": [
+        "keys",
+        "key",
+        "the word key",
+        "things called key"
+      ],
+      "themeBlurb": "A tart dessert, a 15-time Grammy winner, Hemingway's island, an anthem's author, and 88 reasons to practice — unlock them all.",
+      "questions": [
+        {
+          "category": "Food & Drink",
+          "difficulty": 1,
+          "question": "Which tart citrus dessert is Florida's official state pie?",
+          "options": [
+            "Lemon meringue pie",
+            "Key lime pie",
+            "Orange chess pie",
+            "Grapefruit tart"
+          ],
+          "correct": 1,
+          "accept": [
+            "key lime"
+          ],
+          "connection": "Key lime pie, named for the Florida Keys."
+        },
+        {
+          "category": "Music",
+          "difficulty": 2,
+          "question": "Which 15-time Grammy winner released 'Fallin'' and 'No One'?",
+          "options": [
+            "Beyoncé",
+            "Alicia Keys",
+            "Rihanna",
+            "Mariah Carey"
+          ],
+          "correct": 1,
+          "accept": [
+            "keys"
+          ],
+          "connection": "Alicia Keys."
+        },
+        {
+          "category": "Geography",
+          "difficulty": 3,
+          "question": "Ernest Hemingway spent the 1930s writing in which island city at the end of US Route 1?",
+          "options": [
+            "Miami",
+            "Key West",
+            "Nassau",
+            "Havana"
+          ],
+          "correct": 1,
+          "connection": "Key West, in the Florida Keys."
+        },
+        {
+          "category": "History",
+          "difficulty": 4,
+          "question": "Who wrote the lyrics to 'The Star-Spangled Banner' after watching the bombardment of Fort McHenry?",
+          "options": [
+            "Thomas Jefferson",
+            "John Philip Sousa",
+            "Francis Scott Key",
+            "Samuel Adams"
+          ],
+          "correct": 2,
+          "accept": [
+            "key"
+          ],
+          "connection": "Francis Scott Key."
+        },
+        {
+          "category": "Science",
+          "difficulty": 5,
+          "question": "How many keys are on a standard full-size piano?",
+          "options": [
+            "76",
+            "84",
+            "88",
+            "96"
+          ],
+          "correct": 2,
+          "accept": [
+            "88 keys",
+            "eighty eight"
+          ],
+          "connection": "88 keys."
+        }
+      ]
+    },
+    {
+      "date": "2026-07-28",
+      "theme": "Giants",
+      "themeAnswers": [
+        "giants",
+        "giant",
+        "things called giant",
+        "giant things"
+      ],
+      "themeBlurb": "Huge planets, a friendly dream-catcher, basalt columns, the biggest tree on Earth, and a helmet catch — everything oversized.",
+      "questions": [
+        {
+          "category": "Science",
+          "difficulty": 1,
+          "question": "What term describes massive planets like Jupiter and Saturn?",
+          "options": [
+            "Dwarf planets",
+            "Gas giants",
+            "Super-Earths",
+            "Ice moons"
+          ],
+          "correct": 1,
+          "accept": [
+            "gas giant"
+          ],
+          "connection": "Gas giants."
+        },
+        {
+          "category": "Literature",
+          "difficulty": 2,
+          "question": "Which Roald Dahl book stars a Big Friendly Giant who catches dreams?",
+          "options": [
+            "Matilda",
+            "The Witches",
+            "The BFG",
+            "James and the Giant Peach"
+          ],
+          "correct": 2,
+          "accept": [
+            "bfg"
+          ],
+          "connection": "The BFG — Big Friendly Giant."
+        },
+        {
+          "category": "Geography",
+          "difficulty": 3,
+          "question": "Which Northern Ireland landmark is made of about 40,000 interlocking basalt columns?",
+          "options": [
+            "The Cliffs of Moher",
+            "The Giant's Causeway",
+            "Fingal's Cave",
+            "The Burren"
+          ],
+          "correct": 1,
+          "accept": [
+            "giants causeway"
+          ],
+          "connection": "The Giant's Causeway."
+        },
+        {
+          "category": "Nature",
+          "difficulty": 4,
+          "question": "General Sherman, the largest tree on Earth by volume, belongs to which species?",
+          "options": [
+            "Coast redwood",
+            "Giant sequoia",
+            "Douglas fir",
+            "Montezuma cypress"
+          ],
+          "correct": 1,
+          "accept": [
+            "sequoia"
+          ],
+          "connection": "The giant sequoia."
+        },
+        {
+          "category": "Sports",
+          "difficulty": 5,
+          "question": "David Tyree's famous 'helmet catch' helped which team upset the undefeated Patriots in Super Bowl XLII?",
+          "options": [
+            "The Green Bay Packers",
+            "The New York Giants",
+            "The Philadelphia Eagles",
+            "The Dallas Cowboys"
+          ],
+          "correct": 1,
+          "accept": [
+            "giants",
+            "ny giants",
+            "new york"
+          ],
+          "connection": "The New York Giants."
+        }
+      ]
+    },
+    {
+      "date": "2026-07-29",
+      "theme": "Mercury",
+      "themeAnswers": [
+        "mercury",
+        "the word mercury",
+        "things called mercury"
+      ],
+      "themeBlurb": "A planet, a rock legend, a liquid metal, a winged messenger, and NASA's first astronauts — quicksilver all the way up.",
+      "questions": [
+        {
+          "category": "Space",
+          "difficulty": 1,
+          "question": "Which planet is closest to the Sun?",
+          "options": [
+            "Venus",
+            "Mars",
+            "Mercury",
+            "Earth"
+          ],
+          "correct": 2,
+          "connection": "Mercury."
+        },
+        {
+          "category": "Music",
+          "difficulty": 2,
+          "question": "Who was the legendary frontman of Queen?",
+          "options": [
+            "David Bowie",
+            "Freddie Mercury",
+            "Robert Plant",
+            "Elton John"
+          ],
+          "correct": 1,
+          "accept": [
+            "freddie",
+            "mercury"
+          ],
+          "connection": "Freddie Mercury."
+        },
+        {
+          "category": "Science",
+          "difficulty": 3,
+          "question": "Which is the only metal that is liquid at room temperature?",
+          "options": [
+            "Gallium",
+            "Lead",
+            "Mercury",
+            "Sodium"
+          ],
+          "correct": 2,
+          "accept": [
+            "quicksilver"
+          ],
+          "connection": "Mercury — quicksilver."
+        },
+        {
+          "category": "Mythology",
+          "difficulty": 4,
+          "question": "Which Roman god, the messenger with winged sandals, guided travelers and merchants?",
+          "options": [
+            "Apollo",
+            "Neptune",
+            "Mercury",
+            "Vulcan"
+          ],
+          "correct": 2,
+          "connection": "Mercury, the swift messenger."
+        },
+        {
+          "category": "History",
+          "difficulty": 5,
+          "question": "What was the name of NASA's first human spaceflight program, which put John Glenn in orbit?",
+          "options": [
+            "Project Gemini",
+            "Project Apollo",
+            "Project Mercury",
+            "Project Vanguard"
+          ],
+          "correct": 2,
+          "accept": [
+            "mercury program"
+          ],
+          "connection": "Project Mercury."
+        }
+      ]
+    },
+    {
+      "date": "2026-07-30",
+      "theme": "Twins",
+      "themeAnswers": [
+        "twins",
+        "twin",
+        "twin things",
+        "things called twin"
+      ],
+      "themeBlurb": "A ballclub, wolf-raised brothers, a two-seat spacecraft, an unlikely comedy duo, and Shakespeare's shipwrecked siblings — doubles everywhere.",
+      "questions": [
+        {
+          "category": "Sports",
+          "difficulty": 1,
+          "question": "Which MLB team plays its home games in Minneapolis, Minnesota?",
+          "options": [
+            "The Brewers",
+            "The Twins",
+            "The Royals",
+            "The White Sox"
+          ],
+          "correct": 1,
+          "accept": [
+            "minnesota twins"
+          ],
+          "connection": "The Minnesota Twins."
+        },
+        {
+          "category": "Mythology",
+          "difficulty": 2,
+          "question": "Which twin brothers, raised by a she-wolf, founded Rome according to legend?",
+          "options": [
+            "Castor and Pollux",
+            "Romulus and Remus",
+            "Cain and Abel",
+            "Apollo and Artemis"
+          ],
+          "correct": 1,
+          "accept": [
+            "romulus remus"
+          ],
+          "connection": "Romulus and Remus."
+        },
+        {
+          "category": "Space",
+          "difficulty": 3,
+          "question": "Which two-astronaut NASA program bridged the gap between Mercury and Apollo?",
+          "options": [
+            "Skylab",
+            "Project Gemini",
+            "Voyager",
+            "Mercury Seven"
+          ],
+          "correct": 1,
+          "accept": [
+            "gemini"
+          ],
+          "connection": "Gemini — Latin for twins."
+        },
+        {
+          "category": "Movies",
+          "difficulty": 4,
+          "question": "In the 1988 comedy 'Twins,' Danny DeVito stars opposite which action icon?",
+          "options": [
+            "Sylvester Stallone",
+            "Arnold Schwarzenegger",
+            "Bruce Willis",
+            "Dolph Lundgren"
+          ],
+          "correct": 1,
+          "accept": [
+            "schwarzenegger",
+            "arnold"
+          ],
+          "connection": "Schwarzenegger and DeVito play unlikely twins."
+        },
+        {
+          "category": "Literature",
+          "difficulty": 5,
+          "question": "Which Shakespeare comedy follows shipwreck-separated twins Viola and Sebastian?",
+          "options": [
+            "As You Like It",
+            "The Comedy of Errors",
+            "Twelfth Night",
+            "Much Ado About Nothing"
+          ],
+          "correct": 2,
+          "accept": [
+            "12th night"
+          ],
+          "connection": "Twelfth Night — built on twins."
+        }
+      ]
+    },
+    {
+      "date": "2026-07-31",
+      "theme": "Magic",
+      "themeAnswers": [
+        "magic",
+        "magical",
+        "things about magic",
+        "magicians"
+      ],
+      "themeBlurb": "A Showtime legend, a school in Scotland, the great escape artist, Mozart's final opera, and dueling illusionists — abracadabra.",
+      "questions": [
+        {
+          "category": "Sports",
+          "difficulty": 1,
+          "question": "Which Lakers point guard, nicknamed for his dazzling passes, led the 'Showtime' era?",
+          "options": [
+            "Kareem Abdul-Jabbar",
+            "Magic Johnson",
+            "Jerry West",
+            "James Worthy"
+          ],
+          "correct": 1,
+          "accept": [
+            "magic",
+            "earvin johnson"
+          ],
+          "connection": "Magic Johnson."
+        },
+        {
+          "category": "Literature",
+          "difficulty": 2,
+          "question": "What is the name of the school Harry Potter attends?",
+          "options": [
+            "Durmstrang",
+            "Ilvermorny",
+            "Hogwarts",
+            "Beauxbatons"
+          ],
+          "correct": 2,
+          "connection": "Hogwarts School of Witchcraft and Wizardry — a school of magic."
+        },
+        {
+          "category": "History",
+          "difficulty": 3,
+          "question": "Which escape artist, famous for the Chinese Water Torture Cell, died on Halloween 1926?",
+          "options": [
+            "David Blaine",
+            "Harry Houdini",
+            "Howard Thurston",
+            "The Amazing Randi"
+          ],
+          "correct": 1,
+          "accept": [
+            "houdini"
+          ],
+          "connection": "Harry Houdini, history's most famous magician."
+        },
+        {
+          "category": "Music",
+          "difficulty": 4,
+          "question": "Which 1791 Mozart opera features the Queen of the Night's famous aria?",
+          "options": [
+            "Don Giovanni",
+            "The Marriage of Figaro",
+            "The Magic Flute",
+            "Così fan tutte"
+          ],
+          "correct": 2,
+          "accept": [
+            "magic flute"
+          ],
+          "connection": "The Magic Flute."
+        },
+        {
+          "category": "Movies",
+          "difficulty": 5,
+          "question": "Which Christopher Nolan film pits rival magicians Angier and Borden against each other?",
+          "options": [
+            "Inception",
+            "The Illusionist",
+            "The Prestige",
+            "Now You See Me"
+          ],
+          "correct": 2,
+          "connection": "The Prestige — a film about stage magic."
+        }
+      ]
+    }
+  ]
+}

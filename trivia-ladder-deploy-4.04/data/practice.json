@@ -1,0 +1,118 @@
+{
+  "note": "Standalone questions for practice mode. No theme needed. Practice also draws from already-published daily puzzles, so this bank just keeps early variety up. Same question shape as daily puzzles, minus 'connection'.",
+  "questions": [
+    {
+      "category": "Geography",
+      "difficulty": 1,
+      "question": "What is the capital of Japan?",
+      "options": ["Kyoto", "Osaka", "Tokyo", "Seoul"],
+      "correct": 2
+    },
+    {
+      "category": "Science",
+      "difficulty": 1,
+      "question": "Which planet is known as the Red Planet?",
+      "options": ["Venus", "Mars", "Jupiter", "Mercury"],
+      "correct": 1
+    },
+    {
+      "category": "Movies",
+      "difficulty": 1,
+      "question": "\"May the Force be with you\" is a famous line from which film series?",
+      "options": ["Star Trek", "Star Wars", "Dune", "The Matrix"],
+      "correct": 1
+    },
+    {
+      "category": "History",
+      "difficulty": 2,
+      "question": "Which famous ocean liner sank on its maiden voyage in April 1912?",
+      "options": ["The Lusitania", "The Britannic", "The Titanic", "The Queen Mary"],
+      "correct": 2,
+      "accept": ["rms titanic"]
+    },
+    {
+      "category": "Music",
+      "difficulty": 2,
+      "question": "Which composer continued writing symphonies after losing his hearing, including his famous Ninth?",
+      "options": ["Mozart", "Bach", "Beethoven", "Chopin"],
+      "correct": 2,
+      "accept": ["ludwig van beethoven"]
+    },
+    {
+      "category": "Sports",
+      "difficulty": 2,
+      "question": "How many players does a soccer team have on the field at kickoff?",
+      "options": ["9", "10", "11", "12"],
+      "correct": 2,
+      "accept": ["eleven"]
+    },
+    {
+      "category": "Art",
+      "difficulty": 3,
+      "question": "Who painted 'The Starry Night' while staying at an asylum in southern France?",
+      "options": ["Claude Monet", "Vincent van Gogh", "Paul Cézanne", "Edvard Munch"],
+      "correct": 1,
+      "accept": ["van gogh"]
+    },
+    {
+      "category": "Geography",
+      "difficulty": 3,
+      "question": "Which river carries more water than any other river on Earth?",
+      "options": ["The Nile", "The Yangtze", "The Amazon", "The Mississippi"],
+      "correct": 2,
+      "accept": ["amazon river"]
+    },
+    {
+      "category": "Technology",
+      "difficulty": 3,
+      "question": "Which company introduced the first iPhone in 2007?",
+      "options": ["Microsoft", "Nokia", "Apple", "Samsung"],
+      "correct": 2,
+      "accept": ["apple inc"]
+    },
+    {
+      "category": "Literature",
+      "difficulty": 4,
+      "question": "Who wrote the dystopian novel 'Nineteen Eighty-Four'?",
+      "options": ["Aldous Huxley", "George Orwell", "Ray Bradbury", "Kurt Vonnegut"],
+      "correct": 1
+    },
+    {
+      "category": "Science",
+      "difficulty": 4,
+      "question": "'Au' is the chemical symbol for which element?",
+      "options": ["Silver", "Aluminum", "Gold", "Argon"],
+      "correct": 2
+    },
+    {
+      "category": "History",
+      "difficulty": 4,
+      "question": "Who was the United Kingdom's first female prime minister?",
+      "options": ["Theresa May", "Margaret Thatcher", "Indira Gandhi", "Golda Meir"],
+      "correct": 1
+    },
+    {
+      "category": "Science",
+      "difficulty": 5,
+      "question": "Which elusive particle, confirmed at CERN in 2012, is nicknamed the 'God particle'?",
+      "options": ["The neutrino", "The Higgs boson", "The tachyon", "The graviton"],
+      "correct": 1,
+      "accept": ["higgs"]
+    },
+    {
+      "category": "Geography",
+      "difficulty": 5,
+      "question": "What is the capital city of Australia?",
+      "options": ["Sydney", "Melbourne", "Canberra", "Perth"],
+      "correct": 2
+    },
+    {
+      "category": "Movies",
+      "difficulty": 5,
+      "question": "Who directed the 1954 epic 'Seven Samurai'?",
+      "options": ["Yasujirō Ozu", "Akira Kurosawa", "Hayao Miyazaki", "Takeshi Kitano"],
+      "correct": 1,
+      "accept": ["kurosawa"]
+    }
+  ]
+}
