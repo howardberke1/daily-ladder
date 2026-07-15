@@ -140,3 +140,21 @@ create index if not exists friendships_requester_idx
 -- drop table if exists public.results;
 -- drop table if exists public.friendships;
 -- drop table if exists public.profiles;
+
+-- ============================================================
+-- GRANTS
+-- The project was created with "Automatically expose new tables"
+-- disabled (good practice), so API roles need explicit table access.
+-- RLS policies above still control which rows each user can touch.
+-- ============================================================
+grant usage on schema public to anon, authenticated;
+
+grant select on public.profiles to anon, authenticated;
+grant insert, update on public.profiles to authenticated;
+
+grant select, insert, update, delete on public.friendships to authenticated;
+
+grant select on public.results to anon, authenticated;
+grant insert, update on public.results to authenticated;
+
+grant select on public.leaderboard_alltime to anon, authenticated;

@@ -216,7 +216,12 @@ export async function handleDailyFinish(payload) {
     themeCorrect: payload.themeCorrect,
     rungs: payload.rungs,
   });
-  if (!error) toast("Climb posted to the leaderboard");
+  if (error) {
+    console.error("Leaderboard sync failed:", error);
+    toast("Couldn't post to the leaderboard — will retry next climb");
+  } else {
+    toast("Climb posted to the leaderboard");
+  }
 }
 
 /* ---------------- boot ---------------- */
