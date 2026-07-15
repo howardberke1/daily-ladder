@@ -1092,3 +1092,321 @@ body {
   .play-layout { grid-template-columns: 92px 1fr; }
   .ladder-scene { min-height: 300px; }
 }
+
+/* ==========================================================================
+   v5 — THE CLIMB, full-screen. Six rotating worlds, camera pan, altitude,
+   weather, glass question panel. Mobile-first.
+   ========================================================================== */
+
+#screen-play { animation: none; }
+
+.climb-stage {
+  position: relative;
+  height: calc(100dvh - 62px);
+  min-height: 480px;
+  overflow: hidden;
+  border-radius: 0;
+  isolation: isolate;
+}
+
+.game:has(#screen-play:not(.hidden)) { max-width: none; padding: 0; }
+
+/* ----- world palette per world id ----- */
+.climb-stage[data-world="summit"]   { --w-lo:#bcd8ee; --w-mid:#8fb6dd; --w-hi:#22344f; --w-night:#0c1526; --w-sil1:#5f7994; --w-sil2:#3d5570; --w-ground:#7fa86a; --w-accent:#eef4fa; }
+.climb-stage[data-world="skyreach"] { --w-lo:#ffd9a0; --w-mid:#f2a65a; --w-hi:#5b3d8f; --w-night:#241a45; --w-sil1:#c98a52; --w-sil2:#8a5c8f; --w-ground:#c9a06a; --w-accent:#fff3e0; }
+.climb-stage[data-world="neon"]     { --w-lo:#2a2f4a; --w-mid:#22243d; --w-hi:#0c0d1c; --w-night:#060710; --w-sil1:#151a30; --w-sil2:#0d1122; --w-ground:#20263f; --w-accent:#5de0e6; }
+.climb-stage[data-world="dunes"]    { --w-lo:#f6c98a; --w-mid:#e79a5e; --w-hi:#7c3f6d; --w-night:#301b3f; --w-sil1:#c77b4e; --w-sil2:#94506a; --w-ground:#d8a866; --w-accent:#ffe9c7; }
+.climb-stage[data-world="forest"]   { --w-lo:#bfe3c0; --w-mid:#77b98a; --w-hi:#173a33; --w-night:#0a1f1c; --w-sil1:#2f6247; --w-sil2:#1d4535; --w-ground:#4c7c4a; --w-accent:#d9f2dd; }
+.climb-stage[data-world="ember"]    { --w-lo:#f2a06a; --w-mid:#c05a3c; --w-hi:#3a1220; --w-night:#160610; --w-sil1:#5c2020; --w-sil2:#3a1416; --w-ground:#4a2a22; --w-accent:#ffcf9e; }
+
+[data-theme="dark"] .climb-stage[data-world="summit"]   { --w-lo:#31465f; --w-mid:#22344f; --w-sil1:#3d5570; --w-sil2:#2a3d55; --w-ground:#33503a; }
+[data-theme="dark"] .climb-stage[data-world="skyreach"] { --w-lo:#7a4f3a; --w-mid:#5b3d8f; --w-sil1:#6b4560; --w-sil2:#4a3260; --w-ground:#6a5540; }
+[data-theme="dark"] .climb-stage[data-world="dunes"]    { --w-lo:#a05f3f; --w-mid:#7c3f6d; --w-sil1:#7a4640; --w-sil2:#5c3350; --w-ground:#7a5a3c; }
+[data-theme="dark"] .climb-stage[data-world="forest"]   { --w-lo:#2c5540; --w-mid:#1d4535; --w-sil1:#1d4535; --w-sil2:#132e24; --w-ground:#274428; }
+
+/* ----- sky: base gradient + high-altitude layer that fades in ----- */
+.w-sky, .w-skyhi, .w-stars, .w-sil, .w-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.w-sky { background: linear-gradient(to top, var(--w-lo), var(--w-mid) 55%, var(--w-hi)); }
+.w-skyhi {
+  background: linear-gradient(to top, transparent, var(--w-night) 75%);
+  opacity: 0;
+  transition: opacity 1100ms ease;
+}
+.climb-stage[data-progress="1"] .w-skyhi { opacity: 0.18; }
+.climb-stage[data-progress="2"] .w-skyhi { opacity: 0.34; }
+.climb-stage[data-progress="3"] .w-skyhi { opacity: 0.5; }
+.climb-stage[data-progress="4"] .w-skyhi { opacity: 0.68; }
+.climb-stage[data-progress="5"] .w-skyhi { opacity: 0.84; }
+.climb-stage[data-progress="6"] .w-skyhi { opacity: 0.94; }
+
+.w-stars {
+  inset: 0 0 35% 0;
+  background-image:
+    radial-gradient(1.6px 1.6px at 12% 18%, #fff, transparent),
+    radial-gradient(1px 1px at 28% 6%, #fff, transparent),
+    radial-gradient(1.4px 1.4px at 44% 24%, #fff, transparent),
+    radial-gradient(1px 1px at 58% 10%, #fff, transparent),
+    radial-gradient(1.6px 1.6px at 72% 28%, #fff, transparent),
+    radial-gradient(1px 1px at 86% 14%, #fff, transparent),
+    radial-gradient(1.2px 1.2px at 65% 42%, #fff, transparent),
+    radial-gradient(1px 1px at 20% 48%, #fff, transparent);
+  opacity: 0;
+  transition: opacity 1100ms ease;
+}
+.climb-stage[data-progress="3"] .w-stars { opacity: 0.3; }
+.climb-stage[data-progress="4"] .w-stars { opacity: 0.55; }
+.climb-stage[data-progress="5"] .w-stars { opacity: 0.85; }
+.climb-stage[data-progress="6"] .w-stars { opacity: 1; }
+
+/* ----- silhouettes with slow parallax (JS sets --shift px) ----- */
+.w-sil {
+  top: auto;
+  height: 46%;
+  background: var(--w-sil1);
+  opacity: 0.9;
+  clip-path: polygon(0 100%, 0 62%, 9% 40%, 17% 58%, 26% 30%, 36% 55%, 45% 22%, 55% 52%, 64% 34%, 74% 60%, 83% 38%, 92% 56%, 100% 44%, 100% 100%);
+  transform: translateY(calc(var(--shift, 0px) * 0.12));
+  transition: transform 900ms cubic-bezier(0.25, 0.9, 0.3, 1);
+}
+.w-sil-near {
+  height: 34%;
+  background: var(--w-sil2);
+  opacity: 1;
+  clip-path: polygon(0 100%, 0 55%, 12% 72%, 22% 42%, 34% 66%, 47% 36%, 60% 64%, 71% 44%, 82% 68%, 91% 50%, 100% 62%, 100% 100%);
+  transform: translateY(calc(var(--shift, 0px) * 0.24));
+}
+/* city gets a skyline instead of peaks */
+.climb-stage[data-world="neon"] .w-sil {
+  clip-path: polygon(0 100%, 0 58%, 6% 58%, 6% 40%, 13% 40%, 13% 66%, 20% 66%, 20% 30%, 27% 30%, 27% 55%, 35% 55%, 35% 45%, 43% 45%, 43% 70%, 52% 70%, 52% 36%, 60% 36%, 60% 58%, 68% 58%, 68% 26%, 76% 26%, 76% 62%, 85% 62%, 85% 48%, 93% 48%, 93% 68%, 100% 68%, 100% 100%);
+}
+.climb-stage[data-world="neon"] .w-sil-near {
+  background-image: repeating-linear-gradient(0deg, transparent 0 14px, rgba(93,224,230,0.16) 14px 16px);
+}
+/* dunes get soft curves */
+.climb-stage[data-world="dunes"] .w-sil {
+  clip-path: ellipse(85% 62% at 28% 108%);
+}
+.climb-stage[data-world="dunes"] .w-sil-near {
+  clip-path: ellipse(90% 55% at 78% 112%);
+}
+
+/* ----- the tall world & camera ----- */
+.world {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  transform: translateY(var(--cam, 0px));
+  transition: transform 950ms cubic-bezier(0.25, 0.9, 0.3, 1);
+  will-change: transform;
+}
+.w-ground {
+  position: absolute;
+  bottom: calc(-1 * var(--gh, 140px));
+  left: 0; right: 0;
+  height: var(--gh, 140px);
+  background: linear-gradient(to bottom, var(--w-ground), color-mix(in srgb, var(--w-ground) 60%, #000));
+  border-top: 3px solid color-mix(in srgb, var(--w-ground) 70%, #000);
+}
+/* ground sits at world y=0 downward; rungs climb upward in negative space */
+
+.w-rails { position: absolute; left: 50%; transform: translateX(-50%); width: 74px; bottom: 0; top: auto; }
+.w-rail {
+  position: absolute;
+  width: 7px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--rail), color-mix(in srgb, var(--rail) 70%, #000));
+  bottom: calc(-0.4 * var(--gh, 140px));
+  height: calc(var(--seg, 300px) * 6.6 + var(--gh, 140px));
+  transform: translateY(0);
+}
+.w-rail-l { left: 0; }
+.w-rail-r { right: 0; }
+
+.w-rung {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 84px;
+  height: 13px;
+  border-radius: 7px;
+  background: var(--rung-wood);
+  border: 1.5px solid color-mix(in srgb, var(--rail) 55%, transparent);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+}
+.w-rung[data-rung="1"] { bottom: calc(var(--seg, 300px) * 1); }
+.w-rung[data-rung="2"] { bottom: calc(var(--seg, 300px) * 2); }
+.w-rung[data-rung="3"] { bottom: calc(var(--seg, 300px) * 3); }
+.w-rung[data-rung="4"] { bottom: calc(var(--seg, 300px) * 4); }
+.w-rung[data-rung="5"] { bottom: calc(var(--seg, 300px) * 5); }
+
+.w-rung.active {
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--w-accent) 45%, transparent), 0 2px 4px rgba(0,0,0,0.25);
+}
+.w-rung.green  { background: var(--green);  border-color: transparent; }
+.w-rung.yellow { background: var(--yellow); border-color: transparent; }
+.w-rung.gray   { background: var(--gray-miss); border-color: transparent; }
+
+.w-summit {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(var(--seg, 300px) * 6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.w-summit .rung-cap {
+  position: relative;
+  width: 64px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--surface) 55%, transparent);
+  backdrop-filter: blur(3px);
+  border: 2px dashed var(--w-accent);
+  color: var(--w-accent);
+}
+.w-summit .rung-cap .rung-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: inherit;
+}
+.w-summit .rung-cap.active { border-style: solid; box-shadow: 0 0 22px color-mix(in srgb, var(--w-accent) 60%, transparent); }
+.w-summit .rung-cap.purple { border-style: solid; border-color: var(--purple); background: var(--purple); color: #fff; }
+.w-summit .rung-cap.gray   { border-style: solid; border-color: var(--gray-miss); background: var(--gray-miss); color: #fff; }
+
+/* ----- climber: fixed to viewport anchor; world moves beneath ----- */
+.climb-stage .climber {
+  position: absolute;
+  left: 50%;
+  bottom: 31%;
+  top: auto;
+  width: 34px;
+  height: 40px;
+  transform: translateX(-50%);
+  transition: none;
+  z-index: 3;
+  filter: drop-shadow(0 3px 3px rgba(0,0,0,0.35));
+}
+.climb-stage .climber .c-head { fill: var(--climber); }
+.climb-stage .climber line { stroke: var(--climber); stroke-width: 3.4; stroke-linecap: round; }
+
+.climber.slip { animation: slip 420ms ease; }
+@keyframes slip {
+  0%, 100% { transform: translateX(-50%); }
+  35% { transform: translateX(-52%) translateY(9px) rotate(-5deg); }
+  70% { transform: translateX(-49%) translateY(3px) rotate(3deg); }
+}
+
+.climb-stage.shake { animation: stage-shake 380ms ease; }
+@keyframes stage-shake {
+  0%, 100% { transform: none; }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-3px); }
+}
+
+/* ----- weather particles ----- */
+.w-particles { z-index: 2; overflow: hidden; }
+.particle { position: absolute; top: -3%; pointer-events: none; }
+.p-snow    { width: 5px; height: 5px; border-radius: 50%; background: #fff; opacity: 0.85; animation: fall-drift linear forwards; }
+.p-rain    { width: 2px; height: 14px; border-radius: 2px; background: color-mix(in srgb, var(--w-accent) 70%, transparent); animation: fall-fast linear forwards; }
+.p-cloud   { width: 60px; height: 18px; border-radius: 10px; background: rgba(255,255,255,0.5); filter: blur(4px); animation: drift-across linear forwards; top: auto; }
+.p-sand    { width: 3px; height: 3px; border-radius: 50%; background: color-mix(in srgb, var(--w-accent) 80%, transparent); animation: drift-across linear forwards; top: auto; }
+.p-firefly { width: 4px; height: 4px; border-radius: 50%; background: #ffe98a; box-shadow: 0 0 8px 2px rgba(255,233,138,0.6); animation: firefly ease-in-out forwards; top: auto; }
+.p-ember   { width: 4px; height: 4px; border-radius: 50%; background: #ffb35c; box-shadow: 0 0 7px 2px rgba(255,140,60,0.5); animation: rise linear forwards; top: auto; bottom: -2%; }
+
+@keyframes fall-drift {
+  0% { transform: translate(0, -4vh); }
+  100% { transform: translate(4vw, 108vh); opacity: 0.2; }
+}
+@keyframes fall-fast {
+  0% { transform: translateY(-6vh); }
+  100% { transform: translateY(110vh); }
+}
+@keyframes drift-across {
+  0% { transform: translateX(-15vw); opacity: 0; }
+  12% { opacity: 0.8; }
+  100% { transform: translateX(115vw); opacity: 0; }
+}
+@keyframes firefly {
+  0% { transform: translate(0, 0); opacity: 0; }
+  25% { opacity: 1; }
+  100% { transform: translate(6vw, -30vh); opacity: 0; }
+}
+@keyframes rise {
+  0% { transform: translateY(0); opacity: 0.9; }
+  100% { transform: translateY(-105vh); opacity: 0; }
+}
+
+/* ----- HUD ----- */
+.hud {
+  position: absolute;
+  top: 12px;
+  left: 0; right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 4;
+  pointer-events: none;
+}
+.altitude {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1rem;
+  color: #fff;
+  background: rgba(10, 14, 20, 0.45);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 999px;
+  padding: 5px 16px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.03em;
+}
+.alt-unit { font-size: 0.75rem; margin-left: 3px; opacity: 0.8; }
+.hud .mode-banner { margin: 0; background: rgba(10,14,20,0.45); color: #fff; border-color: rgba(255,255,255,0.25); backdrop-filter: blur(4px); }
+
+/* ----- glass question panel ----- */
+.q-panel {
+  position: absolute;
+  left: 50%;
+  bottom: max(14px, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  width: min(640px, calc(100% - 24px));
+  background: color-mix(in srgb, var(--surface) 78%, transparent);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  border: 1px solid color-mix(in srgb, var(--line) 60%, transparent);
+  border-radius: 18px;
+  padding: 16px 16px 14px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+  z-index: 5;
+  animation: panel-in 450ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes panel-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(16px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+.q-panel .q-text { min-height: 0; font-size: 1.1rem; margin-bottom: 12px; }
+.q-panel .options { max-height: 38dvh; overflow-y: auto; }
+.q-panel .option { padding: 11px 14px; }
+.q-panel .q-feedback { margin: 10px 0 4px; }
+
+.bonus-panel { text-align: center; }
+.bonus-panel .bonus-title { font-size: 1.25rem; }
+
+@media (min-width: 720px) {
+  .q-panel .q-text { font-size: 1.25rem; }
+  .climb-stage .climber { bottom: 36%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .particle { display: none; }
+}

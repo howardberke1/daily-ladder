@@ -16,6 +16,17 @@ import { answerMatches, themeMatches } from "./match.js";
 
 const START_POINTS = 3;
 const THEME_BONUS = 3;
+const METERS_PER_RUNG = 400;
+
+// Rotating daily worlds. Same world for everyone on a given day.
+const WORLDS = [
+  { id: "summit",   particle: "snow" },
+  { id: "skyreach", particle: "cloud" },
+  { id: "neon",     particle: "rain" },
+  { id: "dunes",    particle: "sand" },
+  { id: "forest",   particle: "firefly" },
+  { id: "ember",    particle: "ember" },
+];
 
 const $ = (id) => document.getElementById(id);
 
@@ -45,6 +56,9 @@ export class Game {
     };
 
     this.locked = false;
+    this.world = mode === "practice"
+      ? WORLDS[Math.floor(Math.random() * WORLDS.length)]
+      : WORLDS[((number - 1) % WORLDS.length + WORLDS.length) % WORLDS.length];
   }
 
   /* ---------------- lifecycle ---------------- */
@@ -57,12 +71,27 @@ export class Game {
       this.showBonus();
     } else {
       this.setScreen("screen-play");
+      this.setPhase("play");
       this.renderQuestion();
     }
   }
 
+  setPhase(phase) {
+    const stage = document.getElementById("climb-stage");
+    if (stage) {
+      stage.dataset.phase = phase;
+      stage.dataset.world = this.world.id;
+    }
+    const qp = document.getElementById("q-panel");
+    const bp = document.getElementById("bonus-panel");
+    if (qp) qp.classList.toggle("hidden", phase !== "play");
+    if (bp) bp.classList.toggle("hidden", phase !== "bonus");
+  }
+
   destroy() {
     clearInterval(this._countdown);
+    clearInterval(this._weather);
+    clearInterval(this._altTween);
   }
 
   save() {
@@ -70,11 +99,12 @@ export class Game {
   }
 
   setScreen(id) {
-    ["screen-loading", "screen-play", "screen-bonus", "screen-results", "screen-empty"]
+    ["screen-loading", "screen-play", "screen-results", "screen-empty"]
       .forEach((s) => $(s).classList.toggle("hidden", s !== id));
   }
 
   showResults({ animateReveal }) {
+    clearInterval(this._weather);
     this.setScreen("screen-results");
     this.renderResults(animateReveal);
   }
@@ -159,14 +189,34 @@ export class Game {
   }
 
   renderLadder() {
-    const scene = document.getElementById("ladder-scene");
-    if (scene) {
-      const completed = this.state.results.filter(Boolean).length;
-      const summit = this.state.stage === "done" && this.state.theme.correct;
-      scene.dataset.progress = String(summit ? 6 : completed);
+    const stage = document.getElementById("climb-stage");
+    const world = document.getElementById("world");
+
+    const completed = this.state.results.filter(Boolean).length;
+    const done = this.state.stage === "done";
+    const atSummit = done || this.state.stage === "bonus";
+    const progress = done && this.state.theme.correct ? 6 : atSummit ? 6 : completed;
+
+    if (stage) {
+      stage.dataset.world = this.world.id;
+      stage.dataset.progress = String(Math.min(6, progress));
     }
 
-    document.querySelectorAll(".rung:not(.rung-cap)").forEach((el) => {
+    // camera + layout geometry
+    if (stage && world && typeof stage.getBoundingClientRect === "function") {
+      const h = stage.getBoundingClientRect().height || 600;
+      const seg = Math.max(160, Math.min(h * 0.44, 420));
+      const gh = Math.round(h * 0.31);
+      stage.style.setProperty("--seg", `${seg}px`);
+      stage.style.setProperty("--gh", `${gh}px`);
+      const camPos = atSummit ? 6 : completed;
+      const cam = camPos * seg;
+      world.style.setProperty("--cam", `${cam}px`);
+      stage.style.setProperty("--shift", `${cam}px`);
+    }
+
+    // rung states
+    document.querySelectorAll(".w-rung").forEach((el) => {
       const idx = Number(el.dataset.rung) - 1;
       el.classList.remove("green", "yellow", "gray", "active");
       const result = this.state.results[idx];
@@ -176,63 +226,84 @@ export class Game {
 
     const cap = document.querySelector(".rung-cap");
     if (cap) {
-      // practice has no theme rung
       cap.classList.toggle("hidden", this.mode === "practice");
       cap.classList.remove("purple", "gray", "active");
       if (this.state.stage === "bonus") cap.classList.add("active");
-      else if (this.state.stage === "done" && this.mode !== "practice") {
+      else if (done && this.mode !== "practice") {
         if (this.state.theme.correct) cap.classList.add("purple");
         else if (this.state.theme.guessed) cap.classList.add("gray");
       }
     }
 
-    this.positionClimber();
+    this.animateAltitude(progress * METERS_PER_RUNG);
+    this.updateWeather(progress);
+    this.animateClimb();
   }
 
-  /**
-   * Moves the climber to their current spot: ground before rung 1, on the
-   * highest completed rung mid-climb, at the summit cap when done.
-   */
+  /** Kept as the public "relayout" hook (main.js calls it on resize). */
   positionClimber() {
-    const scene = document.getElementById("ladder-scene");
+    this.renderLadder();
+  }
+
+  animateClimb() {
     const climber = document.getElementById("climber");
-    if (!scene || !climber || typeof scene.getBoundingClientRect !== "function") return;
-
-    const completed = this.state.results.filter(Boolean).length;
-    const done = this.state.stage === "done";
-    let target = null;
-
-    if (done || this.state.stage === "bonus") {
-      target = scene.querySelector(".rung-cap");
-    } else if (completed > 0) {
-      target = scene.querySelector(`.rung[data-rung="${completed}"]`);
-    }
-
-    const sceneRect = scene.getBoundingClientRect();
-    let top;
-    if (target && typeof target.getBoundingClientRect === "function") {
-      const r = target.getBoundingClientRect();
-      top = r.top - sceneRect.top - 30; // feet on the rung
-    } else {
-      top = sceneRect.height - 18 - 34; // standing on the ground
-    }
-    if (!Number.isFinite(top)) return;
-
-    const prev = climber.style.top;
-    climber.style.top = `${Math.max(4, top)}px`;
-
-    if (prev && prev !== climber.style.top) {
-      climber.classList.remove("moving");
-      void climber.offsetWidth; // restart animation
-      climber.classList.add("moving");
+    if (!climber || !climber.classList) return;
+    climber.classList.remove("moving");
+    if (typeof climber.offsetWidth === "number") void climber.offsetWidth;
+    climber.classList.add("moving");
+    if (climber.addEventListener) {
       climber.addEventListener("animationend", () => climber.classList.remove("moving"), { once: true });
     }
-    if (done && this.state.theme.correct) {
-      climber.classList.add("celebrating");
-    }
   }
 
-  /* ---------------- guessing ---------------- */
+  animateAltitude(target) {
+    const el = document.getElementById("altitude-num");
+    if (!el) return;
+    clearInterval(this._altTween);
+    const from = parseInt(el.textContent?.replace(/\D/g, "") || "0", 10) || 0;
+    if (from === target) { el.textContent = String(target); return; }
+    const steps = 24;
+    let i = 0;
+    this._altTween = setInterval(() => {
+      i++;
+      const v = Math.round(from + (target - from) * (i / steps));
+      el.textContent = String(v);
+      if (i >= steps) clearInterval(this._altTween);
+    }, 34);
+  }
+
+  updateWeather(progress) {
+    clearInterval(this._weather);
+    const host = document.getElementById("w-particles");
+    if (!host || !host.appendChild) return;
+    if (typeof matchMedia === "function" && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (this.state.stage === "done") progress = Math.min(progress, 3); // calm on results
+
+    const type = this.world.particle;
+    const density = 1 + Math.floor(progress / 2); // conditions build as you climb
+    const spawn = () => {
+      if ((host.children?.length ?? 0) > 70) return;
+      for (let i = 0; i < density; i++) {
+        const p = document.createElement("div");
+        p.className = `particle p-${type}`;
+        p.style.left = `${Math.random() * 100}%`;
+        if (type === "cloud" || type === "sand") p.style.top = `${10 + Math.random() * 60}%`;
+        if (type === "firefly") p.style.top = `${40 + Math.random() * 50}%`;
+        const dur = type === "rain" ? 0.9 + Math.random() * 0.6
+                  : type === "cloud" ? 16 + Math.random() * 14
+                  : type === "ember" ? 3.5 + Math.random() * 3
+                  : 4 + Math.random() * 4;
+        p.style.animationDuration = `${dur}s`;
+        host.appendChild(p);
+        if (p.addEventListener) p.addEventListener("animationend", () => p.remove(), { once: true });
+        setTimeout(() => p.remove?.(), (dur + 1) * 1000);
+      }
+    };
+    spawn();
+    this._weather = setInterval(spawn, 700);
+  }
+
+    /* ---------------- guessing ---------------- */
 
   guessTyped() {
     if (this.locked) return;
@@ -297,6 +368,19 @@ export class Game {
   miss(q, prefix) {
     this.state.points -= 1;
     this.renderPoints();
+
+    const stage = document.getElementById("climb-stage");
+    const climber = document.getElementById("climber");
+    if (stage?.classList) {
+      stage.classList.remove("shake");
+      if (typeof stage.offsetWidth === "number") void stage.offsetWidth;
+      stage.classList.add("shake");
+    }
+    if (climber?.classList) {
+      climber.classList.add("slip");
+      climber.addEventListener?.("animationend", () => climber.classList.remove("slip"), { once: true });
+    }
+
     const fb = $("q-feedback");
 
     if (this.state.points <= 0) {
@@ -380,7 +464,8 @@ export class Game {
   /* ---------------- bonus (theme) rung ---------------- */
 
   showBonus() {
-    this.setScreen("screen-bonus");
+    this.setScreen("screen-play");
+    this.setPhase("bonus");
     this.renderLadder();
     const input = $("b-input");
     input.value = "";

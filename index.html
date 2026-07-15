@@ -48,75 +48,78 @@
       <p class="muted">Setting up today's ladder…</p>
     </section>
 
-    <!-- Play screen -->
+    <!-- Play screen: the climb stage (question + bonus panels live inside) -->
     <section class="screen hidden" id="screen-play">
-      <p class="mode-banner hidden" id="mode-banner"></p>
-      <div class="play-layout">
+      <div class="climb-stage" id="climb-stage" data-world="summit" data-phase="play" data-progress="0">
 
-        <!-- The ladder rail: 5 rungs, lit as you climb -->
-        <aside class="ladder" aria-label="Ladder progress">
-          <div class="ladder-scene" id="ladder-scene" data-progress="0">
-            <div class="sky-night"></div>
-            <div class="stars"></div>
-            <div class="rail rail-l"></div>
-            <div class="rail rail-r"></div>
-            <div class="ladder-rail">
-              <div class="rung rung-cap" title="Bonus: guess the theme"><span class="rung-num">?</span></div>
-              <div class="rung" data-rung="5"><span class="rung-num">5</span></div>
-              <div class="rung" data-rung="4"><span class="rung-num">4</span></div>
-              <div class="rung" data-rung="3"><span class="rung-num">3</span></div>
-              <div class="rung" data-rung="2"><span class="rung-num">2</span></div>
-              <div class="rung" data-rung="1"><span class="rung-num">1</span></div>
-            </div>
-            <svg class="climber" id="climber" viewBox="0 0 40 48" aria-hidden="true">
-              <circle cx="20" cy="9" r="6" class="c-head"/>
-              <line x1="20" y1="15" x2="20" y2="31" class="c-body"/>
-              <line x1="20" y1="19" x2="10" y2="12" class="c-arm c-arm-l"/>
-              <line x1="20" y1="19" x2="30" y2="12" class="c-arm c-arm-r"/>
-              <line x1="20" y1="31" x2="12" y2="43" class="c-leg c-leg-l"/>
-              <line x1="20" y1="31" x2="28" y2="43" class="c-leg c-leg-r"/>
-            </svg>
-            <div class="ground"></div>
+        <div class="w-sky"></div>
+        <div class="w-skyhi"></div>
+        <div class="w-stars"></div>
+        <div class="w-sil w-sil-far"></div>
+        <div class="w-sil w-sil-near"></div>
+        <div class="w-particles" id="w-particles"></div>
+
+        <div class="world" id="world">
+          <div class="w-rails">
+            <div class="w-rail w-rail-l"></div>
+            <div class="w-rail w-rail-r"></div>
           </div>
-        </aside>
+          <div class="rung w-rung" data-rung="1"></div>
+          <div class="rung w-rung" data-rung="2"></div>
+          <div class="rung w-rung" data-rung="3"></div>
+          <div class="rung w-rung" data-rung="4"></div>
+          <div class="rung w-rung" data-rung="5"></div>
+          <div class="w-summit">
+            <div class="rung rung-cap" title="Bonus: guess the theme"><span class="rung-num">?</span></div>
+          </div>
+          <div class="w-ground"></div>
+        </div>
 
-        <div class="question-area">
+        <svg class="climber" id="climber" viewBox="0 0 40 48" aria-hidden="true">
+          <circle cx="20" cy="9" r="6" class="c-head"/>
+          <line x1="20" y1="15" x2="20" y2="31" class="c-body"/>
+          <line x1="20" y1="19" x2="10" y2="12" class="c-arm c-arm-l"/>
+          <line x1="20" y1="19" x2="30" y2="12" class="c-arm c-arm-r"/>
+          <line x1="20" y1="31" x2="12" y2="43" class="c-leg c-leg-l"/>
+          <line x1="20" y1="31" x2="28" y2="43" class="c-leg c-leg-r"/>
+        </svg>
+
+        <div class="hud">
+          <div class="altitude" aria-label="Altitude"><span id="altitude-num">0</span><span class="alt-unit">m</span></div>
+          <p class="mode-banner hidden" id="mode-banner"></p>
+        </div>
+
+        <div class="q-panel" id="q-panel">
           <div class="q-meta">
             <span class="category-chip" id="q-category">Category</span>
             <span class="points-meta"><span class="points-worth" id="q-worth">worth 3 pts</span><span class="guesses" id="q-points" aria-label="Points remaining"></span></span>
           </div>
           <h2 class="q-text" id="q-text">Question text</h2>
-
           <div class="answer-box" id="answer-box">
             <input type="text" id="q-input" class="answer-input" placeholder="Type your answer…"
                    autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
                    enterkeyhint="go" aria-label="Type your answer" />
             <button class="btn btn-primary btn-guess" id="btn-guess">Guess</button>
           </div>
-
           <button class="link-btn" id="btn-choices">Not sure? Show 4 choices <span class="cost">−1 pt</span></button>
-
           <div class="options hidden" id="q-options" role="group" aria-label="Answer choices"></div>
           <p class="q-feedback" id="q-feedback" aria-live="polite"></p>
           <button class="btn btn-primary hidden" id="btn-next">Next rung ↑</button>
         </div>
 
-      </div>
-    </section>
-
-    <!-- Bonus theme rung -->
-    <section class="screen hidden" id="screen-bonus">
-      <div class="results bonus">
-        <p class="results-eyebrow">Bonus rung</p>
-        <h2 class="bonus-title">All five answers share one hidden theme.<br />What is it?</h2>
-        <p class="muted bonus-sub">One guess · +3 points if you nail it</p>
-        <div class="answer-box bonus-box">
-          <input type="text" id="b-input" class="answer-input" placeholder="The theme is…"
-                 autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-                 enterkeyhint="go" aria-label="Guess the theme" />
-          <button class="btn btn-primary btn-guess" id="btn-b-guess">Lock it in</button>
+        <div class="q-panel bonus-panel hidden" id="bonus-panel">
+          <p class="results-eyebrow">Bonus rung</p>
+          <h2 class="bonus-title">All five answers share one hidden theme. What is it?</h2>
+          <p class="muted bonus-sub">One guess · +3 points if you nail it</p>
+          <div class="answer-box bonus-box">
+            <input type="text" id="b-input" class="answer-input" placeholder="The theme is…"
+                   autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                   enterkeyhint="go" aria-label="Guess the theme" />
+            <button class="btn btn-primary btn-guess" id="btn-b-guess">Lock it in</button>
+          </div>
+          <button class="link-btn" id="btn-b-skip">Just show me the theme</button>
         </div>
-        <button class="link-btn" id="btn-b-skip">Just show me the theme</button>
+
       </div>
     </section>
 
