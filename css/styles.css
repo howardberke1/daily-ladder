@@ -1410,3 +1410,353 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .particle { display: none; }
 }
+
+/* ==========================================================================
+   v6 — REALISM PASS: dense ladder, jointed climber, materials, clouds,
+   celestial bodies, props, vignette/grain + responsive panel (sheet/console)
+   ========================================================================== */
+
+/* ----- ladder materials per world ----- */
+.climb-stage { --rail-a:#a97c4b; --rail-b:#7c5731; --rung-minor:#c9a86e; --rung-big:#e8d9ba; --helmet:#e05a3a; --pack:#4a6b8a; }
+.climb-stage[data-world="neon"]   { --rail-a:#6d7787; --rail-b:#3d4453; --rung-minor:#8b95a6; --rung-big:#c3ccdb; --helmet:#5de0e6; --pack:#2c3346; }
+.climb-stage[data-world="dunes"],
+.climb-stage[data-world="skyreach"] { --rail-a:#b98e5a; --rail-b:#8a6236; --rung-minor:#a5713d; --rung-big:#d9b984; --helmet:#d8a02c; --pack:#7a4f3a; }
+.climb-stage[data-world="ember"]  { --rail-a:#4a3a38; --rail-b:#2a1f1e; --rung-minor:#6b4a42; --rung-big:#9a6a58; --helmet:#ffb35c; --pack:#3a2422; }
+.climb-stage[data-world="forest"] { --helmet:#97c459; --pack:#3a5a44; }
+
+/* scene center shifts left on desktop when the console docks right */
+.climb-stage { --cx: 50%; --panel-w: 0px; }
+
+.w-rails { left: var(--cx); }
+.w-rung { left: var(--cx); }
+.w-summit { left: var(--cx); }
+.climb-stage .climber { left: var(--cx); }
+
+.w-rail {
+  width: 8px;
+  background: linear-gradient(90deg, var(--rail-a), var(--rail-b));
+  box-shadow: inset -2px 0 0 rgba(0,0,0,0.25), 2px 2px 4px rgba(0,0,0,0.2);
+}
+/* rivets on the city ladder */
+.climb-stage[data-world="neon"] .w-rail {
+  background-image: linear-gradient(90deg, var(--rail-a), var(--rail-b)),
+    repeating-radial-gradient(circle at 50% 10px, rgba(255,255,255,0.35) 0 1.5px, transparent 2px 34px);
+  background-blend-mode: normal, overlay;
+}
+/* rope ladders read thinner and warmer */
+.climb-stage[data-world="dunes"] .w-rail,
+.climb-stage[data-world="skyreach"] .w-rail {
+  width: 5px;
+  border-radius: 3px;
+  background-image: repeating-linear-gradient(35deg, var(--rail-a) 0 4px, var(--rail-b) 4px 8px);
+}
+
+/* #4 dense minor rungs the whole way up */
+.w-minor-rungs {
+  position: absolute;
+  left: 6px; right: 6px;
+  bottom: calc(-0.4 * var(--gh, 140px));
+  height: calc(var(--seg, 300px) * 6.6 + var(--gh, 140px));
+  background-image: repeating-linear-gradient(
+    to top,
+    var(--rung-minor) 0 7px,
+    transparent 7px 46px
+  );
+  border-radius: 4px;
+  opacity: 0.95;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+
+/* checkpoint rungs: bigger, plaque-numbered */
+.w-rung {
+  width: 96px;
+  height: 15px;
+  background: var(--rung-big);
+  border: none;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.3), inset 0 -3px 0 rgba(0,0,0,0.18);
+}
+.w-rung::after {
+  content: attr(data-rung);
+  position: absolute;
+  right: -34px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.72rem;
+  color: #fff;
+  background: rgba(10, 14, 20, 0.5);
+  border: 1px solid rgba(255,255,255,0.3);
+  backdrop-filter: blur(3px);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.w-rung.green::after  { background: var(--green);  border-color: transparent; }
+.w-rung.yellow::after { background: var(--yellow); border-color: transparent; }
+.w-rung.gray::after   { background: var(--gray-miss); border-color: transparent; }
+
+/* ----- #5 the climber, on the ladder ----- */
+.climb-stage .climber {
+  width: 62px;
+  height: 70px;
+  bottom: 42%;
+}
+.climber .c-head { fill: #f3d3b3; }
+.climber .c-helmet { fill: var(--helmet); }
+.climber .c-pack { fill: var(--pack); stroke: rgba(0,0,0,0.25); stroke-width: 1; }
+.climber .c-body { stroke: var(--climber); stroke-width: 5; stroke-linecap: round; }
+.climber .c-limb {
+  fill: none;
+  stroke: var(--climber);
+  stroke-width: 4.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* #8 idle life: breathing + occasional look up */
+.climber .rig { animation: breathe 3.2s ease-in-out infinite; transform-origin: 28px 38px; }
+@keyframes breathe {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(2px); }
+}
+.climber .c-head, .climber .c-helmet { animation: lookup 9s ease-in-out infinite; transform-origin: 28px 14px; }
+@keyframes lookup {
+  0%, 82%, 100% { transform: rotate(0deg); }
+  86%, 94% { transform: rotate(-10deg); }
+}
+
+/* #6 hand-over-hand ascent while the camera pans */
+.climber.climbing .c-arm-l { animation: reach-cycle 0.42s ease-in-out 2; }
+.climber.climbing .c-arm-r { animation: reach-cycle 0.42s ease-in-out 2 0.21s; }
+.climber.climbing .c-leg-r { animation: step-cycle 0.42s ease-in-out 2; }
+.climber.climbing .c-leg-l { animation: step-cycle 0.42s ease-in-out 2 0.21s; }
+.climber.climbing .rig { animation: climb-bob 0.42s ease-in-out 2; }
+@keyframes reach-cycle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-11px); }
+}
+@keyframes step-cycle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+@keyframes climb-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* #7 the slip: right hand releases, body swings from the left grip, recovers */
+.climber.slip { animation: none; }
+.climber.slip .rig {
+  animation: slip-swing 0.95s cubic-bezier(0.3, 0.7, 0.4, 1.1);
+  transform-origin: 8px 12px;
+}
+.climber.slip .c-arm-r {
+  animation: release 0.95s ease;
+  transform-origin: 32px 24px;
+}
+@keyframes slip-swing {
+  0% { transform: rotate(0deg); }
+  22% { transform: rotate(11deg) translateY(6px); }
+  48% { transform: rotate(7deg) translateY(4px); }
+  74% { transform: rotate(2deg) translateY(1px); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes release {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(48deg) translateY(8px); }
+  60% { transform: rotate(30deg) translateY(5px); }
+  100% { transform: rotate(0deg); }
+}
+
+/* ----- #9 real clouds ----- */
+.p-cloud {
+  width: 96px;
+  height: 26px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.75);
+  animation: drift-across linear forwards;
+  top: auto;
+  filter: none;
+}
+.p-cloud::before, .p-cloud::after {
+  content: "";
+  position: absolute;
+  background: inherit;
+  border-radius: 50%;
+}
+.p-cloud::before { width: 42px; height: 42px; left: 14px; top: -20px; }
+.p-cloud::after  { width: 30px; height: 30px; right: 16px; top: -13px; }
+.p-cloud.wispy { opacity: 0.5; transform: scale(0.7); }
+.p-cloud.heavy { opacity: 0.92; transform: scale(1.25); }
+[data-theme="dark"] .p-cloud { background: rgba(215, 220, 235, 0.4); }
+.climb-stage[data-world="neon"] .p-cloud { background: rgba(120, 130, 160, 0.35); }
+
+/* birds in the open sky */
+.p-bird {
+  width: 18px; height: 8px;
+  animation: drift-across linear forwards;
+  top: auto;
+}
+.p-bird::before, .p-bird::after {
+  content: "";
+  position: absolute;
+  width: 9px; height: 7px;
+  border: solid rgba(20, 25, 40, 0.75);
+  border-width: 2px 0 0 0;
+  border-radius: 50% 50% 0 0;
+  animation: flap 0.5s ease-in-out infinite alternate;
+}
+.p-bird::before { left: 0; transform-origin: right center; }
+.p-bird::after { right: 0; transform-origin: left center; }
+@keyframes flap {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-24deg); }
+}
+[data-theme="dark"] .p-bird::before, [data-theme="dark"] .p-bird::after { border-color: rgba(235,235,245,0.7); }
+
+/* ----- #11 celestial bodies, horizon glow, edge props ----- */
+.w-sun, .w-moon {
+  position: absolute;
+  width: 74px; height: 74px;
+  border-radius: 50%;
+  pointer-events: none;
+  transition: opacity 1100ms ease, transform 1100ms ease;
+}
+.w-sun {
+  top: 16%; right: 12%;
+  background: radial-gradient(circle, #ffe9b0 30%, rgba(255,220,140,0.55) 60%, transparent 72%);
+  opacity: 0.95;
+}
+.w-moon {
+  top: 10%; left: 12%;
+  background: radial-gradient(circle at 38% 38%, #f4f2ec 58%, #cfccc2 62%, #b9b6ac 100%);
+  box-shadow: 0 0 34px 8px rgba(240, 240, 255, 0.25);
+  opacity: 0;
+}
+.climb-stage[data-progress="2"] .w-sun { opacity: 0.55; transform: translateY(14px); }
+.climb-stage[data-progress="3"] .w-sun { opacity: 0.3; transform: translateY(26px); }
+.climb-stage[data-progress="4"] .w-sun,
+.climb-stage[data-progress="5"] .w-sun,
+.climb-stage[data-progress="6"] .w-sun { opacity: 0; transform: translateY(40px); }
+.climb-stage[data-progress="3"] .w-moon { opacity: 0.45; }
+.climb-stage[data-progress="4"] .w-moon { opacity: 0.75; }
+.climb-stage[data-progress="5"] .w-moon,
+.climb-stage[data-progress="6"] .w-moon { opacity: 1; }
+.climb-stage[data-world="neon"] .w-sun, .climb-stage[data-world="ember"] .w-sun { opacity: 0; }
+.climb-stage[data-world="neon"] .w-moon { opacity: 0.7; }
+
+.w-horizon {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 34%;
+  background: linear-gradient(to top, color-mix(in srgb, var(--w-accent) 26%, transparent), transparent);
+  pointer-events: none;
+}
+
+/* per-world foreground props strip with parallax */
+.w-props {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 24%;
+  background: color-mix(in srgb, var(--w-sil2) 85%, #000 15%);
+  pointer-events: none;
+  transform: translateY(calc(var(--shift, 0px) * 0.34));
+  transition: transform 950ms cubic-bezier(0.25, 0.9, 0.3, 1);
+  clip-path: polygon(0 100%, 0 70%, 3% 70%, 4% 30%, 5% 70%, 9% 70%, 10% 22%, 11.5% 70%, 16% 70%, 17% 40%, 18% 70%, 82% 70%, 83% 34%, 84.5% 70%, 89% 70%, 90% 20%, 91.5% 70%, 96% 70%, 97% 45%, 98% 70%, 100% 70%, 100% 100%);
+}
+.climb-stage[data-world="dunes"] .w-props {
+  clip-path: polygon(0 100%, 0 74%, 5% 74%, 5.8% 42%, 6.6% 74%, 7.4% 58%, 8.2% 74%, 92% 74%, 92.8% 50%, 93.6% 74%, 94.4% 62%, 95.2% 74%, 100% 74%, 100% 100%);
+}
+.climb-stage[data-world="neon"] .w-props {
+  clip-path: polygon(0 100%, 0 55%, 4% 55%, 4% 25%, 9% 25%, 9% 62%, 13% 62%, 13% 40%, 17% 40%, 17% 100%, 83% 100%, 83% 45%, 87% 45%, 87% 20%, 92% 20%, 92% 58%, 96% 58%, 96% 38%, 100% 38%, 100% 100%);
+  background-image: repeating-linear-gradient(0deg, transparent 0 10px, rgba(93,224,230,0.22) 10px 12px);
+}
+.climb-stage[data-world="skyreach"] .w-props { opacity: 0; }
+
+/* ----- #12 vignette + grain ----- */
+.fx-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 42%, transparent 52%, rgba(8, 10, 16, 0.3) 100%);
+  z-index: 6;
+}
+.fx-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.6) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.6) 0 1px, transparent 1px 4px);
+  background-size: 3px 3px, 4px 4px;
+  mix-blend-mode: overlay;
+  z-index: 6;
+}
+
+/* ----- responsive question panel: sheet on phones, console on desktop ----- */
+.hud { z-index: 7; }
+.q-panel { z-index: 8; }
+
+/* Option A: docked bottom sheet (default / mobile) */
+.q-panel {
+  left: 0;
+  bottom: 0;
+  transform: none;
+  width: 100%;
+  border-radius: 20px 20px 0 0;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  padding: 14px 16px calc(14px + env(safe-area-inset-bottom));
+  animation: sheet-in 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes sheet-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: none; }
+}
+.q-panel::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--line);
+  margin: 0 auto 10px;
+}
+.climb-stage { --panel-h: 240px; }
+.climb-stage .climber { bottom: 46%; }
+
+/* Option B: side console (desktop) */
+@media (min-width: 900px) {
+  .q-panel {
+    left: auto;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 400px;
+    border-radius: 0;
+    border: none;
+    border-left: 1px solid color-mix(in srgb, var(--line) 60%, transparent);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 28px 26px;
+    animation: console-in 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  @keyframes console-in {
+    from { opacity: 0; transform: translateX(30px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .q-panel::before { display: none; }
+  .q-panel .q-text { font-size: 1.3rem; }
+  .climb-stage { --cx: calc((100% - 400px) / 2); }
+  .climb-stage .climber { bottom: 40%; }
+  .w-sun { right: calc(400px + 6%); }
+}
+
+.bonus-panel { justify-content: center; }

@@ -44,9 +44,9 @@ export class Game {
       number,
       stage: "play",            // "play" → "bonus" → "done"
       current: 0,
-      points: START_POINTS,
+      typedDone: false,         // used (and missed) the typed guess
+      skipped: false,           // skipped typing straight to choices
       choicesShown: false,
-      eliminated: [],
       results: [],              // "green" | "yellow" | "gray"
       scores: [],               // 0–3
       theme: { guessed: false, correct: false, guess: "" },
@@ -137,10 +137,9 @@ export class Game {
     input.value = "";
     input.disabled = false;
     $("btn-guess").disabled = false;
-    $("answer-box").classList.remove("hidden");
+    $("answer-box").classList.toggle("hidden", this.state.choicesShown);
 
-    const choicesBtn = $("btn-choices");
-    choicesBtn.classList.toggle("hidden", this.state.choicesShown);
+    $("btn-choices").classList.toggle("hidden", this.state.choicesShown);
     $("q-options").classList.toggle("hidden", !this.state.choicesShown);
     if (this.state.choicesShown) this.renderOptions(q);
 
@@ -168,10 +167,6 @@ export class Game {
       btn.type = "button";
       btn.textContent = text;
       btn.dataset.index = i;
-      if (this.state.eliminated.includes(i)) {
-        btn.classList.add("eliminated");
-        btn.disabled = true;
-      }
       btn.addEventListener("click", () => this.guessOption(i, btn));
       wrap.appendChild(btn);
     });
@@ -180,15 +175,17 @@ export class Game {
   renderPoints() {
     const wrap = $("q-points");
     wrap.innerHTML = "";
-    for (let i = 0; i < START_POINTS; i++) {
+    const typedSpent = this.state.typedDone || this.state.skipped;
+    [typedSpent, false].forEach((spent) => {
       const dot = document.createElement("span");
-      dot.className = "guess-dot" + (i >= this.state.points ? " spent" : "");
+      dot.className = "guess-dot" + (spent ? " spent" : "");
       wrap.appendChild(dot);
-    }
-    $("q-worth").textContent = `worth ${this.state.points} pt${this.state.points === 1 ? "" : "s"}`;
+    });
+    const pts = this.potential();
+    $("q-worth").textContent = `worth ${pts} pt${pts === 1 ? "" : "s"}`;
   }
 
-  renderLadder() {
+    renderLadder() {
     const stage = document.getElementById("climb-stage");
     const world = document.getElementById("world");
 
@@ -294,32 +291,68 @@ export class Game {
                   : type === "ember" ? 3.5 + Math.random() * 3
                   : 4 + Math.random() * 4;
         p.style.animationDuration = `${dur}s`;
+        if (type === "cloud") p.classList.add(Math.random() < 0.4 ? "wispy" : Math.random() < 0.3 ? "heavy" : "mid");
         host.appendChild(p);
         if (p.addEventListener) p.addEventListener("animationend", () => p.remove(), { once: true });
         setTimeout(() => p.remove?.(), (dur + 1) * 1000);
       }
     };
     spawn();
-    this._weather = setInterval(spawn, 700);
+    this._weather = setInterval(() => {
+      spawn();
+      // #11: occasional birds crossing the open sky
+      if (this.world.id === "skyreach" && Math.random() < 0.12 && host.appendChild) {
+        const b = document.createElement("div");
+        b.className = "particle p-bird";
+        b.style.top = `${8 + Math.random() * 40}%`;
+        b.style.animationDuration = `${9 + Math.random() * 6}s`;
+        host.appendChild(b);
+        setTimeout(() => b.remove?.(), 16000);
+      }
+    }, 700);
   }
 
     /* ---------------- guessing ---------------- */
 
+  /** Points this rung is still worth: 3 typed, 2 after a skip, 1 after a miss. */
+  potential() {
+    if (!this.state.choicesShown) return 3;
+    return this.state.skipped ? 2 : 1;
+  }
+
   guessTyped() {
-    if (this.locked) return;
+    if (this.locked || this.state.choicesShown) return;
     const q = this.puzzle.questions[this.state.current];
     const raw = $("q-input").value;
     if (!raw.trim()) return;
 
     if (answerMatches(raw, q.options[q.correct], q.accept)) {
-      this.succeed(q);
+      this.succeed(3, "green", `Typed it — full 3 points.`);
     } else {
-      $("q-input").value = "";
-      this.miss(q, `“${raw.trim()}” isn't it.`);
-      const box = $("answer-box");
-      box.classList.add("shake");
-      box.addEventListener("animationend", () => box.classList.remove("shake"), { once: true });
+      this.state.typedDone = true;
+      this.reactToMiss();
+      this.openChoices(`“${raw.trim()}” isn't it. One pick from the choices — worth 1 pt.`);
     }
+  }
+
+  skipToChoices() {
+    if (this.locked || this.state.choicesShown) return;
+    this.state.skipped = true;
+    this.openChoices("Pick from the choices — worth 2 pts.");
+  }
+
+  openChoices(message) {
+    const q = this.puzzle.questions[this.state.current];
+    this.state.choicesShown = true;
+    this.save();
+    $("answer-box").classList.add("hidden");
+    $("btn-choices").classList.add("hidden");
+    $("q-options").classList.remove("hidden");
+    this.renderOptions(q);
+    this.renderPoints();
+    const fb = $("q-feedback");
+    fb.textContent = message;
+    fb.className = "q-feedback " + (this.state.typedDone ? "bad" : "");
   }
 
   guessOption(optionIndex, btn) {
@@ -328,47 +361,34 @@ export class Game {
 
     if (optionIndex === q.correct) {
       btn.classList.add("correct");
-      this.succeed(q);
+      const pts = this.potential();
+      this.succeed(pts, "yellow", `Got it — ${pts} point${pts === 1 ? "" : "s"}.`);
     } else {
-      this.state.eliminated.push(optionIndex);
       btn.classList.add("eliminated", "shake");
       btn.disabled = true;
-      this.miss(q, "Not that one.");
+      this.reactToMiss();
+      this.completeRung("gray", 0);
+      this.lockRung();
+      const fb = $("q-feedback");
+      fb.textContent = "Not that one — rung missed. Keep climbing.";
+      fb.className = "q-feedback miss";
+      this.popRung("gray");
+      this.offerNext();
     }
   }
 
-  showChoices() {
-    if (this.locked || this.state.choicesShown) return;
-    const q = this.puzzle.questions[this.state.current];
-    this.state.choicesShown = true;
-    this.state.points = Math.max(1, this.state.points - 1); // floor 1
-    this.save();
-    $("btn-choices").classList.add("hidden");
-    $("q-options").classList.remove("hidden");
-    this.renderOptions(q);
-    this.renderPoints();
-  }
-
-  succeed(q) {
-    const points = this.state.points;
-    const result = points === START_POINTS ? "green" : "yellow";
+  succeed(points, result, message) {
     this.completeRung(result, points);
     this.lockRung();
-    this.revealCorrect(q.correct);
-
     const fb = $("q-feedback");
-    fb.textContent = result === "green"
-      ? `Nailed it — full ${points} points.`
-      : `Got there — ${points} point${points === 1 ? "" : "s"}.`;
-    fb.classList.add("good");
+    fb.textContent = message;
+    fb.className = "q-feedback good";
     this.popRung(result);
     this.offerNext();
   }
 
-  miss(q, prefix) {
-    this.state.points -= 1;
-    this.renderPoints();
-
+  /** Stage shake + climber slip. No answer reveal — the summit keeps its secrets. */
+  reactToMiss() {
     const stage = document.getElementById("climb-stage");
     const climber = document.getElementById("climber");
     if (stage?.classList) {
@@ -377,30 +397,10 @@ export class Game {
       stage.classList.add("shake");
     }
     if (climber?.classList) {
+      climber.classList.remove("slip");
+      if (typeof climber.offsetWidth === "number") void climber.offsetWidth;
       climber.classList.add("slip");
       climber.addEventListener?.("animationend", () => climber.classList.remove("slip"), { once: true });
-    }
-
-    const fb = $("q-feedback");
-
-    if (this.state.points <= 0) {
-      this.completeRung("gray", 0);
-      this.lockRung();
-      if (!this.state.choicesShown) {
-        this.state.choicesShown = true;
-        $("btn-choices").classList.add("hidden");
-        $("q-options").classList.remove("hidden");
-        this.renderOptions(q);
-      }
-      this.revealCorrect(q.correct);
-      fb.textContent = `Out of points — it was “${q.options[q.correct]}.”`;
-      fb.className = "q-feedback miss";
-      this.popRung("gray");
-      this.offerNext();
-    } else {
-      fb.textContent = `${prefix} ${this.state.points} pt${this.state.points === 1 ? "" : "s"} still on the table.`;
-      fb.className = "q-feedback bad";
-      this.save();
     }
   }
 
@@ -420,17 +420,11 @@ export class Game {
   }
 
   popRung(result) {
-    const rung = document.querySelector(`.rung[data-rung="${this.state.current + 1}"]`);
+    const rung = document.querySelector(`.w-rung[data-rung="${this.state.current + 1}"]`);
     if (rung) {
       rung.classList.add(result, "pop");
       rung.addEventListener("animationend", () => rung.classList.remove("pop"), { once: true });
     }
-  }
-
-  revealCorrect(correctIndex) {
-    if (!this.state.choicesShown) return;
-    const btn = document.querySelector(`.option[data-index="${correctIndex}"]`);
-    if (btn) btn.classList.add("revealed");
   }
 
   offerNext() {
@@ -447,21 +441,33 @@ export class Game {
     this.locked = false;
     if (this.state.current < this.puzzle.questions.length - 1) {
       this.state.current += 1;
-      this.state.points = START_POINTS;
+      this.state.typedDone = false;
+      this.state.skipped = false;
       this.state.choicesShown = false;
-      this.state.eliminated = [];
       this.save();
       this.renderQuestion();
+      this.triggerClimb();
     } else if (this.mode === "practice") {
       this.finish();
     } else {
       this.state.stage = "bonus";
       this.save();
       this.showBonus();
+      this.triggerClimb();
     }
   }
 
-  /* ---------------- bonus (theme) rung ---------------- */
+  /** #6: hand-over-hand cycles while the camera pans up. */
+  triggerClimb() {
+    const climber = document.getElementById("climber");
+    if (!climber?.classList) return;
+    climber.classList.remove("climbing");
+    if (typeof climber.offsetWidth === "number") void climber.offsetWidth;
+    climber.classList.add("climbing");
+    setTimeout(() => climber.classList.remove("climbing"), 1000);
+  }
+
+    /* ---------------- bonus (theme) rung ---------------- */
 
   showBonus() {
     this.setScreen("screen-play");

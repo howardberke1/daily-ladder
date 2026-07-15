@@ -44,9 +44,8 @@ Then open the printed URL (e.g. http://localhost:3000).
 ## Game rules (as implemented)
 
 - 5 questions per day, difficulty 1 → 5, each from a different category.
-- Every rung starts **worth 3 points**. Players type their answer (fuzzy-matched: case, punctuation, small typos, surnames, and leading articles are forgiven). A "Show 4 choices" button converts the rung to multiple choice for −1 point (floor 1), so stuck players always have an out.
-- Every wrong guess (typed or clicked) costs 1 point. At 0 the rung is missed — the game never ends early.
-- Rung colors: 🟩 solved at full 3 pts, 🟨 solved for 1–2, ⬜/⬛ missed.
+- Each rung offers **one typed guess and one multiple-choice pick**. Typed correct = 3 pts (🟩). Skip typing → the 4 choices appear worth 2 pts (🟨). Miss the typed guess → choices appear worth 1 pt (🟨). Wrong pick = rung missed (⬜/⬛). Typed answers are fuzzy-matched (case, punctuation, small typos, surnames, leading articles forgiven).
+- Missed rungs never reveal the correct answer mid-game — answers appear only on the results screen, where the theme reveal ties them together. The game never ends early.
 - **Bonus rung:** after Q5, one typed guess at the hidden theme (fuzzy-matched against `theme` + `themeAnswers`). Correct = +3 points and a 🟪 in the share grid. Max score 18.
 - A **win** = clearing all 5 rungs. Streak = consecutive days with a win. Theme-crack rate is tracked in stats.
 - The share text contains only the ladder number, score, and colored squares — never the theme or answers.

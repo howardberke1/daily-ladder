@@ -171,7 +171,7 @@ async function boot() {
   // in-game inputs (bound once; delegate to the current game)
   $("btn-guess").addEventListener("click", () => game?.guessTyped());
   $("q-input").addEventListener("keydown", (e) => { if (e.key === "Enter") game?.guessTyped(); });
-  $("btn-choices").addEventListener("click", () => game?.showChoices());
+  $("btn-choices").addEventListener("click", () => game?.skipToChoices());
   $("btn-b-guess").addEventListener("click", () => game?.guessTheme());
   $("b-input").addEventListener("keydown", (e) => { if (e.key === "Enter") game?.guessTheme(); });
   $("btn-b-skip").addEventListener("click", () => game?.skipTheme());
