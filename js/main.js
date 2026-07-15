@@ -31,10 +31,14 @@ function initTheme() {
 
 /* ---------------- mode routing ---------------- */
 
+let accountLayer = null;
+
 function startGame(config) {
   game?.destroy();
   game = new Game(config);
+  game.onFinish = (payload) => accountLayer?.handleDailyFinish?.(payload);
   game.start();
+  accountLayer?.applyCosmetics?.();
 }
 
 function startDaily() {
@@ -164,6 +168,16 @@ function renderStats() {
 async function boot() {
   initTheme();
   initModals();
+
+  // Account/leaderboard layer loads in the background; the game never waits
+  // on it and works fully offline if the CDN or Supabase is unreachable.
+  import("./account-ui.js")
+    .then(async (mod) => {
+      await mod.initAccountUI();
+      accountLayer = mod;
+      mod.applyCosmetics();
+    })
+    .catch((err) => console.warn("Account layer unavailable:", err));
 
   // header mode buttons
   $("btn-practice").addEventListener("click", () => startPractice());

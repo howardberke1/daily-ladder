@@ -1760,3 +1760,344 @@ body {
 }
 
 .bonus-panel { justify-content: center; }
+
+/* ==========================================================================
+   v7 — VISUAL POLISH PASS + ACCOUNTS/LEADERBOARDS
+   ========================================================================== */
+
+/* ----- #3 panel always dark glass, tinted toward the world ----- */
+.q-panel {
+  background: color-mix(in srgb, var(--w-hi) 40%, rgba(12, 15, 24, 0.88));
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #edeef2;
+}
+.q-panel .q-text { color: #f4f5f8; }
+.q-panel .category-chip { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); color: #cdd2dd; }
+.q-panel .points-worth { color: #aab2c0; }
+.q-panel .guess-dot { background: #edeef2; }
+.q-panel .guess-dot.spent { background: rgba(255,255,255,0.18); }
+.q-panel .answer-input { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.2); color: #f4f5f8; }
+.q-panel .answer-input::placeholder { color: #98a0af; }
+.q-panel .answer-input:focus { border-color: rgba(255,255,255,0.55); }
+.q-panel .btn-primary { background: #f4f5f8; color: #14171f; border-color: #f4f5f8; }
+.q-panel .btn { border-color: rgba(255,255,255,0.4); color: #edeef2; }
+.q-panel .link-btn { color: #aab2c0; }
+.q-panel .link-btn:hover { color: #f4f5f8; }
+.q-panel .option { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.18); color: #edeef2; box-shadow: none; }
+.q-panel .option:hover:not(:disabled) { border-color: rgba(255,255,255,0.5); }
+.q-panel .option.correct { background: var(--green); border-color: var(--green); color: #fff; }
+.q-panel .q-feedback.good { color: #7fd694; }
+.q-panel .q-feedback.bad { color: #f0977f; }
+.q-panel .q-feedback.miss { color: #aab2c0; }
+.q-panel .muted, .bonus-panel .muted, .bonus-panel .results-eyebrow { color: #aab2c0; }
+.q-panel::before { background: rgba(255,255,255,0.25); }
+
+/* clipping guards: nothing escapes the panel */
+.q-panel { min-width: 0; }
+.q-panel > * { max-width: 100%; min-width: 0; }
+.q-meta { flex-wrap: wrap; gap: 6px; }
+.points-meta { flex-shrink: 0; }
+
+/* ----- #1 mid-air passing layers (inside the world, so they pan) ----- */
+.w-mid {
+  position: absolute;
+  pointer-events: none;
+}
+.w-mid-1 { bottom: calc(var(--seg, 300px) * 2.4); }
+.w-mid-2 { bottom: calc(var(--seg, 300px) * 4.3); }
+
+/* default (summit/forest/ember): a rock shelf hugging one side */
+.w-mid-1 {
+  left: 0;
+  width: 34%;
+  height: 120px;
+  background: var(--w-sil2);
+  clip-path: polygon(0 0, 0 100%, 100% 100%, 78% 62%, 52% 74%, 30% 30%);
+  opacity: 0.85;
+}
+.w-mid-2 {
+  right: 0;
+  width: 28%;
+  height: 100px;
+  background: var(--w-sil1);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%, 24% 58%, 55% 70%, 74% 26%);
+  opacity: 0.7;
+}
+/* skyreach + dunes: soft cloud shelves */
+.climb-stage[data-world="skyreach"] .w-mid,
+.climb-stage[data-world="dunes"] .w-mid {
+  height: 34px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.35);
+  clip-path: none;
+}
+.climb-stage[data-world="skyreach"] .w-mid-1 { width: 42%; left: 2%; }
+.climb-stage[data-world="skyreach"] .w-mid-2 { width: 30%; right: 6%; }
+/* neon: distant tower tops with lit windows */
+.climb-stage[data-world="neon"] .w-mid {
+  height: 200px;
+  background: var(--w-sil1);
+  background-image: repeating-linear-gradient(0deg, transparent 0 12px, rgba(93,224,230,0.2) 12px 14px);
+  clip-path: polygon(0 100%, 0 20%, 30% 20%, 30% 0, 62% 0, 62% 34%, 100% 34%, 100% 100%);
+  opacity: 0.8;
+}
+.climb-stage[data-world="neon"] .w-mid-1 { left: 0; width: 26%; }
+.climb-stage[data-world="neon"] .w-mid-2 { right: 0; width: 22%; }
+
+/* blinking antenna light on neon towers */
+.climb-stage[data-world="neon"] .w-mid-2::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: 40%;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #ff5a5a;
+  animation: blink 2.4s ease-in-out infinite;
+}
+@keyframes blink { 0%, 100% { opacity: 0.15; } 50% { opacity: 1; } }
+
+/* ----- #2 altitude plaques on checkpoint rungs + float popup ----- */
+.w-rung::before {
+  content: "";
+  position: absolute;
+  left: -58px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.85);
+  background: rgba(10, 14, 20, 0.45);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 5px;
+  padding: 2px 7px;
+  backdrop-filter: blur(2px);
+}
+.w-rung[data-rung="1"]::before { content: "400 m"; }
+.w-rung[data-rung="2"]::before { content: "800 m"; }
+.w-rung[data-rung="3"]::before { content: "1200 m"; }
+.w-rung[data-rung="4"]::before { content: "1600 m"; }
+.w-rung[data-rung="5"]::before { content: "2000 m"; }
+
+.alt-float {
+  position: absolute;
+  left: var(--cx);
+  bottom: 52%;
+  transform: translateX(60px);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  animation: alt-rise 1.4s ease-out forwards;
+  pointer-events: none;
+  z-index: 6;
+}
+@keyframes alt-rise {
+  0% { opacity: 0; transform: translateX(60px) translateY(10px); }
+  20% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(60px) translateY(-56px); }
+}
+
+/* ----- #4 ladder materiality: moonlit edge, cast shadow, anchored base ----- */
+.w-rail {
+  box-shadow:
+    inset 2px 0 0 rgba(255, 255, 255, 0.22),
+    inset -2px 0 0 rgba(0, 0, 0, 0.35),
+    6px 8px 14px rgba(0, 0, 0, 0.3);
+}
+.w-rung, .w-minor-rungs {
+  filter: drop-shadow(4px 5px 5px rgba(0, 0, 0, 0.28));
+}
+.w-rung { box-shadow: inset 0 2px 0 rgba(255,255,255,0.28), inset 0 -3px 0 rgba(0,0,0,0.22); }
+
+.w-base {
+  position: absolute;
+  left: var(--cx);
+  transform: translateX(-50%);
+  bottom: calc(-0.12 * var(--gh, 140px));
+  width: 170px;
+  height: 56px;
+  background: color-mix(in srgb, var(--w-ground) 55%, #000 45%);
+  clip-path: polygon(8% 100%, 0 40%, 22% 55%, 38% 12%, 60% 42%, 78% 8%, 92% 48%, 100% 100%);
+  z-index: 1;
+}
+.climb-stage[data-world="neon"] .w-base {
+  clip-path: none;
+  border-radius: 4px 4px 0 0;
+  height: 44px;
+  width: 200px;
+  background-image: repeating-linear-gradient(90deg, transparent 0 22px, rgba(93,224,230,0.18) 22px 26px);
+}
+
+/* ----- #5 climber presence: bigger, filled, outlined, headlamp ----- */
+.climb-stage .climber {
+  width: 76px;
+  height: 86px;
+  filter: drop-shadow(0 0 1.5px rgba(255,255,255,0.55)) drop-shadow(0 4px 4px rgba(0,0,0,0.45));
+}
+.climber .c-body { stroke-width: 7; }
+.climber .c-limb { stroke-width: 4.8; }
+.climber .c-pack { rx: 5; }
+
+.climber .c-lamp {
+  fill: #fff8dc;
+  opacity: 0;
+  transition: opacity 800ms ease;
+}
+.climber .lamp-cone {
+  fill: rgba(255, 244, 200, 0.22);
+  opacity: 0;
+  transition: opacity 800ms ease;
+}
+.climb-stage[data-progress="4"] .c-lamp,
+.climb-stage[data-progress="5"] .c-lamp,
+.climb-stage[data-progress="6"] .c-lamp { opacity: 1; }
+.climb-stage[data-progress="4"] .lamp-cone { opacity: 0.7; }
+.climb-stage[data-progress="5"] .lamp-cone,
+.climb-stage[data-progress="6"] .lamp-cone { opacity: 1; }
+
+/* ----- #6 celestial + weather quality ----- */
+.w-moon {
+  background:
+    radial-gradient(circle at 32% 30%, rgba(0,0,0,0.14) 0 8px, transparent 9px),
+    radial-gradient(circle at 60% 58%, rgba(0,0,0,0.12) 0 6px, transparent 7px),
+    radial-gradient(circle at 44% 72%, rgba(0,0,0,0.1) 0 4px, transparent 5px),
+    radial-gradient(circle at 38% 38%, #f4f2ec 58%, #cfccc2 62%, #b9b6ac 100%);
+}
+/* you rise past the moon */
+.climb-stage[data-progress="4"] .w-moon { transform: translateY(30px); }
+.climb-stage[data-progress="5"] .w-moon { transform: translateY(70px); }
+.climb-stage[data-progress="6"] .w-moon { transform: translateY(110px); }
+
+.p-rain {
+  width: 2px;
+  height: 24px;
+  background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--w-accent) 85%, #fff));
+  box-shadow: 0 0 4px color-mix(in srgb, var(--w-accent) 40%, transparent);
+  transform: rotate(8deg);
+}
+
+/* ----- #7 clear-the-rung ceremony: badge stamp + rail light pulse ----- */
+.w-rung.pop::after { animation: stamp 550ms cubic-bezier(0.34, 1.56, 0.64, 1); }
+@keyframes stamp {
+  0% { transform: translateY(-50%) scale(0.4); }
+  55% { transform: translateY(-50%) scale(1.35); }
+  100% { transform: translateY(-50%) scale(1); }
+}
+
+.w-rails::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 30px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(255, 250, 220, 0.55), transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+}
+.w-rails.pulse::after { animation: rail-pulse 900ms ease-out; }
+@keyframes rail-pulse {
+  0% { opacity: 0; bottom: 4%; }
+  25% { opacity: 1; }
+  100% { opacity: 0; bottom: 78%; }
+}
+
+/* ----- account + leaderboard UI ----- */
+.icon-btn.authed { border-color: var(--green); color: var(--green); }
+
+.acct-blurb { font-size: 0.88rem; margin: 0 0 12px; }
+.acct-box { margin-bottom: 8px; }
+.acct-msg { font-size: 0.82rem; min-height: 1.2em; margin: 0 0 6px; }
+.acct-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.acct-name { font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; }
+
+.btn-mini {
+  padding: 6px 14px;
+  font-size: 0.78rem;
+}
+.btn-mini.quiet { border-color: var(--line); color: var(--ink-soft); }
+.btn-mini.quiet:hover { color: var(--ink); border-color: var(--ink-soft); }
+
+.friends-heading {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 14px 0 6px;
+}
+.friend-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+.friend-row span:first-child { flex: 1; font-weight: 600; }
+.pending-note { font-size: 0.75rem; }
+
+.cos-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 10px 0 6px;
+}
+.swatches { display: flex; gap: 8px; flex-wrap: wrap; }
+.swatch {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  cursor: pointer;
+  transition: transform var(--speed), border-color var(--speed);
+}
+.swatch:hover { transform: scale(1.1); }
+.swatch.picked { border-color: var(--ink); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ink) 18%, transparent); }
+
+.lb-tabs { display: flex; gap: 6px; margin-bottom: 12px; }
+.lb-tab {
+  flex: 1;
+  padding: 7px 0;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.lb-tab.on { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+#lb-list { display: grid; gap: 5px; max-height: 46vh; overflow-y: auto; }
+.lb-row {
+  display: grid;
+  grid-template-columns: 30px 1fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 0.88rem;
+}
+.lb-row.me { border-color: var(--green); background: color-mix(in srgb, var(--green) 8%, transparent); }
+.lb-rank { font-family: var(--font-display); font-weight: 800; color: var(--ink-soft); }
+.lb-name { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lb-score { font-variant-numeric: tabular-nums; font-weight: 700; font-size: 0.82rem; }
+.lb-note, .lb-loading { text-align: center; font-size: 0.82rem; padding: 6px 0; }

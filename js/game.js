@@ -409,6 +409,16 @@ export class Game {
     this.state.scores[this.state.current] = points;
     this.save();
     this.renderLadder();
+
+    if (result !== "gray") {
+      const rails = document.querySelector(".w-rails");
+      if (rails?.classList) {
+        rails.classList.remove("pulse");
+        if (typeof rails.offsetWidth === "number") void rails.offsetWidth;
+        rails.classList.add("pulse");
+        rails.addEventListener?.("animationend", () => rails.classList.remove("pulse"), { once: true });
+      }
+    }
   }
 
   lockRung() {
@@ -465,6 +475,16 @@ export class Game {
     if (typeof climber.offsetWidth === "number") void climber.offsetWidth;
     climber.classList.add("climbing");
     setTimeout(() => climber.classList.remove("climbing"), 1000);
+
+    // "+400 m" floats up beside the climber
+    const stage = document.getElementById("climb-stage");
+    if (stage?.appendChild) {
+      const f = document.createElement("div");
+      f.className = "alt-float";
+      f.textContent = `+${METERS_PER_RUNG} m`;
+      stage.appendChild(f);
+      setTimeout(() => f.remove?.(), 1500);
+    }
   }
 
     /* ---------------- bonus (theme) rung ---------------- */
@@ -499,6 +519,7 @@ export class Game {
   /* ---------------- finishing ---------------- */
 
   finish() {
+    const firstFinish = this.state.stage !== "done";
     this.state.stage = "done";
     if (this.state.timeMs == null && this.state.startedAt) {
       this.state.timeMs = Date.now() - this.state.startedAt;
@@ -509,6 +530,17 @@ export class Game {
       this.state.recorded = true;
     }
     this.save();
+    if (firstFinish && this.mode === "daily") {
+      // hook for the account layer (leaderboard sync); no-op offline
+      this.onFinish?.({
+        dateKey: this.dateKey,
+        puzzleNumber: this.number,
+        score: this.totalScore(),
+        timeMs: this.state.timeMs,
+        themeCorrect: this.state.theme.correct,
+        rungs: this.state.results,
+      });
+    }
     this.showResults({ animateReveal: true });
   }
 

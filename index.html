@@ -28,6 +28,12 @@
     </div>
     <h1 class="wordmark">Daily Ladder</h1>
     <div class="topbar-right">
+      <button class="icon-btn hidden" id="btn-leaderboard" aria-label="Leaderboards">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M8 21h8M12 17v4M7 4h10v6a5 5 0 0 1-10 0V4zM7 6H4a1 1 0 0 0-1 1c0 2.5 1.5 4 4 4M17 6h3a1 1 0 0 1 1 1c0 2.5-1.5 4-4 4"/></svg>
+      </button>
+      <button class="icon-btn hidden" id="btn-account" aria-label="Account">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 20c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5"/></svg>
+      </button>
       <button class="icon-btn" id="btn-practice" aria-label="Practice mode — random questions">
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M16 3h5v5M21 3l-7.5 7.5M8 21H3v-5M3 21l7.5-7.5M16 21h5v-5M21 21l-6-6M8 3H3v5M3 3l6 6"/></svg>
       </button>
@@ -74,6 +80,9 @@
           <div class="rung w-rung" data-rung="3"></div>
           <div class="rung w-rung" data-rung="4"></div>
           <div class="rung w-rung" data-rung="5"></div>
+          <div class="w-mid w-mid-1"></div>
+          <div class="w-mid w-mid-2"></div>
+          <div class="w-base"></div>
           <div class="w-summit">
             <div class="rung rung-cap" title="Bonus: guess the theme"><span class="rung-num">?</span></div>
           </div>
@@ -90,6 +99,8 @@
             <polyline class="c-limb c-leg-r" points="29,38 38,46 42,56"/>
             <circle class="c-head" cx="28" cy="12" r="6.5"/>
             <path class="c-helmet" d="M20.5 11a7.5 7.5 0 0 1 15 0z"/>
+            <polygon class="lamp-cone" points="34,9 56,1 56,17"/>
+            <circle class="c-lamp" cx="34" cy="9" r="2.4"/>
           </g>
         </svg>
 
@@ -216,6 +227,69 @@
       <h2>Past ladders</h2>
       <p class="muted archive-note">Replay any day you missed. Archive games don't affect your streak or stats.</p>
       <div class="archive-list" id="archive-list"></div>
+    </div>
+  </dialog>
+
+  <!-- Account modal -->
+  <dialog class="modal" id="modal-account">
+    <div class="modal-inner">
+      <button class="modal-close" data-close aria-label="Close">×</button>
+      <h2>Your climber</h2>
+
+      <div id="acct-signedout">
+        <p class="muted acct-blurb">Sign in to save your climbs, add friends, and appear on the leaderboards. No password — we email you a sign-in link.</p>
+        <div class="answer-box acct-box">
+          <input type="email" id="acct-email" class="answer-input" placeholder="you@email.com" autocomplete="email" enterkeyhint="go" />
+          <button class="btn btn-primary btn-guess" id="btn-magic">Send link</button>
+        </div>
+        <p class="muted acct-msg" id="acct-msg"></p>
+      </div>
+
+      <div id="acct-username" class="hidden">
+        <p class="muted acct-blurb">You're in — pick a username for the leaderboards. Letters, numbers, underscores; 3–20 characters.</p>
+        <div class="answer-box acct-box">
+          <input type="text" id="acct-user" class="answer-input" placeholder="ladder_legend" autocomplete="off" enterkeyhint="go" />
+          <button class="btn btn-primary btn-guess" id="btn-claim">Claim</button>
+        </div>
+        <p class="muted acct-msg" id="acct-user-msg"></p>
+      </div>
+
+      <div id="acct-signedin" class="hidden">
+        <div class="acct-row">
+          <span class="acct-name" id="acct-name">@you</span>
+          <button class="btn btn-mini quiet" id="btn-signout">Sign out</button>
+        </div>
+
+        <h3>Find friends</h3>
+        <div class="answer-box acct-box">
+          <input type="text" id="friend-search" class="answer-input" placeholder="Search username…" autocomplete="off" />
+          <button class="btn btn-primary btn-guess" id="btn-friend-search">Add</button>
+        </div>
+        <p class="muted acct-msg" id="friend-search-msg"></p>
+        <div id="friends-area"></div>
+      </div>
+
+      <h3>Customize</h3>
+      <p class="cos-label">Helmet</p>
+      <div class="swatches" id="swatches-helmet"></div>
+      <p class="cos-label">Pack</p>
+      <div class="swatches" id="swatches-pack"></div>
+      <p class="stats-note">Your look shows on the climb now, and next to your name on leaderboards. Works without an account too — signing in just saves it everywhere.</p>
+    </div>
+  </dialog>
+
+  <!-- Leaderboard modal -->
+  <dialog class="modal" id="modal-leaderboard">
+    <div class="modal-inner">
+      <button class="modal-close" data-close aria-label="Close">×</button>
+      <h2>Leaderboards</h2>
+      <div class="lb-tabs">
+        <button class="lb-tab on" data-tab="global" type="button">Today</button>
+        <button class="lb-tab" data-tab="friends" type="button">Friends</button>
+        <button class="lb-tab" data-tab="alltime" type="button">All-time</button>
+      </div>
+      <div id="lb-list"></div>
+      <p class="stats-note">Ranked by score, fastest time breaks ties.</p>
     </div>
   </dialog>
 

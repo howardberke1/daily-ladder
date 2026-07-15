@@ -103,6 +103,32 @@ Append an object to the `puzzles` array in `data/puzzles.json`:
 
 If today's date isn't in the file, the game deterministically rotates through the existing pool (based on days since `startDate`) so the site never breaks. For a real launch, just keep a few weeks of dated puzzles queued up.
 
+## Backend (accounts, friends, leaderboards)
+
+Optional layer powered by Supabase. The game runs fully without it — if the
+Supabase CDN or project is unreachable, the account/trophy buttons hide and
+everything else works offline from localStorage.
+
+One-time setup:
+1. In the Supabase dashboard → SQL Editor → New query, paste all of
+   `supabase/schema.sql` and Run. This creates `profiles`, `friendships`,
+   `results`, the all-time leaderboard view, and the Row Level Security rules.
+2. Authentication → URL Configuration: set the Site URL to
+   `https://dailyladder.app` and add it to Redirect URLs (magic links need
+   this to land back on the game).
+3. `js/supabaseClient.js` holds the project URL and the *publishable* key —
+   safe in frontend code by design. Never put the secret key anywhere in
+   this repo.
+
+How it flows: players sign in via emailed magic link, claim a username, and
+finished **daily** games upsert into `results` (archive/practice never sync).
+Leaderboards: Today (global), Friends, All-time — ranked by score, fastest
+time breaks ties. Cosmetics (helmet/pack colors) work signed-out via
+localStorage and sync to the profile when signed in.
+
+Note: Supabase's built-in email sender is rate-limited (a few magic links per
+hour) — fine for testing; add custom SMTP in Supabase before real launch.
+
 ## Deploy
 
 It's a plain static site — deploy the whole folder as-is.
