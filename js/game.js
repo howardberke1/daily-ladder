@@ -532,16 +532,20 @@ export class Game {
     this.save();
     if (firstFinish && this.mode === "daily") {
       // hook for the account layer (leaderboard sync); no-op offline
-      this.onFinish?.({
-        dateKey: this.dateKey,
-        puzzleNumber: this.number,
-        score: this.totalScore(),
-        timeMs: this.state.timeMs,
-        themeCorrect: this.state.theme.correct,
-        rungs: this.state.results,
-      });
+      this.onFinish?.(this.syncPayload());
     }
     this.showResults({ animateReveal: true });
+  }
+
+  syncPayload() {
+    return {
+      dateKey: this.dateKey,
+      puzzleNumber: this.number,
+      score: this.totalScore(),
+      timeMs: this.state.timeMs,
+      themeCorrect: this.state.theme.correct,
+      rungs: this.state.results,
+    };
   }
 
   totalScore() {
@@ -635,6 +639,21 @@ export class Game {
     $("btn-again").classList.toggle("hidden", !practice);
     $("btn-today").classList.toggle("hidden", this.mode === "daily");
     document.querySelector(".countdown").classList.toggle("hidden", this.mode !== "daily");
+
+    const postBtn = $("btn-post-lb");
+    if (postBtn) {
+      const canPost = this.mode === "daily" && typeof this.onFinish === "function";
+      postBtn.classList.toggle("hidden", !canPost);
+      postBtn.disabled = false;
+      postBtn.textContent = "Post to leaderboard";
+      postBtn.onclick = async () => {
+        postBtn.disabled = true;
+        postBtn.textContent = "Posting…";
+        const ok = await this.onFinish?.(this.syncPayload());
+        postBtn.disabled = false;
+        postBtn.textContent = ok ? "Posted ✓" : "Post to leaderboard";
+      };
+    }
 
     this.renderLadder();
     if (!practice) this.wireShare(score);

@@ -207,7 +207,10 @@ async function renderLeaderboard() {
 /* ---------------- daily result sync ---------------- */
 
 export async function handleDailyFinish(payload) {
-  if (!getUser() || !getProfile()) return;
+  if (!getUser() || !getProfile()) {
+    toast("Sign in to post this climb to the leaderboard");
+    return false;
+  }
   const { error } = await syncResult({
     dateKey: payload.dateKey,
     puzzleNumber: payload.puzzleNumber,
@@ -218,10 +221,11 @@ export async function handleDailyFinish(payload) {
   });
   if (error) {
     console.error("Leaderboard sync failed:", error);
-    toast("Couldn't post to the leaderboard — will retry next climb");
-  } else {
-    toast("Climb posted to the leaderboard");
+    toast("Couldn't post to the leaderboard — " + error);
+    return false;
   }
+  toast("Climb posted to the leaderboard");
+  return true;
 }
 
 /* ---------------- boot ---------------- */
