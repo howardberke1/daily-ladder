@@ -156,6 +156,24 @@ than just share with friends).
 bash scripts/package.sh     # validates, then writes daily-ladder-v0.8.0.zip
 ```
 
+## Themed days
+
+A puzzle opts into a recurring themed day with `"tag": "brainrot"` in
+puzzles.json. The badge, scene styling, archive dot and analytics tagging all
+follow automatically — adding a new themed day later is a data change plus one
+entry in `TAGS` (js/game.js).
+
+**Brain Rot Friday** runs every Friday: internet culture, meme lore, streamer
+trivia. Currently scheduled 2026-07-17 (Brain rot), 07-24 (Ohio), 07-31 (Mid).
+When restocking the queue, keep Fridays tagged.
+
+Design note: these are built as *real trivia with brain rot as the hook*, not
+slang quizzes — the Friday puzzles land on Thoreau's Walden, the Wright
+brothers, and the Battle of Midway. That's deliberate. Pure slang questions rot
+fast (the whole point of the term), and the archive means every puzzle gets
+replayed months later. Real facts with a meme punchline age; "what does skibidi
+mean" doesn't.
+
 ## The worlds
 
 `js/worlds.js` builds scenery as authored SVG, not CSS shapes. Six worlds, each

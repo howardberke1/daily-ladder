@@ -439,79 +439,103 @@
     },
     {
       "date": "2026-07-17",
-      "theme": "Fire",
+      "tag": "brainrot",
+      "theme": "Brain rot",
       "themeAnswers": [
-        "fire",
-        "flames",
-        "things on fire",
-        "fire related"
+        "brain rot",
+        "brainrot",
+        "brain-rot",
+        "internet slang",
+        "brain rot slang",
+        "gen z slang",
+        "gen alpha slang"
       ],
-      "themeBlurb": "A volcanic ring, a defiant titan, a song of ice and its opposite, an Olympic sprint, and an emperor with a fiddle.",
+      "themeBlurb": "Charisma, a cursed state, a background character, a toilet-headed army — and Thoreau, who was already complaining about brain rot in 1854. Oxford made it Word of the Year in 2024. The rot is older than the internet.",
       "questions": [
         {
-          "category": "Geography",
+          "category": "Language",
           "difficulty": 1,
-          "question": "What is the name of the horseshoe-shaped belt of volcanoes and earthquakes circling the Pacific Ocean?",
+          "question": "Oxford named which word — short for \"charisma\" — its 2023 Word of the Year?",
           "options": [
-            "The Ring of Fire",
-            "The Mariana Arc",
-            "The Pacific Rim",
-            "The Volcano Belt"
-          ],
-          "correct": 0,
-          "connection": "The Ring of Fire."
-        },
-        {
-          "category": "Mythology",
-          "difficulty": 2,
-          "question": "In Greek myth, which titan stole from the gods and gave humanity a forbidden gift?",
-          "options": [
-            "Atlas",
-            "Prometheus",
-            "Cronus",
-            "Hyperion"
+            "Slay",
+            "Rizz",
+            "Bussin",
+            "Sus"
           ],
           "correct": 1,
-          "connection": "Prometheus stole fire from the gods."
+          "accept": [
+            "rizz"
+          ],
+          "connection": "Rizz went from streamer shorthand to the Oxford dictionary in about a year."
+        },
+        {
+          "category": "Geography",
+          "difficulty": 2,
+          "question": "\"Only in ___\" became internet shorthand for anything weird or cursed. Which US state?",
+          "options": [
+            "Idaho",
+            "Nebraska",
+            "Ohio",
+            "Delaware"
+          ],
+          "correct": 2,
+          "accept": [
+            "ohio"
+          ],
+          "connection": "An entire state reduced to a punchline for the cursed and the inexplicable."
+        },
+        {
+          "category": "Gaming",
+          "difficulty": 3,
+          "question": "Which three-letter gaming term for a scripted background character became slang for someone acting robotic and unoriginal?",
+          "options": [
+            "DLC",
+            "AFK",
+            "NPC",
+            "GG"
+          ],
+          "correct": 2,
+          "accept": [
+            "npc",
+            "non player character",
+            "non-player character"
+          ],
+          "connection": "Borrowed from game design, weaponized as an insult."
+        },
+        {
+          "category": "Internet",
+          "difficulty": 4,
+          "question": "Which viral YouTube animated series about toilet-headed invaders gave the world the word \"skibidi\"?",
+          "options": [
+            "Poppy Playtime",
+            "Rainbow Friends",
+            "Garten of Banban",
+            "Skibidi Toilet"
+          ],
+          "correct": 3,
+          "accept": [
+            "skibidi toilet",
+            "skibidi"
+          ],
+          "connection": "Possibly the purest distillation of brain rot ever animated."
         },
         {
           "category": "Literature",
-          "difficulty": 3,
-          "question": "'Game of Thrones' is based on which George R.R. Martin book series?",
-          "options": [
-            "The Kingkiller Chronicle",
-            "The Wheel of Time",
-            "A Song of Ice and Fire",
-            "The Stormlight Archive"
-          ],
-          "correct": 2,
-          "connection": "A Song of Ice and Fire."
-        },
-        {
-          "category": "Movies",
-          "difficulty": 4,
-          "question": "Which film about British runners at the 1924 Paris Olympics won the Academy Award for Best Picture?",
-          "options": [
-            "Gallipoli",
-            "Chariots of Fire",
-            "The Loneliness of the Long Distance Runner",
-            "Without Limits"
-          ],
-          "correct": 1,
-          "connection": "Chariots of Fire."
-        },
-        {
-          "category": "History",
           "difficulty": 5,
-          "question": "Which Roman emperor was in power during the Great Fire of Rome in 64 AD — and allegedly 'fiddled' while the city burned?",
+          "question": "Long before TikTok, Henry David Thoreau complained about \"brain-rot\" in which 1854 book?",
           "options": [
-            "Caligula",
-            "Claudius",
-            "Nero",
-            "Domitian"
+            "Moby-Dick",
+            "Leaves of Grass",
+            "The Scarlet Letter",
+            "Walden"
           ],
-          "correct": 2,
-          "connection": "Nero and the Great Fire of Rome."
+          "correct": 3,
+          "accept": [
+            "walden",
+            "walden or life in the woods",
+            "walden; or, life in the woods"
+          ],
+          "connection": "Thoreau coined it in 1854, griping that society preferred simple ideas to complex ones. 170 years early."
         }
       ]
     },
@@ -1036,81 +1060,98 @@
     },
     {
       "date": "2026-07-24",
-      "theme": "Phoenix",
+      "tag": "brainrot",
+      "theme": "Ohio",
       "themeAnswers": [
-        "phoenix",
-        "the phoenix",
-        "things called phoenix"
+        "ohio",
+        "the state of ohio",
+        "only in ohio"
       ],
-      "themeBlurb": "A desert capital, an Oscar-winning Joker, a secret order, a Mars lander, and a French band — all rising from the same ashes.",
+      "themeBlurb": "A moonwalker, two bicycle mechanics, a rock hall, a protest song — and a meme that turned the whole state into a punchline. Every answer is Ohio.",
       "questions": [
         {
-          "category": "Geography",
+          "category": "Space",
           "difficulty": 1,
-          "question": "What is the capital of Arizona?",
+          "question": "Who was the first person to walk on the Moon?",
           "options": [
-            "Tucson",
-            "Phoenix",
-            "Flagstaff",
-            "Scottsdale"
+            "Buzz Aldrin",
+            "Neil Armstrong",
+            "John Glenn",
+            "Yuri Gagarin"
           ],
           "correct": 1,
-          "connection": "Phoenix."
+          "accept": [
+            "armstrong",
+            "neil armstrong"
+          ],
+          "connection": "Born in Wapakoneta — the first man on the Moon was an Ohio boy."
         },
         {
-          "category": "Movies",
+          "category": "Aviation",
           "difficulty": 2,
-          "question": "For which 2019 role did Joaquin Phoenix win the Best Actor Oscar?",
+          "question": "Which brothers ran a bicycle shop before achieving the first powered flight in 1903?",
           "options": [
-            "The Master",
-            "Walk the Line",
-            "Joker",
-            "Her"
+            "The Montgolfier brothers",
+            "The Lumière brothers",
+            "The Wright brothers",
+            "The Wilbur brothers"
           ],
           "correct": 2,
           "accept": [
-            "the joker"
+            "wright brothers",
+            "the wright brothers",
+            "wright",
+            "orville and wilbur wright"
           ],
-          "connection": "Joaquin Phoenix — the surname is the link."
-        },
-        {
-          "category": "Literature",
-          "difficulty": 3,
-          "question": "Complete the fifth Harry Potter title: 'Harry Potter and the Order of the ___.'",
-          "options": [
-            "Griffin",
-            "Phoenix",
-            "Dragon",
-            "Basilisk"
-          ],
-          "correct": 1,
-          "connection": "The Order of the Phoenix."
-        },
-        {
-          "category": "Science",
-          "difficulty": 4,
-          "question": "Which 2008 NASA Mars lander confirmed the presence of water ice near the planet's north pole?",
-          "options": [
-            "Viking 2",
-            "Pathfinder",
-            "Phoenix",
-            "InSight"
-          ],
-          "correct": 2,
-          "connection": "NASA's Phoenix lander."
+          "connection": "The bicycle shop was in Dayton, Ohio. They only flew it in Kitty Hawk."
         },
         {
           "category": "Music",
-          "difficulty": 5,
-          "question": "Which Grammy-winning French band behind '1901' and 'Lisztomania' shares its name with the mythical firebird?",
+          "difficulty": 3,
+          "question": "Which city is home to the Rock and Roll Hall of Fame?",
           "options": [
-            "Air",
-            "Daft Punk",
-            "Phoenix",
-            "Justice"
+            "Memphis",
+            "Detroit",
+            "Nashville",
+            "Cleveland"
           ],
-          "correct": 2,
-          "connection": "Phoenix, the band."
+          "correct": 3,
+          "accept": [
+            "cleveland"
+          ],
+          "connection": "Cleveland, Ohio — where the DJ Alan Freed helped popularize the term \"rock and roll.\""
+        },
+        {
+          "category": "Internet",
+          "difficulty": 4,
+          "question": "In brain rot slang, calling something \"straight up ___ coded\" means it's weird, cursed, or chaotic. Which US state?",
+          "options": [
+            "Ohio",
+            "Florida",
+            "Kansas",
+            "Nevada"
+          ],
+          "correct": 0,
+          "accept": [
+            "ohio"
+          ],
+          "connection": "Nobody knows why Ohio. That's the joke."
+        },
+        {
+          "category": "History",
+          "difficulty": 5,
+          "question": "Neil Young wrote a 1970 protest song about the Kent State shootings, naming it after which US state?",
+          "options": [
+            "Kansas",
+            "Ohio",
+            "Alabama",
+            "Mississippi"
+          ],
+          "correct": 1,
+          "accept": [
+            "ohio"
+          ],
+          "connection": "Kent State is in Ohio. Young wrote the song in a single afternoon."
         }
       ]
     },
@@ -1665,89 +1706,102 @@
     },
     {
       "date": "2026-07-31",
-      "theme": "Magic",
+      "tag": "brainrot",
+      "theme": "Mid",
       "themeAnswers": [
-        "magic",
-        "magical",
-        "things about magic",
-        "magicians"
+        "mid",
+        "the word mid",
+        "words starting with mid",
+        "mid-"
       ],
-      "themeBlurb": "A Showtime legend, a school in Scotland, the great escape artist, Mozart's final opera, and dueling illusionists — abracadabra.",
+      "themeBlurb": "A cursed king, a region, a battle, a Shakespeare play, and the harshest one-word verdict on the internet. Every answer is MID.",
       "questions": [
         {
-          "category": "Sports",
+          "category": "Mythology",
           "difficulty": 1,
-          "question": "Which Lakers point guard, nicknamed for his dazzling passes, led the 'Showtime' era?",
+          "question": "Which king's touch turned everything — including his food — to gold?",
           "options": [
-            "Kareem Abdul-Jabbar",
-            "Magic Johnson",
-            "Jerry West",
-            "James Worthy"
+            "Croesus",
+            "Midas",
+            "Tantalus",
+            "Pygmalion"
           ],
           "correct": 1,
           "accept": [
-            "magic",
-            "earvin johnson"
+            "midas",
+            "king midas"
           ],
-          "connection": "Magic Johnson."
+          "connection": "MIDas — a cautionary tale about getting exactly what you asked for."
         },
         {
-          "category": "Literature",
+          "category": "Geography",
           "difficulty": 2,
-          "question": "What is the name of the school Harry Potter attends?",
+          "question": "Ohio, Indiana, and Illinois all belong to which US region?",
           "options": [
-            "Durmstrang",
-            "Ilvermorny",
-            "Hogwarts",
-            "Beauxbatons"
+            "The Great Plains",
+            "The Rust Belt",
+            "The Midwest",
+            "Appalachia"
           ],
           "correct": 2,
-          "connection": "Hogwarts School of Witchcraft and Wizardry — a school of magic."
+          "accept": [
+            "midwest",
+            "the midwest",
+            "middle west"
+          ],
+          "connection": "MIDwest."
+        },
+        {
+          "category": "Internet",
+          "difficulty": 3,
+          "question": "What one-word brain rot verdict means \"aggressively average\" — the most dismissive thing you can call anything?",
+          "options": [
+            "Mid",
+            "Cheugy",
+            "Basic",
+            "Cooked"
+          ],
+          "correct": 0,
+          "accept": [
+            "mid"
+          ],
+          "connection": "MID. Not bad. Not good. Just... nothing. Which is worse."
         },
         {
           "category": "History",
-          "difficulty": 3,
-          "question": "Which escape artist, famous for the Chinese Water Torture Cell, died on Halloween 1926?",
-          "options": [
-            "David Blaine",
-            "Harry Houdini",
-            "Howard Thurston",
-            "The Amazing Randi"
-          ],
-          "correct": 1,
-          "accept": [
-            "houdini"
-          ],
-          "connection": "Harry Houdini, history's most famous magician."
-        },
-        {
-          "category": "Music",
           "difficulty": 4,
-          "question": "Which 1791 Mozart opera features the Queen of the Night's famous aria?",
+          "question": "Which June 1942 naval battle is widely seen as the turning point of the Pacific War?",
           "options": [
-            "Don Giovanni",
-            "The Marriage of Figaro",
-            "The Magic Flute",
-            "Così fan tutte"
+            "Coral Sea",
+            "Leyte Gulf",
+            "Guadalcanal",
+            "Midway"
+          ],
+          "correct": 3,
+          "accept": [
+            "midway",
+            "battle of midway"
+          ],
+          "connection": "MIDway."
+        },
+        {
+          "category": "Literature",
+          "difficulty": 5,
+          "question": "Which Shakespeare comedy features Puck, Titania, and a weaver whose head is turned into a donkey's?",
+          "options": [
+            "The Tempest",
+            "Twelfth Night",
+            "A Midsummer Night's Dream",
+            "As You Like It"
           ],
           "correct": 2,
           "accept": [
-            "magic flute"
+            "a midsummer nights dream",
+            "midsummer nights dream",
+            "midsummer",
+            "a midsummer night's dream"
           ],
-          "connection": "The Magic Flute."
-        },
-        {
-          "category": "Movies",
-          "difficulty": 5,
-          "question": "Which Christopher Nolan film pits rival magicians Angier and Borden against each other?",
-          "options": [
-            "Inception",
-            "The Illusionist",
-            "The Prestige",
-            "Now You See Me"
-          ],
-          "correct": 2,
-          "connection": "The Prestige — a film about stage magic."
+          "connection": "A MIDsummer Night's Dream. Every answer today was MID."
         }
       ]
     }

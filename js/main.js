@@ -99,14 +99,17 @@ function renderArchive() {
   entries.forEach(({ date, number }) => {
     const state = getDayState(date);
     const done = state?.stage === "done";
+    const tag = data.puzzles.find((p) => p.date === date)?.tag;
 
     const btn = document.createElement("button");
     btn.className = "archive-item";
     btn.type = "button";
+    if (tag) btn.dataset.tag = tag;
 
     const left = document.createElement("span");
     left.className = "archive-left";
-    left.innerHTML = `<strong>#${number}</strong><span class="archive-date">${prettyDate(date)}</span>`;
+    left.innerHTML = `<strong>#${number}</strong><span class="archive-date">${prettyDate(date)}</span>` +
+      (tag ? `<span class="tag-dot" title="Brain Rot Friday"></span>` : "");
 
     const right = document.createElement("span");
     right.className = "archive-right";

@@ -27,6 +27,18 @@ const SUMMIT_UNITS = 5 * ALT_GAIN[3];   // 10 — only a flawless climb tops out
 const METERS_PER_UNIT = 200;            // perfect climb = 2000 m
 const BONUS_UNITS = 1.2;                // the theme rung nudges you over the lip
 
+/**
+ * Special recurring days. A puzzle opts in with `"tag": "brainrot"` in
+ * puzzles.json — the badge, styling and help copy follow automatically, so
+ * adding a new themed day later is a data change plus one entry here.
+ */
+const TAGS = {
+  brainrot: {
+    label: "Brain Rot Friday",
+    blurb: "Internet culture, meme lore, and the slang your nephew won't explain.",
+  },
+};
+
 const $ = (id) => document.getElementById(id);
 
 export class Game {
@@ -70,6 +82,7 @@ export class Game {
       track("climb_start", {
         mode: this.mode,
         world: this.world.id,
+        tag: this.puzzle.tag ?? "standard",
         resumed: this.state.current > 0 ? "yes" : "no",
       });
     }
@@ -120,11 +133,32 @@ export class Game {
 
   renderModeBanner() {
     const el = $("mode-banner");
+    const tag = this.mode === "practice" ? null : TAGS[this.puzzle.tag];
+
+    // The tag badge sits above the mode banner and outranks it — on a themed
+    // day that's the headline, whether you're playing it live or from archive.
+    const badge = $("tag-badge");
+    if (badge) {
+      badge.classList.toggle("hidden", !tag);
+      if (tag) {
+        badge.textContent = tag.label;
+        badge.dataset.tag = this.puzzle.tag;
+      }
+    }
+    const stage = document.getElementById("climb-stage");
+    if (stage) {
+      if (tag) stage.dataset.tag = this.puzzle.tag;
+      else delete stage.dataset.tag;
+    }
+
     if (this.mode === "archive") {
       el.textContent = `Archive · #${this.number} · ${prettyDate(this.dateKey)} — doesn't affect streaks`;
       el.classList.remove("hidden");
     } else if (this.mode === "practice") {
       el.textContent = "Practice — random questions, nothing counts";
+      el.classList.remove("hidden");
+    } else if (tag) {
+      el.textContent = tag.blurb;
       el.classList.remove("hidden");
     } else {
       el.classList.add("hidden");
@@ -644,6 +678,7 @@ export class Game {
       track("climb_complete", {
         mode: this.mode,
         world: this.world.id,
+        tag: this.puzzle.tag ?? "standard",
         score: scoreBand(this.totalScore()),
         rungs_cleared: cleared,
         theme_correct: this.state.theme.correct ? "yes" : "no",
