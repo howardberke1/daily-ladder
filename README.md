@@ -156,6 +156,48 @@ than just share with friends).
 bash scripts/package.sh     # validates, then writes daily-ladder-v0.8.0.zip
 ```
 
+## The worlds
+
+`js/worlds.js` builds scenery as authored SVG, not CSS shapes. Six worlds, each
+using a **different silhouette generator** so the geometry itself differs —
+`jagged` (alpine peaks), `mesa` (flat-topped plateaus with vertical cliffs),
+`city` (rectilinear towers with lit window grids and beacons), `canopy`
+(conifer cones), `volcanic` (fractured shards with lava fissures), `shelves`
+(cloud banks). Recolor any of them and they'd still read as different places.
+
+Depth comes from atmospheric perspective: four layers, each lighter, hazier and
+lower-contrast as it recedes, with haze bands between them and parallax depth
+per layer (distant barely moves, foreground races). That — not palette — is
+what makes it read as a place.
+
+Scenery is deterministic per puzzle number (seeded mulberry32), so everyone
+climbing today sees the same mountain and it's stable across reloads.
+
+## The climb
+
+Altitude tracks **score, not question count** — the fix for "the climber goes
+up no matter what":
+
+| Rung result | Climb gained |
+|---|---|
+| Typed it (3 pts) | 2.0 segments — a confident surge |
+| Skipped to choices (2 pts) | 1.4 — a steady haul |
+| Salvaged after a miss (1 pt) | 0.9 — a labored haul |
+| Missed (0 pts) | 0.4 — you slip, dangle, and scrabble back |
+
+Five perfect rungs = 10 segments = the summit (2000 m). A bad climb ends
+visibly short of it. The rung markers sit at the altitude you actually reached,
+so the ladder itself records the run — tight cluster means a slog, big gaps
+mean a strong climb — and missed rungs render **cracked and splintered**
+where you fell.
+
+The game rules are unchanged: you still never fail out, scoring is identical.
+Only the telling changed.
+
+Weather answers to performance too (`gripLevel()`): climb clean and the sky
+settles; keep missing and particles thicken and the vignette closes in. The
+grip meter on the left drains as you miss — visible stakes, never a fail state.
+
 ## The climber
 
 `js/climber.js` is a data-driven rig, not markup. `CATALOG` describes every

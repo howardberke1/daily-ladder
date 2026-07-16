@@ -14,20 +14,18 @@ import { buildShareText, share } from "./share.js";
 import { msUntilMidnight, prettyDate } from "./puzzles.js";
 import { answerMatches, themeMatches } from "./match.js";
 import { track, scoreBand } from "./analytics.js";
+import { worldFor, randomWorld, renderWorld } from "./worlds.js";
 
 const START_POINTS = 3;
 const THEME_BONUS = 3;
-const METERS_PER_RUNG = 400;
-
-// Rotating daily worlds. Same world for everyone on a given day.
-const WORLDS = [
-  { id: "summit",   particle: "snow" },
-  { id: "skyreach", particle: "cloud" },
-  { id: "neon",     particle: "rain" },
-  { id: "dunes",    particle: "sand" },
-  { id: "forest",   particle: "firefly" },
-  { id: "ember",    particle: "ember" },
-];
+// How far you actually climb for a given rung score. This is the heart of the
+// "meaningful climb": a typed answer surges you two full segments, a lucky
+// guess from the choices barely gets you moving, and a miss means you slip and
+// scrabble back to almost where you started. Five perfect rungs = the summit.
+const ALT_GAIN = { 3: 2.0, 2: 1.4, 1: 0.9, 0: 0.4 };
+const SUMMIT_UNITS = 5 * ALT_GAIN[3];   // 10 — only a flawless climb tops out
+const METERS_PER_UNIT = 200;            // perfect climb = 2000 m
+const BONUS_UNITS = 1.2;                // the theme rung nudges you over the lip
 
 const $ = (id) => document.getElementById(id);
 
@@ -57,9 +55,7 @@ export class Game {
     };
 
     this.locked = false;
-    this.world = mode === "practice"
-      ? WORLDS[Math.floor(Math.random() * WORLDS.length)]
-      : WORLDS[((number - 1) % WORLDS.length + WORLDS.length) % WORLDS.length];
+    this.world = mode === "practice" ? randomWorld() : worldFor(number);
   }
 
   /* ---------------- lifecycle ---------------- */
@@ -198,40 +194,97 @@ export class Game {
     $("q-worth").textContent = `worth ${pts} pt${pts === 1 ? "" : "s"}`;
   }
 
-    renderLadder() {
+    /* ---------------- the climb ---------------- */
+
+  /** Altitude in segments after rung `i` (inclusive). Undone rungs count 0. */
+  unitsAfter(i) {
+    let u = 0;
+    for (let k = 0; k <= i; k++) {
+      const score = this.state.scores[k];
+      if (score == null) break;
+      u += ALT_GAIN[score] ?? 0;
+    }
+    return u;
+  }
+
+  /** Where the climber currently is, in segments. */
+  currentUnits() {
+    const answered = this.state.results.filter(Boolean).length;
+    let u = this.unitsAfter(answered - 1);
+    if (this.state.stage !== "play" && this.state.theme.correct) u += BONUS_UNITS;
+    return u;
+  }
+
+  /** 0–1. Falls as you miss rungs; drives weather and the grip meter. */
+  gripLevel() {
+    const answered = this.state.results.filter(Boolean).length;
+    if (!answered) return 1;
+    const earned = this.state.scores.slice(0, answered).reduce((a, b) => a + (b ?? 0), 0);
+    return Math.max(0.12, earned / (answered * 3));
+  }
+
+  /** Paint the world: sky gradient + four parallax scenery layers. */
+  mountScenery() {
+    const skyHost = $("w-sky");
+    const sceneHost = $("w-scenery");
+    if (!skyHost || !sceneHost) return;
+    if (sceneHost.dataset.world === this.world.id) return; // already painted
+
+    const seed = this.mode === "practice" ? Date.now() % 9973 : this.number;
+    const { sky, layers } = renderWorld(this.world, seed);
+
+    skyHost.innerHTML = sky;
+    sceneHost.innerHTML = layers
+      .map((l, i) => `<div class="w-layer w-layer-${i + 1}" style="--depth:${l.depth}">${l.svg}</div>`)
+      .join("");
+    sceneHost.dataset.world = this.world.id;
+  }
+
+  renderLadder() {
     const stage = document.getElementById("climb-stage");
     const world = document.getElementById("world");
 
     const completed = this.state.results.filter(Boolean).length;
     const done = this.state.stage === "done";
     const atSummit = done || this.state.stage === "bonus";
-    const progress = done && this.state.theme.correct ? 6 : atSummit ? 6 : completed;
+    const progress = atSummit ? 6 : completed;
 
     if (stage) {
       stage.dataset.world = this.world.id;
       stage.dataset.progress = String(Math.min(6, progress));
     }
+    this.mountScenery();
 
-    // camera + layout geometry
+    // Camera + geometry. The camera tracks *altitude*, not question count —
+    // climb badly and the summit stays stubbornly out of reach.
     if (stage && world && typeof stage.getBoundingClientRect === "function") {
       const h = stage.getBoundingClientRect().height || 600;
-      const seg = Math.max(160, Math.min(h * 0.44, 420));
+      const seg = Math.max(150, Math.min(h * 0.4, 380));
       const gh = Math.round(h * 0.31);
       stage.style.setProperty("--seg", `${seg}px`);
       stage.style.setProperty("--gh", `${gh}px`);
-      const camPos = atSummit ? 6 : completed;
-      const cam = camPos * seg;
+      stage.style.setProperty("--summit-units", String(SUMMIT_UNITS));
+
+      const cam = this.currentUnits() * seg;
       world.style.setProperty("--cam", `${cam}px`);
       stage.style.setProperty("--shift", `${cam}px`);
     }
 
-    // rung states
+    // Rungs sit at the altitude you actually reached, so the ladder itself
+    // records the run: tight cluster = a slog, big gaps = a strong climb.
     document.querySelectorAll(".w-rung").forEach((el) => {
       const idx = Number(el.dataset.rung) - 1;
-      el.classList.remove("green", "yellow", "gray", "active");
+      el.classList.remove("green", "yellow", "gray", "active", "cracked");
       const result = this.state.results[idx];
-      if (result) el.classList.add(result);
-      else if (idx === this.state.current && this.state.stage === "play") el.classList.add("active");
+      const units = result ? this.unitsAfter(idx) : this.unitsAfter(idx - 1) + ALT_GAIN[3];
+      el.style.setProperty("--rung-units", String(units));
+      if (result) {
+        el.classList.add(result);
+        if (result === "gray") el.classList.add("cracked"); // splintered where you fell
+      } else if (idx === this.state.current && this.state.stage === "play") {
+        el.classList.add("active");
+      }
+      el.classList.toggle("pending", !result);
     });
 
     const cap = document.querySelector(".rung-cap");
@@ -245,9 +298,20 @@ export class Game {
       }
     }
 
-    this.animateAltitude(progress * METERS_PER_RUNG);
+    this.animateAltitude(Math.round(this.currentUnits() * METERS_PER_UNIT));
     this.updateWeather(progress);
+    this.renderGrip();
     this.animateClimb();
+  }
+
+  renderGrip() {
+    const fill = $("grip-fill");
+    const wrap = $("grip");
+    if (!fill || !wrap) return;
+    const g = this.gripLevel();
+    fill.style.height = `${Math.round(g * 100)}%`;
+    wrap.classList.toggle("hidden", this.state.stage === "done" || this.mode === "practice");
+    wrap.dataset.level = g > 0.7 ? "strong" : g > 0.4 ? "slipping" : "failing";
   }
 
   /** Kept as the public "relayout" hook (main.js calls it on resize). */
@@ -282,39 +346,44 @@ export class Game {
     }, 34);
   }
 
+  /**
+   * Weather answers to performance. Climb clean and the sky settles; keep
+   * missing and it closes in on you. Height still thickens it, but a strong
+   * climber gets a kinder mountain.
+   */
   updateWeather(progress) {
-    clearInterval(this._weather);
-    const host = document.getElementById("w-particles");
+    const host = $("w-particles");
     if (!host || !host.appendChild) return;
-    if (typeof matchMedia === "function" && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    if (this.state.stage === "done") progress = Math.min(progress, 3); // calm on results
+    clearInterval(this._weather);
+    host.innerHTML = "";
+
+    const grip = this.gripLevel();
+    const struggle = 1 - grip;                       // 0 = flawless, 1 = falling apart
+    const height = Math.min(1, progress / 6);
+    const intensity = Math.min(1, height * 0.5 + struggle * 0.9);
+    const stage = document.getElementById("climb-stage");
+    if (stage) stage.dataset.weather = intensity > 0.66 ? "heavy" : intensity > 0.33 ? "medium" : "calm";
 
     const type = this.world.particle;
-    const density = 1 + Math.floor(progress / 2); // conditions build as you climb
     const spawn = () => {
-      if ((host.children?.length ?? 0) > 70) return;
-      for (let i = 0; i < density; i++) {
-        const p = document.createElement("div");
-        p.className = `particle p-${type}`;
-        p.style.left = `${Math.random() * 100}%`;
-        if (type === "cloud" || type === "sand") p.style.top = `${10 + Math.random() * 60}%`;
-        if (type === "firefly") p.style.top = `${40 + Math.random() * 50}%`;
-        const dur = type === "rain" ? 0.9 + Math.random() * 0.6
-                  : type === "cloud" ? 16 + Math.random() * 14
-                  : type === "ember" ? 3.5 + Math.random() * 3
-                  : 4 + Math.random() * 4;
-        p.style.animationDuration = `${dur}s`;
-        if (type === "cloud") p.classList.add(Math.random() < 0.4 ? "wispy" : Math.random() < 0.3 ? "heavy" : "mid");
-        host.appendChild(p);
-        if (p.addEventListener) p.addEventListener("animationend", () => p.remove(), { once: true });
-        setTimeout(() => p.remove?.(), (dur + 1) * 1000);
-      }
+      const p = document.createElement("div");
+      p.className = `particle p-${type}`;
+      p.style.left = `${Math.random() * 100}%`;
+      p.style.top = `${Math.random() * 100}%`;
+      const dur = (type === "cloud" ? 26 : type === "rain" ? 1.1 : 6) * (1 - intensity * 0.4) + 1;
+      p.style.animationDuration = `${dur}s`;
+      p.style.opacity = String(0.3 + intensity * 0.7);
+      if (type === "cloud") p.classList.add(Math.random() < 0.4 ? "wispy" : Math.random() < 0.3 ? "heavy" : "mid");
+      host.appendChild(p);
+      setTimeout(() => p.remove?.(), dur * 1000 + 400);
     };
-    spawn();
+
+    // a struggling climber gets up to ~3× the particles of a clean one
+    const gap = Math.max(90, 700 - intensity * 560);
+    for (let i = 0; i < Math.round(2 + intensity * 6); i++) spawn();
     this._weather = setInterval(() => {
       spawn();
-      // #11: occasional birds crossing the open sky
-      if (this.world.id === "skyreach" && Math.random() < 0.12 && host.appendChild) {
+      if (this.world.id === "skyreach" && Math.random() < 0.12) {
         const b = document.createElement("div");
         b.className = "particle p-bird";
         b.style.top = `${8 + Math.random() * 40}%`;
@@ -322,12 +391,10 @@ export class Game {
         host.appendChild(b);
         setTimeout(() => b.remove?.(), 16000);
       }
-    }, 700);
+    }, gap);
   }
 
-    /* ---------------- guessing ---------------- */
 
-  /** Points this rung is still worth: 3 typed, 2 after a skip, 1 after a miss. */
   potential() {
     if (!this.state.choicesShown) return 3;
     return this.state.skipped ? 2 : 1;
@@ -473,6 +540,7 @@ export class Game {
 
   advance() {
     this.locked = false;
+    const justClimbed = this.state.current;
     if (this.state.current < this.puzzle.questions.length - 1) {
       this.state.current += 1;
       this.state.typedDone = false;
@@ -480,34 +548,46 @@ export class Game {
       this.state.choicesShown = false;
       this.save();
       this.renderQuestion();
-      this.triggerClimb();
+      this.renderLadder();
+      this.triggerClimb(justClimbed);
     } else if (this.mode === "practice") {
       this.finish();
     } else {
       this.state.stage = "bonus";
       this.save();
       this.showBonus();
-      this.triggerClimb();
+      this.renderLadder();
+      this.triggerClimb(justClimbed);
     }
   }
 
-  /** #6: hand-over-hand cycles while the camera pans up. */
-  triggerClimb() {
+  /**
+   * The climb, styled by performance. A typed answer is a confident surge; a
+   * salvaged guess is a labored haul; a miss is a slip that costs you ground
+   * before you scrabble back. Same rule (you never fail out) — but the motion
+   * finally tells the truth about how it went.
+   */
+  triggerClimb(fromIndex) {
     const climber = document.getElementById("climber");
-    if (!climber?.classList) return;
-    climber.classList.remove("climbing");
-    if (typeof climber.offsetWidth === "number") void climber.offsetWidth;
-    climber.classList.add("climbing");
-    setTimeout(() => climber.classList.remove("climbing"), 1000);
+    const score = this.state.scores[fromIndex] ?? 0;
+    const style = score === 3 ? "surge" : score === 0 ? "slip" : "haul";
+    const gained = ALT_GAIN[score] ?? 0;
 
-    // "+400 m" floats up beside the climber
+    if (climber?.classList) {
+      climber.classList.remove("surge", "haul", "slipping");
+      if (typeof climber.offsetWidth === "number") void climber.offsetWidth;
+      climber.classList.add(style === "slip" ? "slipping" : style);
+      setTimeout(() => climber.classList.remove("surge", "haul", "slipping"), 1400);
+    }
+
     const stage = document.getElementById("climb-stage");
     if (stage?.appendChild) {
       const f = document.createElement("div");
-      f.className = "alt-float";
-      f.textContent = `+${METERS_PER_RUNG} m`;
+      f.className = `alt-float alt-${style}`;
+      const meters = Math.round(gained * METERS_PER_UNIT);
+      f.textContent = style === "slip" ? `slipped — only +${meters} m` : `+${meters} m`;
       stage.appendChild(f);
-      setTimeout(() => f.remove?.(), 1500);
+      setTimeout(() => f.remove?.(), 1600);
     }
   }
 

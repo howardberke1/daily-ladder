@@ -65,15 +65,11 @@
     <section class="screen hidden" id="screen-play">
       <div class="climb-stage" id="climb-stage" data-world="summit" data-phase="play" data-progress="0">
 
-        <div class="w-sky"></div>
-        <div class="w-horizon"></div>
+        <div class="w-sky" id="w-sky"></div>
         <div class="w-sun"></div>
         <div class="w-moon"></div>
-        <div class="w-skyhi"></div>
         <div class="w-stars"></div>
-        <div class="w-sil w-sil-far"></div>
-        <div class="w-sil w-sil-near"></div>
-        <div class="w-props"></div>
+        <div class="w-scenery" id="w-scenery"></div>
         <div class="w-particles" id="w-particles"></div>
 
         <div class="world" id="world">
@@ -87,9 +83,6 @@
           <div class="rung w-rung" data-rung="3"></div>
           <div class="rung w-rung" data-rung="4"></div>
           <div class="rung w-rung" data-rung="5"></div>
-          <div class="w-mid w-mid-1"></div>
-          <div class="w-mid w-mid-2"></div>
-          <div class="w-base"></div>
           <div class="w-summit">
             <div class="rung rung-cap" title="Bonus: guess the theme"><span class="rung-num">?</span></div>
           </div>
@@ -97,6 +90,11 @@
         </div>
 
         <svg class="climber" id="climber" viewBox="0 0 42 62" aria-hidden="true"></svg>
+
+        <div class="grip" id="grip" aria-hidden="true">
+          <span class="grip-label">grip</span>
+          <div class="grip-track"><div class="grip-fill" id="grip-fill"></div></div>
+        </div>
 
         <div class="fx-vignette"></div>
         <div class="fx-grain"></div>
