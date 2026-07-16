@@ -10,6 +10,7 @@ import {
 } from "./social.js";
 import { todayKey } from "./puzzles.js";
 import { toast, formatTime } from "./game.js";
+import { track } from "./analytics.js";
 
 const $ = (id) => document.getElementById(id);
 
@@ -53,6 +54,7 @@ export function applyCosmetics(c = getLocalCosmetics()) {
 }
 
 async function chooseCosmetic(kind, id) {
+  track("cosmetic_change", { kind, choice: id });
   const c = { ...getLocalCosmetics(), [kind]: id };
   saveLocalCosmetics(c);
   applyCosmetics(c);
@@ -238,10 +240,12 @@ export async function initAccountUI() {
   show($("btn-leaderboard"), true);
 
   $("btn-account").addEventListener("click", () => {
+    track("account_open", { state: getProfile() ? "signed_in" : getUser() ? "needs_username" : "signed_out" });
     renderAccountModal({ user: getUser(), profile: getProfile() });
     $("modal-account").showModal();
   });
   $("btn-leaderboard").addEventListener("click", () => {
+    track("leaderboard_open", { tab: lbTab });
     $("modal-leaderboard").showModal();
     renderLeaderboard();
   });
@@ -251,8 +255,25 @@ export async function initAccountUI() {
   );
 
   $("btn-magic").addEventListener("click", async () => {
+    const btn = $("btn-magic");
+    const msg = $("acct-msg");
+    btn.disabled = true;
+    btn.textContent = "Sending…";
+    msg.textContent = "";
+    msg.className = "muted acct-msg";
+
+    track("signin_link_requested");
     const res = await sendMagicLink($("acct-email").value);
-    $("acct-msg").textContent = res.error ?? "Link sent — check your email and click it on this device.";
+
+    btn.disabled = false;
+    btn.textContent = "Send link";
+    if (res.error) {
+      msg.textContent = res.error;
+      msg.className = "acct-msg is-error";
+    } else {
+      msg.textContent = "Link sent. Check your email (including spam) and open it on this device.";
+      msg.className = "acct-msg is-ok";
+    }
   });
   $("acct-email").addEventListener("keydown", (e) => { if (e.key === "Enter") $("btn-magic").click(); });
 
@@ -260,6 +281,7 @@ export async function initAccountUI() {
     const res = await claimUsername($("acct-user").value);
     if (res.error) $("acct-user-msg").textContent = res.error;
     else {
+      track("username_claimed");
       $("acct-user-msg").textContent = "";
       renderAccountModal({ user: getUser(), profile: getProfile() });
       toast("Welcome to the ladder, @" + res.profile.username);

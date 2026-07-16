@@ -1779,8 +1779,34 @@ body {
 .q-panel .answer-input { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.2); color: #f4f5f8; }
 .q-panel .answer-input::placeholder { color: #98a0af; }
 .q-panel .answer-input:focus { border-color: rgba(255,255,255,0.55); }
-.q-panel .btn-primary { background: #f4f5f8; color: #14171f; border-color: #f4f5f8; }
-.q-panel .btn { border-color: rgba(255,255,255,0.4); color: #edeef2; }
+/* Primary buttons: dark ink on a light fill. The :not() is load-bearing —
+   without it the generic .btn rule below (same specificity, declared later)
+   overrides the color and you get white text on a white button. */
+.q-panel .btn-primary,
+.q-panel .btn-primary:hover {
+  background: #f4f5f8;
+  color: #14171f;
+  border-color: #f4f5f8;
+}
+.q-panel .btn-primary:hover { background: #fff; border-color: #fff; }
+.q-panel .btn-primary:disabled { opacity: 0.5; }
+
+/* Secondary buttons only — never the primary. */
+.q-panel .btn:not(.btn-primary) {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #edeef2;
+  background: transparent;
+}
+.q-panel .btn:not(.btn-primary):hover { border-color: #fff; color: #fff; }
+
+/* "Next rung ↑" is the one thing you look for after every answer — make it
+   unmissable rather than merely legible. */
+#btn-next {
+  width: 100%;
+  padding: 14px 22px;
+  font-size: 1rem;
+  margin-top: 10px;
+}
 .q-panel .link-btn { color: #aab2c0; }
 .q-panel .link-btn:hover { color: #f4f5f8; }
 .q-panel .option { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.18); color: #edeef2; box-shadow: none; }
@@ -2101,3 +2127,15 @@ body {
 .lb-name { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .lb-score { font-variant-numeric: tabular-nums; font-weight: 700; font-size: 0.82rem; }
 .lb-note, .lb-loading { text-align: center; font-size: 0.82rem; padding: 6px 0; }
+
+.version-stamp {
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  opacity: 0.6;
+  margin: 16px 0 0;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.acct-msg.is-error { color: var(--wrong); font-weight: 600; }
+.acct-msg.is-ok { color: var(--green-deep); font-weight: 600; }

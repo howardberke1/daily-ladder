@@ -13,6 +13,7 @@ import { getDayState, saveDayState, recordResult } from "./storage.js";
 import { buildShareText, share } from "./share.js";
 import { msUntilMidnight, prettyDate } from "./puzzles.js";
 import { answerMatches, themeMatches } from "./match.js";
+import { track, scoreBand } from "./analytics.js";
 
 const START_POINTS = 3;
 const THEME_BONUS = 3;
@@ -65,6 +66,18 @@ export class Game {
 
   start() {
     this.renderModeBanner();
+
+    // Only count a start once per climb, and never for an already-finished day
+    // (revisiting your results shouldn't inflate the funnel).
+    if (this.state.stage !== "done" && !this._startTracked) {
+      this._startTracked = true;
+      track("climb_start", {
+        mode: this.mode,
+        world: this.world.id,
+        resumed: this.state.current > 0 ? "yes" : "no",
+      });
+    }
+
     if (this.state.stage === "done") {
       this.showResults({ animateReveal: false });
     } else if (this.state.stage === "bonus") {
@@ -410,6 +423,17 @@ export class Game {
     this.save();
     this.renderLadder();
 
+    track("rung_result", {
+      mode: this.mode,
+      rung: this.state.current + 1,
+      category: this.puzzle.questions[this.state.current]?.category ?? "unknown",
+      result,
+      // how they got there: typed it, skipped to choices, or missed the type first
+      method: !this.state.choicesShown ? "typed"
+            : this.state.skipped ? "skipped"
+            : "after_miss",
+    });
+
     if (result !== "gray") {
       const rails = document.querySelector(".w-rails");
       if (rails?.classList) {
@@ -508,11 +532,16 @@ export class Game {
       correct: themeMatches(raw, this.puzzle.theme, this.puzzle.themeAnswers),
       guess: raw.trim(),
     };
+    track("theme_guess", {
+      mode: this.mode,
+      correct: this.state.theme.correct ? "yes" : "no",
+    });
     this.finish();
   }
 
   skipTheme() {
     this.state.theme = { guessed: false, correct: false, guess: "" };
+    track("theme_guess", { mode: this.mode, correct: "skipped" });
     this.finish();
   }
 
@@ -530,11 +559,38 @@ export class Game {
       this.state.recorded = true;
     }
     this.save();
+    if (firstFinish) {
+      const cleared = this.state.results.filter((r) => r !== "gray").length;
+      track("climb_complete", {
+        mode: this.mode,
+        world: this.world.id,
+        score: scoreBand(this.totalScore()),
+        rungs_cleared: cleared,
+        theme_correct: this.state.theme.correct ? "yes" : "no",
+        // rough speed buckets — tells us if the game is too slow to be a daily habit
+        duration: this.state.timeMs == null ? "unknown"
+                : this.state.timeMs < 90000 ? "under 1.5m"
+                : this.state.timeMs < 180000 ? "1.5-3m"
+                : this.state.timeMs < 300000 ? "3-5m"
+                : "over 5m",
+      });
+    }
+
     if (firstFinish && this.mode === "daily") {
       // hook for the account layer (leaderboard sync); no-op offline
       this.onFinish?.(this.syncPayload());
     }
     this.showResults({ animateReveal: true });
+  }
+
+  /** Coarse snapshot for abandon tracking. No personal data. */
+  abandonState() {
+    return {
+      mode: this.mode,
+      finished: this.state.stage === "done",
+      rung: this.state.current + 1,
+      answered: this.state.results.filter(Boolean).length,
+    };
   }
 
   syncPayload() {
@@ -688,6 +744,7 @@ export class Game {
         dark,
       });
       const outcome = await share(text);
+      track("share_click", { mode: this.mode, outcome });
       if (outcome === "copied") toast("Result copied to clipboard");
       else if (outcome === "failed") toast("Couldn't copy — select and copy manually");
     };

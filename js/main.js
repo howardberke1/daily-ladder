@@ -7,6 +7,8 @@ import {
 } from "./puzzles.js";
 import { getSettings, saveSettings, getStats, getDayState } from "./storage.js";
 import { Game, toast, formatTime } from "./game.js";
+import { track, watchAbandon } from "./analytics.js";
+import { VERSION } from "./version.js";
 
 const $ = (id) => document.getElementById(id);
 
@@ -32,6 +34,7 @@ function initTheme() {
 /* ---------------- mode routing ---------------- */
 
 let accountLayer = null;
+let resetAbandonLatch = null;
 
 function startGame(config) {
   game?.destroy();
@@ -39,6 +42,7 @@ function startGame(config) {
   game.onFinish = (payload) => accountLayer?.handleDailyFinish?.(payload);
   game.start();
   accountLayer?.applyCosmetics?.();
+  resetAbandonLatch?.();
 }
 
 function startDaily() {
@@ -54,22 +58,24 @@ function startDaily() {
 function startArchive(dateKey) {
   const sel = selectByDate(data, dateKey);
   if (!sel) return toast("No puzzle for that date");
+  track("archive_play");
   startGame({ ...sel, mode: "archive" });
 }
 
 function startPractice() {
   const puzzle = buildPractice(data, practiceBank, todayKey());
   if (!puzzle) return toast("No practice questions available yet");
+  track("practice_start");
   startGame({ puzzle, number: 0, dateKey: `practice-${Date.now()}`, mode: "practice" });
 }
 
 /* ---------------- modals ---------------- */
 
 function initModals() {
-  $("btn-help").addEventListener("click", () => $("modal-help").showModal());
-  $("btn-stats").addEventListener("click", () => { renderStats(); $("modal-stats").showModal(); });
-  $("btn-see-stats").addEventListener("click", () => { renderStats(); $("modal-stats").showModal(); });
-  $("btn-archive").addEventListener("click", () => { renderArchive(); $("modal-archive").showModal(); });
+  $("btn-help").addEventListener("click", () => { track("help_open"); $("modal-help").showModal(); });
+  $("btn-stats").addEventListener("click", () => { track("stats_open"); renderStats(); $("modal-stats").showModal(); });
+  $("btn-see-stats").addEventListener("click", () => { track("stats_open"); renderStats(); $("modal-stats").showModal(); });
+  $("btn-archive").addEventListener("click", () => { track("archive_open"); renderArchive(); $("modal-archive").showModal(); });
 
   document.querySelectorAll(".modal").forEach((dialog) => {
     dialog.querySelector("[data-close]").addEventListener("click", () => dialog.close());
@@ -169,6 +175,9 @@ async function boot() {
   initTheme();
   initModals();
 
+  const stamp = $("version-stamp");
+  if (stamp) stamp.textContent = `Daily Ladder v${VERSION}`;
+
   // Account/leaderboard layer loads in the background; the game never waits
   // on it and works fully offline if the CDN or Supabase is unreachable.
   import("./account-ui.js")
@@ -198,6 +207,8 @@ async function boot() {
     history.replaceState(null, "", location.pathname);
     startDaily();
   });
+
+  resetAbandonLatch = watchAbandon(() => game?.abandonState?.());
 
   try {
     [data, practiceBank] = await Promise.all([loadPuzzles(), loadPractice()]);

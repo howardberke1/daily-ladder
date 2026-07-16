@@ -26,6 +26,21 @@ export function getProfile() {
   return currentProfile;
 }
 
+/** Turns Supabase's raw auth errors into something a player can act on. */
+function humanizeAuthError(message = "") {
+  const m = message.toLowerCase();
+  if (m.includes("not authorized")) {
+    return "Sign-in email couldn't be delivered — the site's email isn't fully set up yet. Ward, this means custom SMTP isn't configured in Supabase.";
+  }
+  if (m.includes("rate limit") || m.includes("too many")) {
+    return "Too many sign-in attempts right now. Give it a few minutes and try again.";
+  }
+  if (m.includes("invalid") && m.includes("email")) {
+    return "That email address doesn't look right — double-check the spelling.";
+  }
+  return message || "Something went wrong sending the link. Try again in a moment.";
+}
+
 /** Send a magic sign-in link to an email address. */
 export async function sendMagicLink(email) {
   const clean = String(email).trim().toLowerCase();
@@ -36,7 +51,10 @@ export async function sendMagicLink(email) {
     email: clean,
     options: { emailRedirectTo: location.origin + location.pathname },
   });
-  if (error) return { error: error.message };
+  if (error) {
+    console.error("Magic link failed:", error);
+    return { error: humanizeAuthError(error.message) };
+  }
   return { ok: true };
 }
 

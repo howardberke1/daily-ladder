@@ -116,6 +116,20 @@ One-time setup:
 2. Authentication → URL Configuration: set the Site URL to
    `https://dailyladder.app` and add it to Redirect URLs (magic links need
    this to land back on the game).
+3. **Custom SMTP is mandatory, not optional.** Supabase's built-in email
+   sender only delivers to addresses on your Supabase org team — everyone
+   else silently fails with "Email address not authorized" — and it caps at
+   2 emails/hour. Set up Resend (free, 3k/month):
+   - Resend → Domains → add `dailyladder.app`, region us-east-1, add the
+     SPF/DKIM records to Cloudflare DNS, wait for Verified.
+   - Resend → API Keys → create one.
+   - Supabase → Authentication → Emails → SMTP Settings → enable Custom SMTP:
+     host `smtp.resend.com`, port `465`, username `resend`, password = the API
+     key, sender `noreply@dailyladder.app`.
+   - Supabase → Authentication → Rate Limits → raise the email limit from its
+     default of 2/hour to 100+. Custom SMTP does *not* raise this for you.
+   - Leave click tracking OFF in Resend — link rewriting breaks Supabase's
+     single-use magic links.
 3. `js/supabaseClient.js` holds the project URL and the *publishable* key —
    safe in frontend code by design. Never put the secret key anywhere in
    this repo.
@@ -126,8 +140,64 @@ Leaderboards: Today (global), Friends, All-time — ranked by score, fastest
 time breaks ties. Cosmetics (helmet/pack colors) work signed-out via
 localStorage and sync to the profile when signed in.
 
-Note: Supabase's built-in email sender is rate-limited (a few magic links per
-hour) — fine for testing; add custom SMTP in Supabase before real launch.
+
+
+## Versioning
+
+`js/version.js` is the single source of truth. The version shows in the help
+modal footer, so you can always confirm what's actually live on the site versus
+what you have locally — useful when a deploy silently doesn't land.
+
+Bump the minor version for features, patch for fixes. **1.0.0 is reserved for
+the first real public launch** (art direction settled, ready to promote rather
+than just share with friends).
+
+```bash
+bash scripts/package.sh     # validates, then writes daily-ladder-v0.8.0.zip
+```
+
+## Analytics
+
+**Currently OFF.** The snippet in `index.html`'s `<head>` is commented out so the
+site makes no third-party requests. Everything else is in place and dormant —
+`js/analytics.js` plus `track()` calls throughout the game all no-op safely
+without a provider. To turn it on: create the site at plausible.io, add the
+goals below, uncomment the two lines in `<head>`. That's the whole switch.
+
+Every event routes through `js/analytics.js` so the provider can be swapped in
+exactly one place.
+
+**Setup:** create the site at plausible.io with domain `dailyladder.app`, then
+add each event below as a **custom event goal** in Site Settings → Goals
+(events only appear on the dashboard once a matching goal exists).
+
+| Event | Props | Answers |
+|---|---|---|
+| `climb_start` | mode, world, resumed | How many climbs begin? |
+| `rung_result` | mode, rung, category, result, method | Where do people struggle? Do they type or skip? Which categories are too hard? |
+| `theme_guess` | mode, correct | Is the bonus rung too hard? |
+| `climb_complete` | mode, world, score, rungs_cleared, theme_correct, duration | Completion rate, score spread, is it a 3-minute game? |
+| `climb_abandon` | mode, rung, answered | **Where do they quit?** |
+| `share_click` | mode, outcome | Is anyone sharing? |
+| `practice_start`, `archive_open`, `archive_play` | — | Does anyone use these modes? |
+| `account_open`, `signin_link_requested`, `username_claimed` | state | Sign-up funnel drop-off |
+| `leaderboard_open`, `stats_open`, `help_open` | tab | Feature usage |
+| `cosmetic_change` | kind, choice | Does customization matter? |
+
+The key funnel: `climb_start` → `climb_complete` is your completion rate;
+`climb_abandon`'s `rung` prop tells you exactly which question loses people.
+
+**Privacy:** no personal data is ever sent — no emails, usernames, user ids,
+or answer text. Scores are bucketed into bands, durations into ranges. Verified
+by an automated test that fails the build if a guess or answer leaks into props.
+
+**Debugging:** append `?debug_analytics` to any URL to log events to the console
+instead of guessing whether they fired.
+
+**Cost note:** Plausible cloud is ~$9/mo after a 30-day trial. If you'd rather
+stay free, Cloudflare Web Analytics (you're already on Cloudflare DNS) covers
+pageviews for $0 — but it has no custom events, so you'd lose the funnel above,
+which is the whole point. Swap providers by editing `js/analytics.js` only.
 
 ## Deploy
 
