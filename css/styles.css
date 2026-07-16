@@ -2422,3 +2422,12 @@ body {
 }
 .archive-legend { font-size: 0.76rem; margin: -4px 0 10px; }
 .archive-item[data-tag="brainrot"] { border-color: color-mix(in srgb, #4ae0c4 45%, var(--line)); }
+
+.lb-err {
+  font-size: 0.72rem;
+  color: var(--wrong);
+  text-align: center;
+  font-family: ui-monospace, monospace;
+  word-break: break-word;
+  margin: 6px 0 0;
+}

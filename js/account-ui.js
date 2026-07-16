@@ -94,7 +94,10 @@ function choose(partId, value) {
 /** Pushes the current look to the signed-in profile. Silent no-op if signed out. */
 async function syncCosmetics() {
   if (!getProfile()) return;
-  await updateCosmetics(getCosmetics());
+  const res = await updateCosmetics(getCosmetics());
+  // Optional feature: if the cosmetics column isn't migrated yet, the look
+  // still works locally. Log it, don't nag, and never block anything else.
+  if (res?.error) console.warn("Cosmetics not synced (run migration-002):", res.error);
 }
 
 /* ---------------- account modal ---------------- */
@@ -190,7 +193,13 @@ async function renderLeaderboard() {
   else if (lbTab === "friends") ({ data: rows, error } = await getFriendsLeaderboard(todayKey()));
   else ({ data: rows, error } = await getAlltimeLeaderboard());
 
-  if (error) { host.innerHTML = `<p class="muted">Couldn't load the leaderboard right now.</p>`; return; }
+  if (error) {
+    console.error("Leaderboard load failed:", error);
+    host.innerHTML =
+      `<p class="muted">Couldn't load the leaderboard.</p>` +
+      `<p class="lb-err">${String(error).slice(0, 160)}</p>`;
+    return;
+  }
 
   host.innerHTML = "";
   if (!rows?.length) {
@@ -339,7 +348,7 @@ export async function initAccountUI() {
     // devices. A signed-in player with no saved look yet keeps their local one
     // and pushes it up.
     if (state.profile) {
-      const saved = state.profile.cosmetics;
+      const saved = state.profile.cosmetics; // undefined pre-migration — fine
       if (saved && Object.keys(saved).length) setCosmetics(saved);
       else syncCosmetics();
       renderPreview();

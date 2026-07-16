@@ -93,7 +93,11 @@ export async function getMyFriendData() {
 
 /* ---------------- leaderboards ---------------- */
 
-const PROFILE_FIELDS = "username, cosmetics";
+// Only what the board actually renders. Do NOT speculatively add columns here:
+// PostgREST rejects the whole query if one is missing, so an unused field can
+// take the entire leaderboard down until a migration runs. That exact bug shipped
+// in 0.9.0 with `cosmetics`, which nothing on the board even displayed.
+const PROFILE_FIELDS = "username";
 
 export async function getGlobalLeaderboard(dateKey, limit = 20) {
   const { data, error } = await supabase
