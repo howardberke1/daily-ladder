@@ -6,7 +6,7 @@ import { initAuth, onAuthChange, sendMagicLink, signOut, claimUsername, updateCo
 import {
   findProfileByUsername, sendFriendRequest, respondToRequest, removeFriend,
   getMyFriendData, getGlobalLeaderboard, getFriendsLeaderboard, getAlltimeLeaderboard,
-  syncResult,
+  getMyDailyRank, getMyAlltimeRank, syncResult,
 } from "./social.js";
 import { todayKey } from "./puzzles.js";
 import { toast, formatTime } from "./game.js";
@@ -179,54 +179,121 @@ function btn(label, onClick) {
 
 let lbTab = "global";
 
+const BOARD_LIMIT = 20;
+
 async function renderLeaderboard() {
   document.querySelectorAll(".lb-tab").forEach((t) =>
     t.classList.toggle("on", t.dataset.tab === lbTab)
   );
   const host = $("lb-list");
+  const pin = $("lb-pin");
+  const meta = $("lb-meta");
   host.innerHTML = `<p class="muted lb-loading">Loading…</p>`;
+  pin?.classList.add("hidden");
+  if (meta) meta.textContent = "";
 
-  let rows = [];
-  let error = null;
-  let mode = lbTab;
-  if (lbTab === "global") ({ data: rows, error } = await getGlobalLeaderboard(todayKey()));
-  else if (lbTab === "friends") ({ data: rows, error } = await getFriendsLeaderboard(todayKey()));
-  else ({ data: rows, error } = await getAlltimeLeaderboard());
+  const mode = lbTab;
+  const key = todayKey();
 
-  if (error) {
-    console.error("Leaderboard load failed:", error);
+  // Board and rank load together — the rank query is count-only, so it costs
+  // the same at 12 players or 120,000.
+  const [board, rankRes] = await Promise.all([
+    mode === "global" ? getGlobalLeaderboard(key, BOARD_LIMIT)
+      : mode === "friends" ? getFriendsLeaderboard(key)
+      : getAlltimeLeaderboard(BOARD_LIMIT),
+    mode === "global" ? getMyDailyRank(key)
+      : mode === "alltime" ? getMyAlltimeRank()
+      : Promise.resolve({ data: null, error: null }),
+  ]);
+
+  if (board.error) {
+    console.error("Leaderboard load failed:", board.error);
     host.innerHTML =
       `<p class="muted">Couldn't load the leaderboard.</p>` +
-      `<p class="lb-err">${String(error).slice(0, 160)}</p>`;
+      `<p class="lb-err">${String(board.error).slice(0, 160)}</p>`;
     return;
+  }
+
+  const rows = board.data ?? [];
+  const rank = rankRes?.data ?? null;
+  const myId = getUser()?.id;
+
+  // Headline: how big is this board actually?
+  if (meta && rank?.total != null && mode !== "friends") {
+    meta.textContent = rank.total === 1
+      ? "1 climber so far"
+      : `${rank.total.toLocaleString()} climbers${mode === "global" ? " today" : " all-time"}`;
   }
 
   host.innerHTML = "";
-  if (!rows?.length) {
+  if (!rows.length) {
     host.innerHTML = mode === "friends" && !getUser()
       ? `<p class="muted">Sign in and add friends to see this board.</p>`
       : `<p class="muted">No climbs on this board yet — be the first.</p>`;
+  } else {
+    rows.forEach((r, i) => host.appendChild(boardRow(r, i + 1, mode, myId)));
+  }
+
+  renderPin(rank, rows, mode, myId);
+}
+
+function boardRow(r, position, mode, myId) {
+  const row = document.createElement("div");
+  row.className = "lb-row" + (r.user_id === myId ? " me" : "");
+  const name = r.profiles?.username ? "@" + r.profiles.username : "anonymous";
+  const right = mode === "alltime"
+    ? `${r.total_score} pts · ${r.games_played} climbs${r.perfect_climbs ? ` · ${r.perfect_climbs}×18` : ""}`
+    : `${r.score}/18${r.theme_correct ? " 🟪" : ""}${r.time_ms != null ? ` · ${formatTime(r.time_ms)}` : ""}`;
+  row.innerHTML =
+    `<span class="lb-rank">${position}</span>` +
+    `<span class="lb-name">${name}</span>` +
+    `<span class="lb-score">${right}</span>`;
+  return row;
+}
+
+/**
+ * Your rank, pinned below the board.
+ *
+ * The point: a top-20 board tells a player ranked #47 nothing at all — they
+ * see twenty strangers and no sign of themselves. Pinning turns "I'm not on
+ * the board" into "I'm four points off the cut," which is the thing that
+ * brings them back tomorrow. Skipped when you're already visible in the list.
+ */
+function renderPin(rank, rows, mode, myId) {
+  const pin = $("lb-pin");
+  if (!pin) return;
+
+  if (mode === "friends" || !getUser()) { pin.classList.add("hidden"); return; }
+
+  if (!rank) { pin.classList.add("hidden"); return; }
+
+  if (rank.rank == null) {
+    pin.className = "lb-pin lb-pin-empty";
+    pin.innerHTML = mode === "global"
+      ? `<span class="pin-note">Play today's ladder to get on the board.</span>`
+      : `<span class="pin-note">Finish a climb to join the all-time board.</span>`;
     return;
   }
 
-  const myId = getUser()?.id;
-  rows.forEach((r, i) => {
-    const row = document.createElement("div");
-    row.className = "lb-row" + (r.user_id === myId ? " me" : "");
-    const name = r.profiles?.username ? "@" + r.profiles.username : "anonymous";
-    const right = mode === "alltime"
-      ? `${r.total_score} pts · ${r.games_played} climbs${r.perfect_climbs ? ` · ${r.perfect_climbs}×18` : ""}`
-      : `${r.score}/18${r.theme_correct ? " 🟪" : ""}${r.time_ms != null ? ` · ${formatTime(r.time_ms)}` : ""}`;
-    row.innerHTML = `<span class="lb-rank">${i + 1}</span><span class="lb-name">${name}</span><span class="lb-score">${right}</span>`;
-    host.appendChild(row);
-  });
+  const visible = rows.some((r) => r.user_id === myId);
+  if (visible) { pin.classList.add("hidden"); return; }
 
-  if (!getUser()) {
-    const note = document.createElement("p");
-    note.className = "muted lb-note";
-    note.textContent = "Sign in to put your climbs on the board.";
-    host.appendChild(note);
-  }
+  const profile = getProfile();
+  const name = profile?.username ? "@" + profile.username : "you";
+  const r = rank.row ?? {};
+  const right = mode === "alltime"
+    ? `${r.total_score} pts · ${r.games_played} climbs`
+    : `${r.score}/18${r.theme_correct ? " 🟪" : ""}${r.time_ms != null ? ` · ${formatTime(r.time_ms)}` : ""}`;
+
+  const pct = rank.total ? Math.round((rank.rank / rank.total) * 100) : null;
+  pin.className = "lb-pin";
+  pin.innerHTML =
+    `<div class="lb-row me pinned">` +
+      `<span class="lb-rank">${rank.rank}</span>` +
+      `<span class="lb-name">${name}</span>` +
+      `<span class="lb-score">${right}</span>` +
+    `</div>` +
+    (pct != null && rank.total > 1 ? `<span class="pin-note">top ${Math.max(1, pct)}% of ${rank.total.toLocaleString()}</span>` : "");
 }
 
 /* ---------------- daily result sync ---------------- */

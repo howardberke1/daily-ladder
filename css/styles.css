@@ -2431,3 +2431,34 @@ body {
   word-break: break-word;
   margin: 6px 0 0;
 }
+
+/* ----- leaderboard: player count + pinned own rank ----- */
+.lb-meta {
+  font-size: 0.74rem;
+  color: var(--ink-soft);
+  text-align: center;
+  margin: -4px 0 8px;
+  min-height: 1em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* The pin sits outside the scroll area so it never scrolls away — that's the
+   whole point: you always see where you stand. */
+.lb-pin {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line);
+}
+.lb-pin .lb-row.pinned {
+  border-color: var(--green);
+  background: color-mix(in srgb, var(--green) 12%, transparent);
+  margin: 0;
+}
+.pin-note {
+  display: block;
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  margin-top: 5px;
+}
+.lb-pin-empty { border-top-style: solid; }

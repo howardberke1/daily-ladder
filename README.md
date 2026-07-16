@@ -156,6 +156,24 @@ than just share with friends).
 bash scripts/package.sh     # validates, then writes daily-ladder-v0.8.0.zip
 ```
 
+## Leaderboards at scale
+
+Boards show the **top 20** in a scroll panel — the query is limited, so it
+costs the same at 12 players or 120,000. Friends board caps at 50.
+
+Below the scroll, **your own rank is pinned** whenever you're outside the top
+20 (`getMyDailyRank` / `getMyAlltimeRank` in social.js). This matters more than
+it looks: a top-20 board tells a player ranked #47 nothing — twenty strangers
+and no sign of themselves. The pin turns "I'm not on the board" into "I'm four
+points off the cut," which is the thing that brings people back. It also shows
+your percentile and the total field size.
+
+Rank is computed with **count-only queries** (`head: true`) — nothing but a
+tally comes back, so it stays cheap regardless of player count. The tiebreaker
+mirrors the board's sort exactly (score desc, then fastest time; a null time
+ranks last). Verified by a test that stubs the client and asserts the generated
+filters.
+
 ## Themed days
 
 A puzzle opts into a recurring themed day with `"tag": "brainrot"` in

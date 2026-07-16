@@ -111,7 +111,78 @@ export async function getGlobalLeaderboard(dateKey, limit = 20) {
   return { data, error: null };
 }
 
-export async function getFriendsLeaderboard(dateKey) {
+/**
+ * Your standing on today's board, however far down you are.
+ *
+ * Ranked the same way the board is: score desc, then fastest time. Computed
+ * with count-only queries (head: true), so this costs the same whether there
+ * are 12 players or 120,000 — no rows come back, just the tally.
+ */
+export async function getMyDailyRank(dateKey) {
+  const me = getUser();
+  if (!me) return { data: null, error: null };
+
+  const { data: mine, error: e1 } = await supabase
+    .from("results")
+    .select("score, time_ms, theme_correct")
+    .eq("user_id", me.id)
+    .eq("date_key", dateKey)
+    .maybeSingle();
+  if (e1) return fail(e1);
+
+  const { count: total, error: e2 } = await supabase
+    .from("results")
+    .select("*", { count: "exact", head: true })
+    .eq("date_key", dateKey);
+  if (e2) return fail(e2);
+
+  if (!mine) return { data: { rank: null, total: total ?? 0, row: null }, error: null };
+
+  // Count everyone strictly ahead of me. A null time sorts last, so if I have
+  // no time recorded, anyone matching my score with a real time beats me.
+  let q = supabase
+    .from("results")
+    .select("*", { count: "exact", head: true })
+    .eq("date_key", dateKey);
+  q = mine.time_ms == null
+    ? q.or(`score.gt.${mine.score},and(score.eq.${mine.score},time_ms.not.is.null)`)
+    : q.or(`score.gt.${mine.score},and(score.eq.${mine.score},time_ms.lt.${mine.time_ms})`);
+
+  const { count: better, error: e3 } = await q;
+  if (e3) return fail(e3);
+
+  return { data: { rank: (better ?? 0) + 1, total: total ?? 0, row: mine }, error: null };
+}
+
+/** Same idea for the lifetime board, ranked on total_score. */
+export async function getMyAlltimeRank() {
+  const me = getUser();
+  if (!me) return { data: null, error: null };
+
+  const { data: mine, error: e1 } = await supabase
+    .from("leaderboard_alltime")
+    .select("total_score, games_played, perfect_climbs")
+    .eq("user_id", me.id)
+    .maybeSingle();
+  if (e1) return fail(e1);
+
+  const { count: total, error: e2 } = await supabase
+    .from("leaderboard_alltime")
+    .select("*", { count: "exact", head: true });
+  if (e2) return fail(e2);
+
+  if (!mine) return { data: { rank: null, total: total ?? 0, row: null }, error: null };
+
+  const { count: better, error: e3 } = await supabase
+    .from("leaderboard_alltime")
+    .select("*", { count: "exact", head: true })
+    .gt("total_score", mine.total_score);
+  if (e3) return fail(e3);
+
+  return { data: { rank: (better ?? 0) + 1, total: total ?? 0, row: mine }, error: null };
+}
+
+export async function getFriendsLeaderboard(dateKey, limit = 50) {
   const me = getUser();
   if (!me) return { data: [], error: null };
 
@@ -125,7 +196,8 @@ export async function getFriendsLeaderboard(dateKey) {
     .eq("date_key", dateKey)
     .in("user_id", ids)
     .order("score", { ascending: false })
-    .order("time_ms", { ascending: true, nullsFirst: false });
+    .order("time_ms", { ascending: true, nullsFirst: false })
+    .limit(limit);
   if (error) return fail(error);
   return { data, error: null };
 }

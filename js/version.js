@@ -7,9 +7,10 @@
 // Displayed in the help modal footer so you can always confirm what's actually
 // live on dailyladder.app versus what you have locally.
 
-export const VERSION = "0.9.3";
+export const VERSION = "0.9.4";
 
 export const CHANGELOG = [
+  ["0.9.4", "Pinned own rank + player count on leaderboards; friends board capped"],
   ["0.9.3", "Fix: leaderboard broke on an unused cosmetics column; real errors now shown"],
   ["0.9.2", "Brain Rot Friday — weekly themed day, tag system"],
   ["0.9.1", "Authored vector worlds; climb distance now reflects score"],
