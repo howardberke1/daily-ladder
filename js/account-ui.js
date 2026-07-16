@@ -14,74 +14,87 @@ import { track } from "./analytics.js";
 
 const $ = (id) => document.getElementById(id);
 
-const HELMETS = [
-  { id: "default", label: "World", value: null },
-  { id: "red", label: "Red", value: "#e05a3a" },
-  { id: "blue", label: "Blue", value: "#4a90d9" },
-  { id: "green", label: "Green", value: "#4fae62" },
-  { id: "purple", label: "Purple", value: "#8458c9" },
-  { id: "gold", label: "Gold", value: "#d8a02c" },
-];
-const PACKS = [
-  { id: "default", label: "World", value: null },
-  { id: "navy", label: "Navy", value: "#2c3e5e" },
-  { id: "forest", label: "Forest", value: "#3a5a44" },
-  { id: "rust", label: "Rust", value: "#8a4a30" },
-  { id: "slate", label: "Slate", value: "#4a5568" },
-  { id: "plum", label: "Plum", value: "#5e3a68" },
-];
+import { CATALOG } from "./climber.js";
+import {
+  getCosmetics, saveCosmetics, setCosmetics, randomize, resetCosmetics, mountClimber,
+} from "./cosmetics.js";
+import { renderClimber } from "./climber.js";
 
-/* ---------------- cosmetics (local-first, syncs when signed in) ---------------- */
+/* ---------------- customizer ---------------- */
 
-function getLocalCosmetics() {
-  try { return JSON.parse(localStorage.getItem("tl:cosmetics")) ?? {}; }
-  catch { return {}; }
+export { mountClimber };
+
+/** Kept for main.js's call site; the rig now handles itself. */
+export function applyCosmetics() {
+  mountClimber();
 }
 
-function saveLocalCosmetics(c) {
-  try { localStorage.setItem("tl:cosmetics", JSON.stringify(c)); } catch {}
+function renderPreview() {
+  const host = $("cos-preview");
+  if (!host) return;
+  host.innerHTML = renderClimber(getCosmetics(), { className: "climber preview-climber" });
 }
 
-export function applyCosmetics(c = getLocalCosmetics()) {
-  const stage = $("climb-stage");
-  if (!stage?.style?.setProperty) return;
-  const helmet = HELMETS.find((h) => h.id === c.helmet)?.value;
-  const pack = PACKS.find((p) => p.id === c.pack)?.value;
-  if (helmet) stage.style.setProperty("--helmet", helmet);
-  else stage.style.removeProperty("--helmet");
-  if (pack) stage.style.setProperty("--pack", pack);
-  else stage.style.removeProperty("--pack");
-}
+/**
+ * Builds the whole customizer from CATALOG — this function has no hardcoded
+ * knowledge of the character, so adding a new part or color is a catalog edit.
+ */
+function renderParts() {
+  const host = $("cos-parts");
+  if (!host) return;
+  const cos = getCosmetics();
+  host.innerHTML = "";
 
-async function chooseCosmetic(kind, id) {
-  track("cosmetic_change", { kind, choice: id });
-  const c = { ...getLocalCosmetics(), [kind]: id };
-  saveLocalCosmetics(c);
-  applyCosmetics(c);
-  renderSwatches();
-  if (getProfile()) {
-    await updateCosmetics(kind === "helmet" ? { helmet_color: id } : { pack_color: id });
+  for (const part of CATALOG) {
+    const row = document.createElement("div");
+    row.className = "cos-row";
+
+    const label = document.createElement("p");
+    label.className = "cos-label";
+    label.textContent = part.label;
+    row.appendChild(label);
+
+    const opts = document.createElement("div");
+    opts.className = part.kind === "color" ? "swatches" : "chips";
+
+    if (part.kind === "color") {
+      part.colors.forEach((color) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "swatch" + (cos[part.id] === color ? " picked" : "");
+        b.style.background = color;
+        b.setAttribute("aria-label", `${part.label} ${color}`);
+        b.addEventListener("click", () => choose(part.id, color));
+        opts.appendChild(b);
+      });
+    } else {
+      part.options.forEach((opt) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "chip" + (cos[part.id] === opt.id ? " picked" : "");
+        b.textContent = opt.label;
+        b.addEventListener("click", () => choose(part.id, opt.id));
+        opts.appendChild(b);
+      });
+    }
+
+    row.appendChild(opts);
+    host.appendChild(row);
   }
 }
 
-function renderSwatches() {
-  const c = getLocalCosmetics();
-  const make = (hostId, list, kind) => {
-    const host = $(hostId);
-    if (!host) return;
-    host.innerHTML = "";
-    list.forEach((opt) => {
-      const b = document.createElement("button");
-      b.type = "button";
-      b.className = "swatch" + ((c[kind] ?? "default") === opt.id ? " picked" : "");
-      b.title = opt.label;
-      b.style.background = opt.value ?? "linear-gradient(135deg, #e05a3a, #4a90d9, #4fae62)";
-      b.addEventListener("click", () => chooseCosmetic(kind, opt.id));
-      host.appendChild(b);
-    });
-  };
-  make("swatches-helmet", HELMETS, "helmet");
-  make("swatches-pack", PACKS, "pack");
+function choose(partId, value) {
+  track("cosmetic_change", { part: partId });
+  saveCosmetics({ [partId]: value });
+  renderPreview();
+  renderParts();
+  syncCosmetics();
+}
+
+/** Pushes the current look to the signed-in profile. Silent no-op if signed out. */
+async function syncCosmetics() {
+  if (!getProfile()) return;
+  await updateCosmetics(getCosmetics());
 }
 
 /* ---------------- account modal ---------------- */
@@ -93,7 +106,8 @@ function renderAccountModal({ user, profile }) {
   show($("acct-username"), !!user && !profile);
   show($("acct-signedin"), !!user && !!profile);
   if (profile) $("acct-name").textContent = "@" + profile.username;
-  renderSwatches();
+  renderPreview();
+  renderParts();
   if (user && profile) refreshFriends();
 }
 
@@ -234,7 +248,21 @@ export async function handleDailyFinish(payload) {
 
 export async function initAccountUI() {
   await initAuth();
-  applyCosmetics();
+  mountClimber();
+
+  $("btn-cos-random").addEventListener("click", () => {
+    track("cosmetic_change", { part: "randomize" });
+    randomize();
+    renderPreview();
+    renderParts();
+    syncCosmetics();
+  });
+  $("btn-cos-reset").addEventListener("click", () => {
+    resetCosmetics();
+    renderPreview();
+    renderParts();
+    syncCosmetics();
+  });
 
   show($("btn-account"), true);
   show($("btn-leaderboard"), true);
@@ -306,15 +334,16 @@ export async function initAccountUI() {
   onAuthChange((state) => {
     const authed = !!(state.user && state.profile);
     $("btn-account")?.classList.toggle("authed", authed);
-    // pull server cosmetics into local when a profile loads
+
+    // A saved profile wins on sign-in, so your climber follows you across
+    // devices. A signed-in player with no saved look yet keeps their local one
+    // and pushes it up.
     if (state.profile) {
-      const c = getLocalCosmetics();
-      const merged = {
-        helmet: state.profile.helmet_color ?? c.helmet ?? "default",
-        pack: state.profile.pack_color ?? c.pack ?? "default",
-      };
-      saveLocalCosmetics(merged);
-      applyCosmetics(merged);
+      const saved = state.profile.cosmetics;
+      if (saved && Object.keys(saved).length) setCosmetics(saved);
+      else syncCosmetics();
+      renderPreview();
+      renderParts();
     }
   });
 }

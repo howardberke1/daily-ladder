@@ -9,6 +9,7 @@ import { getSettings, saveSettings, getStats, getDayState } from "./storage.js";
 import { Game, toast, formatTime } from "./game.js";
 import { track, watchAbandon } from "./analytics.js";
 import { VERSION } from "./version.js";
+import { mountClimber } from "./cosmetics.js";
 
 const $ = (id) => document.getElementById(id);
 
@@ -41,7 +42,7 @@ function startGame(config) {
   game = new Game(config);
   game.onFinish = (payload) => accountLayer?.handleDailyFinish?.(payload);
   game.start();
-  accountLayer?.applyCosmetics?.();
+  mountClimber();
   resetAbandonLatch?.();
 }
 

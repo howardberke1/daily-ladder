@@ -12,11 +12,17 @@
 create table if not exists public.profiles (
   id uuid primary key references auth.users(id) on delete cascade,
   username text unique not null,
-  helmet_color text not null default 'default',
-  pack_color text not null default 'default',
-  accessory text not null default 'none',
+  -- Whole climber in one blob: skin, hair, headgear, top, pants, boots,
+  -- gloves, pack, accessory. jsonb so new parts never need a migration.
+  cosmetics jsonb not null default '{}'::jsonb,
   created_at timestamptz not null default now()
 );
+
+alter table public.profiles
+  drop constraint if exists cosmetics_is_object;
+alter table public.profiles
+  add constraint cosmetics_is_object
+  check (jsonb_typeof(cosmetics) = 'object' and pg_column_size(cosmetics) < 2048);
 
 alter table public.profiles
   add constraint username_format

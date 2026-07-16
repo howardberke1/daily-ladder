@@ -93,7 +93,7 @@ export async function getMyFriendData() {
 
 /* ---------------- leaderboards ---------------- */
 
-const PROFILE_FIELDS = "username, helmet_color, pack_color, accessory";
+const PROFILE_FIELDS = "username, cosmetics";
 
 export async function getGlobalLeaderboard(dateKey, limit = 20) {
   const { data, error } = await supabase

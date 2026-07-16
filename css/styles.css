@@ -2139,3 +2139,76 @@ body {
 
 .acct-msg.is-error { color: var(--wrong); font-weight: 600; }
 .acct-msg.is-ok { color: var(--green-deep); font-weight: 600; }
+
+/* ==========================================================================
+   v9 — Climber customizer
+   ========================================================================== */
+
+.cos-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 168px;
+  background: linear-gradient(to top, var(--bg), color-mix(in srgb, var(--line) 40%, transparent));
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+.preview-climber {
+  position: static;
+  width: 120px;
+  height: 168px;
+  transform: none;
+  bottom: auto;
+  left: auto;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.25));
+}
+/* the idle bob is charming in-game, distracting while dressing up */
+.preview-climber .rig,
+.preview-climber .c-head,
+.preview-climber .c-helmet { animation: none; }
+
+.cos-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.cos-parts {
+  max-height: 44vh;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.cos-row { margin-bottom: 12px; }
+.cos-row .cos-label { margin: 0 0 6px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1.5px solid var(--line);
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: border-color var(--speed), color var(--speed), background var(--speed);
+}
+.chip:hover { border-color: var(--ink-soft); color: var(--ink); }
+.chip.picked { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+.swatch {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  cursor: pointer;
+  transition: transform var(--speed), border-color var(--speed);
+}
+.swatch:hover { transform: scale(1.12); }
+.swatch.picked {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ink) 18%, transparent);
+}

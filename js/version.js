@@ -7,9 +7,10 @@
 // Displayed in the help modal footer so you can always confirm what's actually
 // live on dailyladder.app versus what you have locally.
 
-export const VERSION = "0.8.2";
+export const VERSION = "0.9.0";
 
 export const CHANGELOG = [
+  ["0.9.0", "Fully customizable climber: 13 parts, 5.3B combos, data-driven rig"],
   ["0.8.2", "Fix: 'Next rung' button was white-on-white and unreadable"],
   ["0.8.1", "Clearer sign-in errors (custom SMTP required for non-team emails)"],
   ["0.8.0", "Analytics wired (dormant), version stamp, leaderboard retry button"],

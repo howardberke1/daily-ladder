@@ -156,6 +156,30 @@ than just share with friends).
 bash scripts/package.sh     # validates, then writes daily-ladder-v0.8.0.zip
 ```
 
+## The climber
+
+`js/climber.js` is a data-driven rig, not markup. `CATALOG` describes every
+customizable part; `renderClimber(cosmetics)` builds the SVG. **Adding a new
+part, style, or color is a catalog edit — never a markup edit**, and the
+customizer UI rebuilds itself from the catalog automatically.
+
+13 parts: skin, hair + hair color, headgear + color, top + color, pants,
+boots, gloves, pack + color, accessory. ~5.3 billion combinations.
+
+Rendered SVG always carries the class hooks the animation CSS depends on
+(`.rig`, `.c-arm-l`, `.c-leg-r`, `.c-head`, …), so poses keep working no
+matter what's worn. Some parts are conditional — e.g. `.c-lamp` and the light
+cone only exist on the headlamp helmet, so the altitude-triggered headlamp
+only fires if you're wearing one.
+
+`js/cosmetics.js` handles storage and mounting, and deliberately has **no
+Supabase dependency** — the climber renders even if the account layer never
+loads. Signed in, the look syncs to `profiles.cosmetics` (a jsonb blob, so new
+parts need no migration) and follows the player across devices.
+
+**Run `supabase/migration-002-cosmetics.sql` once** to add the jsonb column and
+drop the old fixed columns.
+
 ## Analytics
 
 **Currently OFF.** The snippet in `index.html`'s `<head>` is commented out so the

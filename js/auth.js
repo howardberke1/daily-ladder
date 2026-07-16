@@ -88,21 +88,21 @@ export async function claimUsername(username) {
   return { ok: true, profile: data };
 }
 
-export async function updateCosmetics({ helmet_color, pack_color, accessory }) {
+/** Saves the whole climber as one jsonb blob — new parts need no migration. */
+export async function updateCosmetics(cosmetics) {
   if (!currentUser || !currentProfile) return { error: "Not signed in." };
-  const patch = {};
-  if (helmet_color !== undefined) patch.helmet_color = helmet_color;
-  if (pack_color !== undefined) patch.pack_color = pack_color;
-  if (accessory !== undefined) patch.accessory = accessory;
 
   const { data, error } = await supabase
     .from("profiles")
-    .update(patch)
+    .update({ cosmetics })
     .eq("id", currentUser.id)
     .select()
     .single();
 
-  if (error) return { error: error.message };
+  if (error) {
+    console.error("Cosmetics sync failed:", error);
+    return { error: error.message };
+  }
   currentProfile = data;
   notify();
   return { ok: true, profile: data };
