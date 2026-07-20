@@ -1072,7 +1072,7 @@
         {
           "category": "Space",
           "difficulty": 1,
-          "question": "Who was the first person to walk on the Moon?",
+          "question": "Apollo 11's commander, who took “one small step” in 1969, was which astronaut?",
           "options": [
             "Buzz Aldrin",
             "Neil Armstrong",
@@ -1802,6 +1802,3103 @@
             "a midsummer night's dream"
           ],
           "connection": "A MIDsummer Night's Dream. Every answer today was MID."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-01",
+      "theme": "Queen",
+      "themeAnswers": [
+        "queen",
+        "queens",
+        "the queen",
+        "things called queen"
+      ],
+      "themeBlurb": "A band, a chess piece, an egg-laying monarch, an Oscar role, and a teenager who reigned nine days — every rung today wore a crown.",
+      "questions": [
+        {
+          "category": "Music",
+          "difficulty": 1,
+          "question": "Freddie Mercury fronted which band, famous for \"Bohemian Rhapsody\"?",
+          "options": [
+            "The Beatles",
+            "ABBA",
+            "Queen",
+            "The Rolling Stones"
+          ],
+          "correct": 2,
+          "accept": [
+            "queen",
+            "queen the band"
+          ],
+          "connection": "Queen — the band."
+        },
+        {
+          "category": "Games",
+          "difficulty": 2,
+          "question": "Which chess piece can move any number of squares in any straight line?",
+          "options": [
+            "The rook",
+            "The bishop",
+            "The knight",
+            "The queen"
+          ],
+          "correct": 3,
+          "accept": [
+            "queen",
+            "the queen"
+          ],
+          "connection": "The queen — the most powerful piece on the board."
+        },
+        {
+          "category": "Nature",
+          "difficulty": 3,
+          "question": "In a honeybee colony, which single bee lays nearly all of the eggs?",
+          "options": [
+            "The worker bee",
+            "The queen bee",
+            "The drone",
+            "The nurse bee"
+          ],
+          "correct": 1,
+          "accept": [
+            "queen",
+            "queen bee",
+            "the queen"
+          ],
+          "connection": "The queen bee — mother of the entire hive."
+        },
+        {
+          "category": "Movies",
+          "difficulty": 4,
+          "question": "Helen Mirren won a Best Actress Oscar for playing Elizabeth II in which 2006 film?",
+          "options": [
+            "The Iron Lady",
+            "The King's Speech",
+            "The Queen",
+            "Elizabeth"
+          ],
+          "correct": 2,
+          "accept": [
+            "queen",
+            "the queen"
+          ],
+          "connection": "The Queen — Mirren's Oscar-winning royal turn."
+        },
+        {
+          "category": "History",
+          "difficulty": 5,
+          "question": "Which English queen ruled for just nine days in 1553 before being deposed?",
+          "options": [
+            "Anne Boleyn",
+            "Lady Jane Grey",
+            "Catherine Howard",
+            "Mary of Guise"
+          ],
+          "correct": 1,
+          "accept": [
+            "jane grey",
+            "lady jane",
+            "jane"
+          ],
+          "connection": "Lady Jane Grey — the Nine Days' Queen."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-02",
+      "theme": "Salt",
+      "themeAnswers": [
+        "salt",
+        "table salt",
+        "things called salt",
+        "salty"
+      ],
+      "themeBlurb": "A chemical, a lake, a march that shook an empire, a sermon, and a spy — everything today was worth its salt.",
+      "questions": [
+        {
+          "category": "Science",
+          "difficulty": 1,
+          "question": "What is the chemical name for ordinary table salt?",
+          "options": [
+            "Potassium iodide",
+            "Sodium chloride",
+            "Calcium carbonate",
+            "Magnesium sulfate"
+          ],
+          "correct": 1,
+          "accept": [
+            "nacl",
+            "sodium chloride",
+            "sodiumchloride"
+          ],
+          "connection": "Sodium chloride — salt itself."
+        },
+        {
+          "category": "Geography",
+          "difficulty": 2,
+          "question": "Utah's capital city sits beside which enormous body of water?",
+          "options": [
+            "Lake Powell",
+            "Lake Mead",
+            "The Great Salt Lake",
+            "Bear Lake"
+          ],
+          "correct": 2,
+          "accept": [
+            "great salt lake",
+            "salt lake",
+            "the great salt lake"
+          ],
+          "connection": "The Great Salt Lake — Salt Lake City's namesake."
+        },
+        {
+          "category": "History",
+          "difficulty": 3,
+          "question": "In 1930, Gandhi led a 240-mile march to the sea to defy a British tax on what?",
+          "options": [
+            "Tea",
+            "Cotton",
+            "Salt",
+            "Grain"
+          ],
+          "correct": 2,
+          "accept": [
+            "salt",
+            "the salt tax"
+          ],
+          "connection": "The Salt March — a pinch of salt that rattled an empire."
+        },
+        {
+          "category": "Language",
+          "difficulty": 4,
+          "question": "\"You are the salt of the earth\" comes from the Sermon on the Mount in which Gospel?",
+          "options": [
+            "Mark",
+            "Matthew",
+            "Luke",
+            "John"
+          ],
+          "correct": 1,
+          "accept": [
+            "matthew",
+            "gospel of matthew",
+            "book of matthew",
+            "st matthew"
+          ],
+          "connection": "Matthew 5 — where being 'the salt of the earth' began."
+        },
+        {
+          "category": "Movies",
+          "difficulty": 5,
+          "question": "In which 2010 thriller does Angelina Jolie play a CIA officer accused of being a Russian sleeper agent?",
+          "options": [
+            "Wanted",
+            "Red Sparrow",
+            "Atomic Blonde",
+            "Salt"
+          ],
+          "correct": 3,
+          "accept": [
+            "salt",
+            "evelyn salt"
+          ],
+          "connection": "Salt — Jolie as Evelyn Salt."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-03",
+      "theme": "Rome",
+      "themeAnswers": [
+        "rome",
+        "ancient rome",
+        "the city of rome",
+        "roman",
+        "romans"
+      ],
+      "themeBlurb": "An arena, two wolf-raised twins, a proverb, an Olympics, and a sacking — all roads today led to Rome.",
+      "questions": [
+        {
+          "category": "Landmarks",
+          "difficulty": 1,
+          "question": "The Colosseum, the largest amphitheater ever built, stands in which city?",
+          "options": [
+            "Athens",
+            "Rome",
+            "Istanbul",
+            "Cairo"
+          ],
+          "correct": 1,
+          "accept": [
+            "rome",
+            "roma"
+          ],
+          "connection": "Rome — where gladiators fought."
+        },
+        {
+          "category": "Mythology",
+          "difficulty": 2,
+          "question": "According to legend, which twin brothers — raised by a wolf — founded Rome?",
+          "options": [
+            "Castor and Pollux",
+            "Romulus and Remus",
+            "Cain and Abel",
+            "Ajax and Achilles"
+          ],
+          "correct": 1,
+          "accept": [
+            "romulus and remus",
+            "romulus remus",
+            "romulus & remus"
+          ],
+          "connection": "Romulus and Remus — Rome's wolf-raised founders."
+        },
+        {
+          "category": "Language",
+          "difficulty": 3,
+          "question": "How does the proverb finish: \"When in Rome...\"?",
+          "options": [
+            "...mind the emperor",
+            "...do as the Romans do",
+            "...keep your sword close",
+            "...all roads are one"
+          ],
+          "correct": 1,
+          "accept": [
+            "do as the romans do",
+            "do as romans do"
+          ],
+          "connection": "When in Rome, do as the Romans do."
+        },
+        {
+          "category": "Sports",
+          "difficulty": 4,
+          "question": "A young Cassius Clay won Olympic boxing gold at which city's 1960 Summer Games?",
+          "options": [
+            "Tokyo",
+            "Melbourne",
+            "Rome",
+            "Mexico City"
+          ],
+          "correct": 2,
+          "accept": [
+            "rome",
+            "roma"
+          ],
+          "connection": "Rome 1960 — before he was Muhammad Ali."
+        },
+        {
+          "category": "History",
+          "difficulty": 5,
+          "question": "Which people, led by Alaric, sacked Rome in 410 AD — the first time it had fallen in nearly 800 years?",
+          "options": [
+            "The Huns",
+            "The Vandals",
+            "The Visigoths",
+            "The Ostrogoths"
+          ],
+          "correct": 2,
+          "accept": [
+            "visigoths",
+            "the visigoths",
+            "goths"
+          ],
+          "connection": "Alaric's Visigoths — the day the eternal city proved mortal."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-04",
+      "theme": "Ice",
+      "themeAnswers": [
+        "ice",
+        "frozen things",
+        "frozen",
+        "cold"
+      ],
+      "themeBlurb": "A frozen kingdom, a doomed ship, brooms on a rink, a green island of glaciers, and a Queen bassline — today ran cold.",
+      "questions": [
+        {
+          "category": "Movies",
+          "difficulty": 1,
+          "question": "\"Let It Go\" is the showstopper from which Disney animated film?",
+          "options": [
+            "Moana",
+            "Tangled",
+            "Frozen",
+            "Encanto"
+          ],
+          "correct": 2,
+          "accept": [
+            "frozen"
+          ],
+          "connection": "Frozen — Elsa's ice palace and all."
+        },
+        {
+          "category": "History",
+          "difficulty": 2,
+          "question": "Which \"unsinkable\" ocean liner struck an iceberg on its maiden voyage in April 1912?",
+          "options": [
+            "The Lusitania",
+            "The Titanic",
+            "The Britannic",
+            "The Queen Mary"
+          ],
+          "correct": 1,
+          "accept": [
+            "titanic",
+            "the titanic",
+            "rms titanic"
+          ],
+          "connection": "The Titanic — undone by ice."
+        },
+        {
+          "category": "Sports",
+          "difficulty": 3,
+          "question": "Which Olympic sport involves sliding granite stones toward a target while teammates sweep the ice?",
+          "options": [
+            "Luge",
+            "Skeleton",
+            "Curling",
+            "Bandy"
+          ],
+          "correct": 2,
+          "accept": [
+            "curling"
+          ],
+          "connection": "Curling — chess on ice, with brooms."
+        },
+        {
+          "category": "Geography",
+          "difficulty": 4,
+          "question": "Reykjavik is the capital of which island nation?",
+          "options": [
+            "Greenland",
+            "Iceland",
+            "The Faroe Islands",
+            "Norway"
+          ],
+          "correct": 1,
+          "accept": [
+            "iceland"
+          ],
+          "connection": "Iceland — famously greener than Greenland, but the ice is in the name."
+        },
+        {
+          "category": "Music",
+          "difficulty": 5,
+          "question": "Vanilla Ice's \"Ice Ice Baby\" lifted its bassline from which Queen and David Bowie song?",
+          "options": [
+            "Another One Bites the Dust",
+            "Under Pressure",
+            "Heroes",
+            "Let's Dance"
+          ],
+          "correct": 1,
+          "accept": [
+            "under pressure"
+          ],
+          "connection": "Under Pressure — the most famous borrowed bassline in pop."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-05",
+      "theme": "Rain",
+      "themeAnswers": [
+        "rain",
+        "rainy things",
+        "the rain",
+        "things with rain"
+      ],
+      "themeBlurb": "A puddle-splashing dance, refracted sunlight, a purple album, a Spanish plain, and an Oscar-winning road trip — today poured.",
+      "questions": [
+        {
+          "category": "Movies",
+          "difficulty": 1,
+          "question": "Gene Kelly splashes through puddles in which classic 1952 movie musical?",
+          "options": [
+            "An American in Paris",
+            "Singin' in the Rain",
+            "On the Town",
+            "Top Hat"
+          ],
+          "correct": 1,
+          "accept": [
+            "singin in the rain",
+            "singing in the rain"
+          ],
+          "connection": "Singin' in the Rain — the most joyful downpour ever filmed."
+        },
+        {
+          "category": "Science",
+          "difficulty": 2,
+          "question": "What appears in the sky when sunlight is refracted through raindrops?",
+          "options": [
+            "An aurora",
+            "A halo",
+            "A rainbow",
+            "A mirage"
+          ],
+          "correct": 2,
+          "accept": [
+            "rainbow",
+            "a rainbow"
+          ],
+          "connection": "A rainbow — rain plus light."
+        },
+        {
+          "category": "Music",
+          "difficulty": 3,
+          "question": "Prince's 1984 album, film, and title track all share what name?",
+          "options": [
+            "Sign o' the Times",
+            "1999",
+            "Purple Rain",
+            "Raspberry Beret"
+          ],
+          "correct": 2,
+          "accept": [
+            "purple rain"
+          ],
+          "connection": "Purple Rain — album, movie, and anthem."
+        },
+        {
+          "category": "Literature",
+          "difficulty": 4,
+          "question": "\"The rain in Spain stays mainly in the plain\" is an elocution lesson from which musical?",
+          "options": [
+            "The Sound of Music",
+            "My Fair Lady",
+            "Oliver!",
+            "Mary Poppins"
+          ],
+          "correct": 1,
+          "accept": [
+            "my fair lady"
+          ],
+          "connection": "My Fair Lady — Eliza Doolittle's rain-soaked vowels."
+        },
+        {
+          "category": "Awards",
+          "difficulty": 5,
+          "question": "Dustin Hoffman won the 1988 Best Actor Oscar for playing an autistic savant in which film?",
+          "options": [
+            "Kramer vs. Kramer",
+            "Rain Man",
+            "Forrest Gump",
+            "Awakenings"
+          ],
+          "correct": 1,
+          "accept": [
+            "rain man",
+            "rainman"
+          ],
+          "connection": "Rain Man — it also took Best Picture."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-06",
+      "theme": "Dragons",
+      "themeAnswers": [
+        "dragons",
+        "dragon",
+        "things with dragons"
+      ],
+      "themeBlurb": "A Night Fury, a giant lizard, a treasure hoard, a dungeon master, and a spacecraft — there be dragons on every rung today.",
+      "questions": [
+        {
+          "category": "Movies",
+          "difficulty": 1,
+          "question": "Toothless the Night Fury stars in which animated film franchise?",
+          "options": [
+            "Eragon",
+            "How to Train Your Dragon",
+            "Raya and the Last Dragon",
+            "Pete's Dragon"
+          ],
+          "correct": 1,
+          "accept": [
+            "how to train your dragon",
+            "httyd"
+          ],
+          "connection": "How to Train Your Dragon."
+        },
+        {
+          "category": "Nature",
+          "difficulty": 2,
+          "question": "What is the world's largest living lizard, native to a few Indonesian islands?",
+          "options": [
+            "The Gila monster",
+            "The green iguana",
+            "The Komodo dragon",
+            "The Nile monitor"
+          ],
+          "correct": 2,
+          "accept": [
+            "komodo dragon",
+            "komodo"
+          ],
+          "connection": "The Komodo dragon — a real one."
+        },
+        {
+          "category": "Literature",
+          "difficulty": 3,
+          "question": "The dragon Smaug hoards stolen dwarven treasure in which J.R.R. Tolkien novel?",
+          "options": [
+            "The Silmarillion",
+            "The Two Towers",
+            "The Hobbit",
+            "The Fellowship of the Ring"
+          ],
+          "correct": 2,
+          "accept": [
+            "hobbit",
+            "the hobbit"
+          ],
+          "connection": "The Hobbit — Smaug sleeps on the gold of Erebor."
+        },
+        {
+          "category": "Games",
+          "difficulty": 4,
+          "question": "In Dungeons & Dragons, what does the \"DM\" who runs the game stand for?",
+          "options": [
+            "Dice Master",
+            "Dungeon Master",
+            "Dragon Master",
+            "Dark Mage"
+          ],
+          "correct": 1,
+          "accept": [
+            "dungeon master",
+            "dungeonmaster"
+          ],
+          "connection": "Dungeon Master — the '& Dragons' is right there in the box."
+        },
+        {
+          "category": "Space",
+          "difficulty": 5,
+          "question": "What is the name of the SpaceX capsule that carries astronauts to the International Space Station?",
+          "options": [
+            "Orion",
+            "Starliner",
+            "Dragon",
+            "Falcon"
+          ],
+          "correct": 2,
+          "accept": [
+            "dragon",
+            "crew dragon",
+            "dragon capsule"
+          ],
+          "connection": "Dragon — a spacefaring one."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-07",
+      "tag": "brainrot",
+      "theme": "Cap",
+      "themeAnswers": [
+        "cap",
+        "caps",
+        "no cap",
+        "things called cap"
+      ],
+      "themeBlurb": "A slang denial, a super-soldier, a frozen continent, a payroll ceiling, and a chromosome's tip — no cap, every answer today was a cap.",
+      "questions": [
+        {
+          "category": "Internet",
+          "difficulty": 1,
+          "question": "In slang, saying \"no cap\" means what?",
+          "options": [
+            "No hat",
+            "No lie",
+            "No money",
+            "No chance"
+          ],
+          "correct": 1,
+          "accept": [
+            "no lie",
+            "not lying",
+            "no lying",
+            "for real",
+            "truth",
+            "the truth"
+          ],
+          "connection": "Cap means a lie — no cap means you're telling the truth."
+        },
+        {
+          "category": "Movies",
+          "difficulty": 2,
+          "question": "Steve Rogers, the super-soldier with the shield, is better known as which Avenger?",
+          "options": [
+            "Iron Man",
+            "Hawkeye",
+            "Captain America",
+            "Falcon"
+          ],
+          "correct": 2,
+          "accept": [
+            "captain america",
+            "cap"
+          ],
+          "connection": "Captain America — the Avengers literally call him Cap."
+        },
+        {
+          "category": "Geography",
+          "difficulty": 3,
+          "question": "About 90% of the world's ice is locked in the ice sheet covering which continent?",
+          "options": [
+            "Greenland",
+            "Antarctica",
+            "Siberia",
+            "The Arctic"
+          ],
+          "correct": 1,
+          "accept": [
+            "antarctica",
+            "the antarctic",
+            "antarctic"
+          ],
+          "connection": "Antarctica — the planet's biggest ice cap."
+        },
+        {
+          "category": "Sports",
+          "difficulty": 4,
+          "question": "In leagues like the NFL and NBA, what is the limit on how much a team can spend on player salaries called?",
+          "options": [
+            "The luxury line",
+            "The payroll wall",
+            "The salary cap",
+            "The roster ceiling"
+          ],
+          "correct": 2,
+          "accept": [
+            "salary cap",
+            "the cap",
+            "spending cap"
+          ],
+          "connection": "The salary cap."
+        },
+        {
+          "category": "Science",
+          "difficulty": 5,
+          "question": "What is the protective structure at the end of a chromosome — often described as its 'cap' — called?",
+          "options": [
+            "A centromere",
+            "A telomere",
+            "A ribosome",
+            "A codon"
+          ],
+          "correct": 1,
+          "accept": [
+            "telomere",
+            "telomeres"
+          ],
+          "connection": "Telomeres — the caps that keep your DNA from fraying."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-08",
+      "theme": "Silver",
+      "themeAnswers": [
+        "silver",
+        "things called silver",
+        "the color silver"
+      ],
+      "themeBlurb": "A second-place medal, a chemical symbol, a one-legged pirate, a masked man's horse, and an entire country named for it — today gleamed silver.",
+      "questions": [
+        {
+          "category": "Sports",
+          "difficulty": 1,
+          "question": "At the Olympics, what medal does the second-place finisher receive?",
+          "options": [
+            "Bronze",
+            "Gold",
+            "Silver",
+            "Platinum"
+          ],
+          "correct": 2,
+          "accept": [
+            "silver",
+            "silver medal",
+            "the silver medal"
+          ],
+          "connection": "Silver — forever one step from gold."
+        },
+        {
+          "category": "Science",
+          "difficulty": 2,
+          "question": "The chemical symbol Ag, from the Latin argentum, stands for which element?",
+          "options": [
+            "Gold",
+            "Silver",
+            "Aluminum",
+            "Argon"
+          ],
+          "correct": 1,
+          "accept": [
+            "silver"
+          ],
+          "connection": "Ag — silver on the periodic table."
+        },
+        {
+          "category": "Literature",
+          "difficulty": 3,
+          "question": "Long John Silver schemes for buried treasure in which classic adventure novel?",
+          "options": [
+            "Robinson Crusoe",
+            "Moby-Dick",
+            "Treasure Island",
+            "Kidnapped"
+          ],
+          "correct": 2,
+          "accept": [
+            "treasure island"
+          ],
+          "connection": "Long John Silver — the one-legged cook of Treasure Island."
+        },
+        {
+          "category": "TV",
+          "difficulty": 4,
+          "question": "\"Hi-yo, ___! Away!\" — what was the Lone Ranger's horse named?",
+          "options": [
+            "Trigger",
+            "Silver",
+            "Champion",
+            "Scout"
+          ],
+          "correct": 1,
+          "accept": [
+            "silver"
+          ],
+          "connection": "Silver — the fastest horse on the radio."
+        },
+        {
+          "category": "Geography",
+          "difficulty": 5,
+          "question": "Which South American country's name comes from the Latin word for silver?",
+          "options": [
+            "Bolivia",
+            "Chile",
+            "Argentina",
+            "Peru"
+          ],
+          "correct": 2,
+          "accept": [
+            "argentina"
+          ],
+          "connection": "Argentina — argentum, the land of silver."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-09",
+      "theme": "Bees",
+      "themeAnswers": [
+        "bees",
+        "bee",
+        "the bee",
+        "honeybees"
+      ],
+      "themeBlurb": "Flower juice, three falsetto brothers, a dance that gives directions, a Seinfeld cartoon, and Napoleon's imperial insect — today buzzed.",
+      "questions": [
+        {
+          "category": "Nature",
+          "difficulty": 1,
+          "question": "Bees make honey from which sweet liquid collected from flowers?",
+          "options": [
+            "Pollen",
+            "Nectar",
+            "Sap",
+            "Dew"
+          ],
+          "correct": 1,
+          "accept": [
+            "nectar",
+            "flower nectar"
+          ],
+          "connection": "Nectar in, honey out."
+        },
+        {
+          "category": "Music",
+          "difficulty": 2,
+          "question": "Which trio of brothers sang the disco anthem \"Stayin' Alive\"?",
+          "options": [
+            "The Beach Boys",
+            "The Jackson 5",
+            "The Bee Gees",
+            "The Osmonds"
+          ],
+          "correct": 2,
+          "accept": [
+            "bee gees",
+            "the bee gees",
+            "beegees"
+          ],
+          "connection": "The Bee Gees — bees, right in the name."
+        },
+        {
+          "category": "Science",
+          "difficulty": 3,
+          "question": "Honeybees tell hive-mates where flowers are using what famous behavior?",
+          "options": [
+            "Wing color changes",
+            "A humming pitch code",
+            "The waggle dance",
+            "Scent-marking petals"
+          ],
+          "correct": 2,
+          "accept": [
+            "waggle dance",
+            "the waggle dance",
+            "waggle"
+          ],
+          "connection": "The waggle dance — GPS, performed."
+        },
+        {
+          "category": "Movies",
+          "difficulty": 4,
+          "question": "Jerry Seinfeld voiced Barry B. Benson in which 2007 animated film?",
+          "options": [
+            "Antz",
+            "A Bug's Life",
+            "Bee Movie",
+            "The Ant Bully"
+          ],
+          "correct": 2,
+          "accept": [
+            "bee movie",
+            "the bee movie"
+          ],
+          "connection": "Bee Movie — an internet legend in its own right."
+        },
+        {
+          "category": "History",
+          "difficulty": 5,
+          "question": "Which insect did Napoleon adopt as a symbol of his empire, embroidering it on robes and flags?",
+          "options": [
+            "The wasp",
+            "The bee",
+            "The beetle",
+            "The dragonfly"
+          ],
+          "correct": 1,
+          "accept": [
+            "bee",
+            "the bee",
+            "bees",
+            "honeybee"
+          ],
+          "connection": "The bee — Napoleon's imperial emblem of industry."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-10",
+      "theme": "Rivers",
+      "themeAnswers": [
+        "rivers",
+        "river",
+        "famous rivers",
+        "things called river"
+      ],
+      "themeBlurb": "South America's giant, Egypt's lifeline, Huck's raft, a lost actor, and the ferryman's crossing — everything today flowed.",
+      "questions": [
+        {
+          "category": "Geography",
+          "difficulty": 1,
+          "question": "What is the longest river in South America?",
+          "options": [
+            "The Paraná",
+            "The Orinoco",
+            "The Amazon",
+            "The Magdalena"
+          ],
+          "correct": 2,
+          "accept": [
+            "amazon",
+            "the amazon",
+            "amazon river"
+          ],
+          "connection": "The Amazon."
+        },
+        {
+          "category": "History",
+          "difficulty": 2,
+          "question": "Ancient Egyptian civilization grew along the banks of which river?",
+          "options": [
+            "The Tigris",
+            "The Euphrates",
+            "The Nile",
+            "The Jordan"
+          ],
+          "correct": 2,
+          "accept": [
+            "nile",
+            "the nile",
+            "nile river"
+          ],
+          "connection": "The Nile — Egypt's gift."
+        },
+        {
+          "category": "Literature",
+          "difficulty": 3,
+          "question": "Huckleberry Finn and Jim raft down which river in Mark Twain's novel?",
+          "options": [
+            "The Ohio",
+            "The Missouri",
+            "The Mississippi",
+            "The Hudson"
+          ],
+          "correct": 2,
+          "accept": [
+            "mississippi",
+            "the mississippi",
+            "mississippi river"
+          ],
+          "connection": "The Mississippi — Twain's great highway."
+        },
+        {
+          "category": "Movies",
+          "difficulty": 4,
+          "question": "Joaquin Phoenix's older brother, a celebrated actor who died young in 1993, was named what?",
+          "options": [
+            "Rain Phoenix",
+            "River Phoenix",
+            "Leaf Phoenix",
+            "Sky Phoenix"
+          ],
+          "correct": 1,
+          "accept": [
+            "river phoenix",
+            "river"
+          ],
+          "connection": "River Phoenix — a river and a phoenix in one name."
+        },
+        {
+          "category": "Mythology",
+          "difficulty": 5,
+          "question": "In Greek myth, the ferryman Charon carried souls across which river to the underworld?",
+          "options": [
+            "The Lethe",
+            "The Styx",
+            "The Acheron",
+            "The Phlegethon"
+          ],
+          "correct": 1,
+          "accept": [
+            "styx",
+            "the styx",
+            "river styx"
+          ],
+          "connection": "The Styx — one coin for the crossing."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-11",
+      "theme": "Time",
+      "themeAnswers": [
+        "time",
+        "clocks",
+        "things about time"
+      ],
+      "themeBlurb": "A DeLorean, a meridian, a machine bound for the year 802,701, a magazine cover, and Einstein's strangest idea — today was all about time.",
+      "questions": [
+        {
+          "category": "Movies",
+          "difficulty": 1,
+          "question": "In which film does Doc Brown turn a DeLorean into a time machine?",
+          "options": [
+            "Bill & Ted's Excellent Adventure",
+            "Back to the Future",
+            "The Terminator",
+            "Looper"
+          ],
+          "correct": 1,
+          "accept": [
+            "back to the future",
+            "bttf"
+          ],
+          "connection": "Back to the Future — 88 miles per hour."
+        },
+        {
+          "category": "Geography",
+          "difficulty": 2,
+          "question": "World clocks are set relative to GMT — what does the G stand for?",
+          "options": [
+            "Global",
+            "Greenwich",
+            "General",
+            "Geodetic"
+          ],
+          "correct": 1,
+          "accept": [
+            "greenwich"
+          ],
+          "connection": "Greenwich Mean Time — measured from a line in London."
+        },
+        {
+          "category": "Literature",
+          "difficulty": 3,
+          "question": "Which H.G. Wells novel sends its inventor hurtling to the year 802,701?",
+          "options": [
+            "The War of the Worlds",
+            "The Invisible Man",
+            "The Time Machine",
+            "The Island of Doctor Moreau"
+          ],
+          "correct": 2,
+          "accept": [
+            "time machine",
+            "the time machine"
+          ],
+          "connection": "The Time Machine — the book that named the device."
+        },
+        {
+          "category": "History",
+          "difficulty": 4,
+          "question": "Which magazine has named a \"Person of the Year\" since 1927?",
+          "options": [
+            "Life",
+            "Newsweek",
+            "Time",
+            "The New Yorker"
+          ],
+          "correct": 2,
+          "accept": [
+            "time",
+            "time magazine"
+          ],
+          "connection": "Time — the magazine."
+        },
+        {
+          "category": "Science",
+          "difficulty": 5,
+          "question": "According to Einstein's relativity, time runs slower for objects traveling near the speed of what?",
+          "options": [
+            "Sound",
+            "Light",
+            "Gravity waves",
+            "Electricity"
+          ],
+          "correct": 1,
+          "accept": [
+            "light",
+            "the speed of light"
+          ],
+          "connection": "Time dilation — go fast enough and time itself stretches."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-12",
+      "theme": "Grand",
+      "themeAnswers": [
+        "grand",
+        "things called grand",
+        "grand things"
+      ],
+      "themeBlurb": "A canyon, a country-music stage, a tennis sweep, a crime spree in Los Santos, and chess's highest title — everything today was grand.",
+      "questions": [
+        {
+          "category": "Geography",
+          "difficulty": 1,
+          "question": "Which mile-deep canyon carved by the Colorado River is Arizona's most famous landmark?",
+          "options": [
+            "Bryce Canyon",
+            "Antelope Canyon",
+            "The Grand Canyon",
+            "Zion Canyon"
+          ],
+          "correct": 2,
+          "accept": [
+            "grand canyon",
+            "the grand canyon"
+          ],
+          "connection": "The Grand Canyon."
+        },
+        {
+          "category": "Music",
+          "difficulty": 2,
+          "question": "What is Nashville's legendary country-music stage, broadcasting since 1925, called?",
+          "options": [
+            "The Ryman Round",
+            "The Grand Ole Opry",
+            "The Bluebird Hall",
+            "The Nashville Palace"
+          ],
+          "correct": 1,
+          "accept": [
+            "grand ole opry",
+            "the grand ole opry",
+            "opry"
+          ],
+          "connection": "The Grand Ole Opry."
+        },
+        {
+          "category": "Sports",
+          "difficulty": 3,
+          "question": "Winning all four major tennis tournaments in a single year is called what?",
+          "options": [
+            "A clean sweep",
+            "A golden set",
+            "A Grand Slam",
+            "A royal flush"
+          ],
+          "correct": 2,
+          "accept": [
+            "grand slam",
+            "a grand slam",
+            "the grand slam"
+          ],
+          "connection": "A Grand Slam — also a bases-loaded homer."
+        },
+        {
+          "category": "Gaming",
+          "difficulty": 4,
+          "question": "Which record-breaking video game series is set in cities like Los Santos and Vice City?",
+          "options": [
+            "Saints Row",
+            "Grand Theft Auto",
+            "Watch Dogs",
+            "Mafia"
+          ],
+          "correct": 1,
+          "accept": [
+            "grand theft auto",
+            "gta"
+          ],
+          "connection": "Grand Theft Auto."
+        },
+        {
+          "category": "Games",
+          "difficulty": 5,
+          "question": "What is the highest lifetime title in chess, first formally awarded by FIDE in 1950?",
+          "options": [
+            "International Master",
+            "World Candidate",
+            "Grandmaster",
+            "Chess Laureate"
+          ],
+          "correct": 2,
+          "accept": [
+            "grandmaster",
+            "grand master",
+            "gm"
+          ],
+          "connection": "Grandmaster — chess royalty."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-13",
+      "theme": "Diamonds",
+      "themeAnswers": [
+        "diamonds",
+        "diamond",
+        "things called diamond"
+      ],
+      "themeBlurb": "The hardest thing in nature, a baseball infield, a Beatles sky, Marilyn's best friend, and a royal jubilee — today sparkled.",
+      "questions": [
+        {
+          "category": "Science",
+          "difficulty": 1,
+          "question": "What is the hardest naturally occurring material on Earth?",
+          "options": [
+            "Titanium",
+            "Quartz",
+            "Diamond",
+            "Obsidian"
+          ],
+          "correct": 2,
+          "accept": [
+            "diamond",
+            "diamonds"
+          ],
+          "connection": "Diamond — a 10 on the Mohs scale."
+        },
+        {
+          "category": "Sports",
+          "difficulty": 2,
+          "question": "In baseball, what is the square infield formed by the four bases called?",
+          "options": [
+            "The box",
+            "The diamond",
+            "The plate",
+            "The circuit"
+          ],
+          "correct": 1,
+          "accept": [
+            "diamond",
+            "the diamond",
+            "baseball diamond"
+          ],
+          "connection": "The diamond."
+        },
+        {
+          "category": "Music",
+          "difficulty": 3,
+          "question": "\"Lucy in the Sky with Diamonds\" appears on Sgt. Pepper's by which band?",
+          "options": [
+            "The Rolling Stones",
+            "The Kinks",
+            "The Beatles",
+            "The Who"
+          ],
+          "correct": 2,
+          "accept": [
+            "beatles",
+            "the beatles"
+          ],
+          "connection": "The Beatles — Lucy, sky, diamonds."
+        },
+        {
+          "category": "Movies",
+          "difficulty": 4,
+          "question": "Marilyn Monroe performed \"Diamonds Are a Girl's Best Friend\" in which 1953 film?",
+          "options": [
+            "Some Like It Hot",
+            "How to Marry a Millionaire",
+            "Gentlemen Prefer Blondes",
+            "The Seven Year Itch"
+          ],
+          "correct": 2,
+          "accept": [
+            "gentlemen prefer blondes"
+          ],
+          "connection": "Gentlemen Prefer Blondes — the pink dress, the diamonds."
+        },
+        {
+          "category": "History",
+          "difficulty": 5,
+          "question": "Queen Elizabeth II's 2012 jubilee, marking 60 years on the throne, was called what?",
+          "options": [
+            "The Golden Jubilee",
+            "The Platinum Jubilee",
+            "The Diamond Jubilee",
+            "The Sapphire Jubilee"
+          ],
+          "correct": 2,
+          "accept": [
+            "diamond jubilee",
+            "the diamond jubilee"
+          ],
+          "connection": "The Diamond Jubilee — 60 years is diamond."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-14",
+      "tag": "brainrot",
+      "theme": "Goat",
+      "themeAnswers": [
+        "goat",
+        "goats",
+        "the goat",
+        "greatest of all time"
+      ],
+      "themeBlurb": "An acronym for legends, a cheese, a god with hooves, a sea-goat in the stars, and an ancient ritual — today was the GOAT, literally.",
+      "questions": [
+        {
+          "category": "Internet",
+          "difficulty": 1,
+          "question": "When fans call an athlete \"the GOAT,\" what does it stand for?",
+          "options": [
+            "Golden Oscar of Athletic Talent",
+            "Greatest of All Time",
+            "Guaranteed on Any Team",
+            "Grand Overall Athletic Title"
+          ],
+          "correct": 1,
+          "accept": [
+            "greatest of all time",
+            "the greatest of all time"
+          ],
+          "connection": "GOAT — Greatest of All Time."
+        },
+        {
+          "category": "Food",
+          "difficulty": 2,
+          "question": "Traditional Greek feta is made from sheep's milk, often blended with milk from which other animal?",
+          "options": [
+            "Cows",
+            "Goats",
+            "Buffalo",
+            "Camels"
+          ],
+          "correct": 1,
+          "accept": [
+            "goats",
+            "goat",
+            "goat milk",
+            "goats milk"
+          ],
+          "connection": "Goat's milk — the tang in real feta."
+        },
+        {
+          "category": "Mythology",
+          "difficulty": 3,
+          "question": "Which Greek god of the wild has the legs and horns of a goat?",
+          "options": [
+            "Dionysus",
+            "Hermes",
+            "Pan",
+            "Apollo"
+          ],
+          "correct": 2,
+          "accept": [
+            "pan"
+          ],
+          "connection": "Pan — half man, half goat, all chaos."
+        },
+        {
+          "category": "Space",
+          "difficulty": 4,
+          "question": "Which zodiac constellation is depicted as a sea-goat — half goat, half fish?",
+          "options": [
+            "Aries",
+            "Taurus",
+            "Capricorn",
+            "Pisces"
+          ],
+          "correct": 2,
+          "accept": [
+            "capricorn",
+            "capricornus"
+          ],
+          "connection": "Capricorn — the sea-goat."
+        },
+        {
+          "category": "Language",
+          "difficulty": 5,
+          "question": "The word \"scapegoat\" comes from a Day of Atonement ritual described in which religion's scriptures?",
+          "options": [
+            "Buddhism",
+            "Judaism",
+            "Zoroastrianism",
+            "Hinduism"
+          ],
+          "correct": 1,
+          "accept": [
+            "judaism",
+            "jewish",
+            "the jewish religion",
+            "hebrew"
+          ],
+          "connection": "Judaism — Leviticus sends a goat into the desert carrying the people's sins."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-15",
+      "theme": "Napoleon",
+      "themeAnswers": [
+        "napoleon",
+        "napoleon bonaparte",
+        "things called napoleon"
+      ],
+      "themeBlurb": "An emperor crowned this very week in history, a Idaho teen, a tyrant pig, a layered pastry, and an island exile — every answer today was Napoleon. Bonus: he was born on August 15.",
+      "questions": [
+        {
+          "category": "History",
+          "difficulty": 1,
+          "question": "Napoleon Bonaparte crowned himself emperor of which country in 1804?",
+          "options": [
+            "Spain",
+            "Austria",
+            "France",
+            "Italy"
+          ],
+          "correct": 2,
+          "accept": [
+            "france",
+            "the french empire",
+            "french"
+          ],
+          "connection": "France — Napoleon placed the crown on his own head."
+        },
+        {
+          "category": "Movies",
+          "difficulty": 2,
+          "question": "\"Vote for Pedro\" is a slogan from which 2004 cult comedy?",
+          "options": [
+            "Superbad",
+            "Napoleon Dynamite",
+            "Juno",
+            "School of Rock"
+          ],
+          "correct": 1,
+          "accept": [
+            "napoleon dynamite"
+          ],
+          "connection": "Napoleon Dynamite — gosh."
+        },
+        {
+          "category": "Literature",
+          "difficulty": 3,
+          "question": "In George Orwell's Animal Farm, what is the name of the pig who seizes total power?",
+          "options": [
+            "Snowball",
+            "Boxer",
+            "Napoleon",
+            "Squealer"
+          ],
+          "correct": 2,
+          "accept": [
+            "napoleon"
+          ],
+          "connection": "Napoleon the pig — Orwell wasn't subtle."
+        },
+        {
+          "category": "Food",
+          "difficulty": 4,
+          "question": "The layered French pastry known as mille-feuille goes by what name in American bakeries?",
+          "options": [
+            "An éclair",
+            "A napoleon",
+            "A profiterole",
+            "A palmier"
+          ],
+          "correct": 1,
+          "accept": [
+            "napoleon",
+            "a napoleon"
+          ],
+          "connection": "The napoleon — a thousand layers, one emperor."
+        },
+        {
+          "category": "Geography",
+          "difficulty": 5,
+          "question": "After his first abdication in 1814, Napoleon was exiled to which Mediterranean island?",
+          "options": [
+            "Corsica",
+            "Sardinia",
+            "Elba",
+            "Malta"
+          ],
+          "correct": 2,
+          "accept": [
+            "elba"
+          ],
+          "connection": "Elba — he escaped it; St. Helena, he didn't."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-16",
+      "theme": "Memphis",
+      "themeAnswers": [
+        "memphis",
+        "memphis tennessee",
+        "the city of memphis"
+      ],
+      "themeBlurb": "Graceland, an Egyptian capital, an NBA arena, Beale Street blues, and the Lorraine Motel — two cities, four thousand years apart, one name. Elvis left the building on this date in 1977.",
+      "questions": [
+        {
+          "category": "Music",
+          "difficulty": 1,
+          "question": "Graceland, Elvis Presley's famous mansion, stands in which Tennessee city?",
+          "options": [
+            "Nashville",
+            "Knoxville",
+            "Memphis",
+            "Chattanooga"
+          ],
+          "correct": 2,
+          "accept": [
+            "memphis"
+          ],
+          "connection": "Memphis — Elvis's home, and where he died on this date in 1977."
+        },
+        {
+          "category": "Archaeology",
+          "difficulty": 2,
+          "question": "The ancient Egyptian capital near the pyramids of Saqqara was called what?",
+          "options": [
+            "Thebes",
+            "Memphis",
+            "Alexandria",
+            "Luxor"
+          ],
+          "correct": 1,
+          "accept": [
+            "memphis"
+          ],
+          "connection": "Memphis — Egypt's ancient capital, four millennia before Tennessee borrowed the name."
+        },
+        {
+          "category": "Sports",
+          "difficulty": 3,
+          "question": "Which NBA team plays its home games at FedExForum?",
+          "options": [
+            "The Pelicans",
+            "The Grizzlies",
+            "The Hawks",
+            "The Hornets"
+          ],
+          "correct": 1,
+          "accept": [
+            "grizzlies",
+            "memphis grizzlies",
+            "the grizzlies"
+          ],
+          "connection": "The Memphis Grizzlies."
+        },
+        {
+          "category": "Culture",
+          "difficulty": 4,
+          "question": "Which blues legend, who named every one of his guitars \"Lucille,\" opened his namesake club on Beale Street?",
+          "options": [
+            "Muddy Waters",
+            "Howlin' Wolf",
+            "B.B. King",
+            "John Lee Hooker"
+          ],
+          "correct": 2,
+          "accept": [
+            "bb king",
+            "b b king",
+            "b.b. king",
+            "king"
+          ],
+          "connection": "B.B. King — the King of the Blues, on Memphis's most famous street."
+        },
+        {
+          "category": "History",
+          "difficulty": 5,
+          "question": "Martin Luther King Jr. was assassinated in 1968 at which Memphis motel, now the National Civil Rights Museum?",
+          "options": [
+            "The Peabody",
+            "The Lorraine Motel",
+            "The Chisca",
+            "The Claridge"
+          ],
+          "correct": 1,
+          "accept": [
+            "lorraine motel",
+            "the lorraine",
+            "lorraine"
+          ],
+          "connection": "The Lorraine Motel — Memphis carries heavy history."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-17",
+      "theme": "Pirates",
+      "themeAnswers": [
+        "pirates",
+        "pirate",
+        "piracy"
+      ],
+      "themeBlurb": "A rum-soaked captain, a Pittsburgh ball club, Blackbeard's real name, a sunken den of thieves, and an operetta — today sailed under the black flag.",
+      "questions": [
+        {
+          "category": "Movies",
+          "difficulty": 1,
+          "question": "Johnny Depp plays Captain Jack Sparrow in which film franchise?",
+          "options": [
+            "Master and Commander",
+            "Pirates of the Caribbean",
+            "Cutthroat Island",
+            "Hook"
+          ],
+          "correct": 1,
+          "accept": [
+            "pirates of the caribbean",
+            "potc"
+          ],
+          "connection": "Pirates of the Caribbean."
+        },
+        {
+          "category": "Sports",
+          "difficulty": 2,
+          "question": "Which MLB team has called Pittsburgh home since the 1880s?",
+          "options": [
+            "The Brewers",
+            "The Pirates",
+            "The Reds",
+            "The Orioles"
+          ],
+          "correct": 1,
+          "accept": [
+            "pirates",
+            "pittsburgh pirates",
+            "the pirates"
+          ],
+          "connection": "The Pittsburgh Pirates."
+        },
+        {
+          "category": "History",
+          "difficulty": 3,
+          "question": "The pirate Blackbeard, terror of the Carolinas, went by what real name?",
+          "options": [
+            "Henry Morgan",
+            "Edward Teach",
+            "Bartholomew Roberts",
+            "William Kidd"
+          ],
+          "correct": 1,
+          "accept": [
+            "edward teach",
+            "teach",
+            "edward thatch"
+          ],
+          "connection": "Edward Teach — smoke in his beard, fear on the seas."
+        },
+        {
+          "category": "Geography",
+          "difficulty": 4,
+          "question": "Which Jamaican pirate haven, once called \"the wickedest city on Earth,\" sank into the sea in a 1692 earthquake?",
+          "options": [
+            "Tortuga",
+            "Nassau",
+            "Port Royal",
+            "Havana"
+          ],
+          "correct": 2,
+          "accept": [
+            "port royal"
+          ],
+          "connection": "Port Royal — the pirate capital the ocean swallowed."
+        },
+        {
+          "category": "Music",
+          "difficulty": 5,
+          "question": "\"I am the very model of a modern Major-General\" comes from which Gilbert and Sullivan operetta?",
+          "options": [
+            "H.M.S. Pinafore",
+            "The Mikado",
+            "The Pirates of Penzance",
+            "Iolanthe"
+          ],
+          "correct": 2,
+          "accept": [
+            "pirates of penzance",
+            "the pirates of penzance",
+            "penzance"
+          ],
+          "connection": "The Pirates of Penzance."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-18",
+      "theme": "Coffee",
+      "themeAnswers": [
+        "coffee",
+        "caffeine",
+        "coffee culture"
+      ],
+      "themeBlurb": "A stimulant, a first mate's name on every corner, a sitcom couch, a Brazilian harvest, and a friar's hood — today was fully caffeinated.",
+      "questions": [
+        {
+          "category": "Science",
+          "difficulty": 1,
+          "question": "What is the natural stimulant found in coffee?",
+          "options": [
+            "Nicotine",
+            "Taurine",
+            "Caffeine",
+            "Theanine"
+          ],
+          "correct": 2,
+          "accept": [
+            "caffeine",
+            "caffiene"
+          ],
+          "connection": "Caffeine — the world's favorite drug."
+        },
+        {
+          "category": "Business",
+          "difficulty": 2,
+          "question": "Which Seattle coffee giant is named after the first mate in Moby-Dick?",
+          "options": [
+            "Peet's",
+            "Starbucks",
+            "Dunkin'",
+            "Tim Hortons"
+          ],
+          "correct": 1,
+          "accept": [
+            "starbucks"
+          ],
+          "connection": "Starbucks — Starbuck was Ahab's first mate."
+        },
+        {
+          "category": "TV",
+          "difficulty": 3,
+          "question": "Central Perk is the coffeehouse where the gang gathers in which sitcom?",
+          "options": [
+            "Seinfeld",
+            "How I Met Your Mother",
+            "Friends",
+            "Frasier"
+          ],
+          "correct": 2,
+          "accept": [
+            "friends"
+          ],
+          "connection": "Friends — the orange couch at Central Perk."
+        },
+        {
+          "category": "Geography",
+          "difficulty": 4,
+          "question": "Which country has been the world's largest coffee producer for over 150 years?",
+          "options": [
+            "Colombia",
+            "Vietnam",
+            "Ethiopia",
+            "Brazil"
+          ],
+          "correct": 3,
+          "accept": [
+            "brazil",
+            "brasil"
+          ],
+          "connection": "Brazil — roughly a third of the world's beans."
+        },
+        {
+          "category": "Language",
+          "difficulty": 5,
+          "question": "\"Cappuccino\" gets its name from the brown hooded robes of which order of friars?",
+          "options": [
+            "The Franciscans",
+            "The Capuchins",
+            "The Benedictines",
+            "The Jesuits"
+          ],
+          "correct": 1,
+          "accept": [
+            "capuchins",
+            "the capuchins",
+            "capuchin",
+            "capuchin friars",
+            "capuchin monks"
+          ],
+          "connection": "The Capuchins — the drink matched the color of the robe."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-19",
+      "theme": "Flash",
+      "themeAnswers": [
+        "flash",
+        "things called flash",
+        "the flash"
+      ],
+      "themeBlurb": "The fastest man alive, light outrunning sound, a crowd that vanishes, a Queen-scored space hero, and a dead web plugin — today was gone in a flash.",
+      "questions": [
+        {
+          "category": "Comics",
+          "difficulty": 1,
+          "question": "Which DC superhero is known as \"the fastest man alive\"?",
+          "options": [
+            "Quicksilver",
+            "Superman",
+            "The Flash",
+            "Green Lantern"
+          ],
+          "correct": 2,
+          "accept": [
+            "flash",
+            "the flash",
+            "barry allen"
+          ],
+          "connection": "The Flash."
+        },
+        {
+          "category": "Science",
+          "difficulty": 2,
+          "question": "You see lightning before you hear thunder because light travels faster than what?",
+          "options": [
+            "Heat",
+            "Sound",
+            "Wind",
+            "Electricity"
+          ],
+          "correct": 1,
+          "accept": [
+            "sound",
+            "soundwaves",
+            "sound waves"
+          ],
+          "connection": "The flash arrives first — light beats sound by a mile. Literally."
+        },
+        {
+          "category": "Culture",
+          "difficulty": 3,
+          "question": "A group that suddenly assembles in public, performs, and quickly disperses is called a what?",
+          "options": [
+            "A pop-up",
+            "A flash mob",
+            "A swarm",
+            "A happening"
+          ],
+          "correct": 1,
+          "accept": [
+            "flash mob",
+            "flashmob",
+            "a flash mob"
+          ],
+          "connection": "A flash mob."
+        },
+        {
+          "category": "Movies",
+          "difficulty": 4,
+          "question": "Queen recorded the thundering theme song for which 1980 space-opera film?",
+          "options": [
+            "Superman II",
+            "Flash Gordon",
+            "The Empire Strikes Back",
+            "Battlestar Galactica"
+          ],
+          "correct": 1,
+          "accept": [
+            "flash gordon"
+          ],
+          "connection": "Flash Gordon — Flash! Ah-ahhh!"
+        },
+        {
+          "category": "Internet",
+          "difficulty": 5,
+          "question": "Which Adobe plugin, which once powered most web games and animations, was officially killed at the end of 2020?",
+          "options": [
+            "Shockwave",
+            "Silverlight",
+            "Flash",
+            "Java Applets"
+          ],
+          "correct": 2,
+          "accept": [
+            "flash",
+            "adobe flash",
+            "flash player"
+          ],
+          "connection": "Adobe Flash — an entire era of the internet, switched off."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-20",
+      "theme": "Cheese",
+      "themeAnswers": [
+        "cheese",
+        "cheeses",
+        "types of cheese"
+      ],
+      "themeBlurb": "A pizza topping, an English village, gas bubbles, a cheese-mad inventor and his dog, and a French president's lament — say cheese.",
+      "questions": [
+        {
+          "category": "Food",
+          "difficulty": 1,
+          "question": "Which stretchy Italian cheese is the classic pizza topping?",
+          "options": [
+            "Parmesan",
+            "Ricotta",
+            "Mozzarella",
+            "Provolone"
+          ],
+          "correct": 2,
+          "accept": [
+            "mozzarella",
+            "mozarella",
+            "mozzarela"
+          ],
+          "connection": "Mozzarella."
+        },
+        {
+          "category": "Geography",
+          "difficulty": 2,
+          "question": "Cheddar cheese takes its name from a village in which country?",
+          "options": [
+            "Ireland",
+            "England",
+            "Scotland",
+            "The Netherlands"
+          ],
+          "correct": 1,
+          "accept": [
+            "england",
+            "uk",
+            "united kingdom",
+            "britain",
+            "great britain"
+          ],
+          "connection": "Cheddar, Somerset — the village came first."
+        },
+        {
+          "category": "Science",
+          "difficulty": 3,
+          "question": "The holes in Swiss cheese are made by what?",
+          "options": [
+            "Air whipped in during churning",
+            "Gas released by bacteria",
+            "Salt crystals dissolving",
+            "Mold pockets collapsing"
+          ],
+          "correct": 1,
+          "accept": [
+            "bacteria",
+            "gas from bacteria",
+            "carbon dioxide",
+            "co2",
+            "gas released by bacteria"
+          ],
+          "connection": "Bacteria burping carbon dioxide — the holes are called 'eyes.'"
+        },
+        {
+          "category": "Movies",
+          "difficulty": 4,
+          "question": "Which cheese is the favorite of the inventor Wallace, of Wallace and Gromit?",
+          "options": [
+            "Stilton",
+            "Cheddar",
+            "Wensleydale",
+            "Gouda"
+          ],
+          "correct": 2,
+          "accept": [
+            "wensleydale",
+            "wensleydail"
+          ],
+          "connection": "Wensleydale — the films famously boosted real-world sales."
+        },
+        {
+          "category": "History",
+          "difficulty": 5,
+          "question": "\"How can anyone govern a nation that has hundreds of different cheeses?\" is a lament attributed to which French president?",
+          "options": [
+            "Napoleon III",
+            "Georges Pompidou",
+            "Charles de Gaulle",
+            "François Mitterrand"
+          ],
+          "correct": 2,
+          "accept": [
+            "de gaulle",
+            "charles de gaulle",
+            "degaulle"
+          ],
+          "connection": "Charles de Gaulle — France's cheese problem, stated by its president."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-21",
+      "tag": "brainrot",
+      "theme": "The letter W",
+      "themeAnswers": [
+        "w",
+        "the letter w",
+        "letter w",
+        "double u"
+      ],
+      "themeBlurb": "A win, a metal called Wolfram, a president called Dubya, Mario's evil twin, and a queen written in the stars — every rung today was a big W.",
+      "questions": [
+        {
+          "category": "Internet",
+          "difficulty": 1,
+          "question": "In slang, \"taking the W\" means taking the what?",
+          "options": [
+            "Wager",
+            "Win",
+            "Warning",
+            "Wheel"
+          ],
+          "correct": 1,
+          "accept": [
+            "win",
+            "the win",
+            "victory",
+            "a win"
+          ],
+          "connection": "W — the win. Its opposite is the L."
+        },
+        {
+          "category": "Science",
+          "difficulty": 2,
+          "question": "W is the chemical symbol for which metal, from its German name Wolfram?",
+          "options": [
+            "Tungsten",
+            "Titanium",
+            "Tin",
+            "Zinc"
+          ],
+          "correct": 0,
+          "accept": [
+            "tungsten"
+          ],
+          "connection": "Tungsten — W for Wolfram."
+        },
+        {
+          "category": "History",
+          "difficulty": 3,
+          "question": "Which US president was widely nicknamed \"Dubya\"?",
+          "options": [
+            "Woodrow Wilson",
+            "George W. Bush",
+            "William Taft",
+            "Warren Harding"
+          ],
+          "correct": 1,
+          "accept": [
+            "george w bush",
+            "bush",
+            "george bush",
+            "w bush",
+            "george w"
+          ],
+          "connection": "George W. Bush — the W said out loud, Texas style."
+        },
+        {
+          "category": "Gaming",
+          "difficulty": 4,
+          "question": "Which greedy, yellow-clad Nintendo character is Mario's mischievous rival — his very name an upside-down M?",
+          "options": [
+            "Waluigi",
+            "Bowser",
+            "Wario",
+            "King Boo"
+          ],
+          "correct": 2,
+          "accept": [
+            "wario"
+          ],
+          "connection": "Wario — flip the M, get a W."
+        },
+        {
+          "category": "Space",
+          "difficulty": 5,
+          "question": "Which constellation, shaped like a giant W, represents a vain queen of Greek myth?",
+          "options": [
+            "Andromeda",
+            "Cassiopeia",
+            "Lyra",
+            "Cygnus"
+          ],
+          "correct": 1,
+          "accept": [
+            "cassiopeia",
+            "cassiopea",
+            "casseopeia"
+          ],
+          "connection": "Cassiopeia — a W written across the northern sky."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-22",
+      "theme": "Jazz",
+      "themeAnswers": [
+        "jazz",
+        "jazz music",
+        "all that jazz"
+      ],
+      "themeBlurb": "A birthplace, a team that moved but kept the name, the first talkie, Fitzgerald's decade, and a guy thrown out a door — today swung.",
+      "questions": [
+        {
+          "category": "Music",
+          "difficulty": 1,
+          "question": "Jazz was born in the early 1900s in which US city?",
+          "options": [
+            "Chicago",
+            "New Orleans",
+            "Memphis",
+            "Kansas City"
+          ],
+          "correct": 1,
+          "accept": [
+            "new orleans",
+            "nola"
+          ],
+          "connection": "New Orleans — the cradle of jazz."
+        },
+        {
+          "category": "Sports",
+          "difficulty": 2,
+          "question": "Which NBA team keeps a musical name from its New Orleans origins, despite now playing in Salt Lake City?",
+          "options": [
+            "The Utah Jazz",
+            "The Utah Blues",
+            "The Utah Sound",
+            "The Utah Rhythm"
+          ],
+          "correct": 0,
+          "accept": [
+            "utah jazz",
+            "jazz",
+            "the jazz"
+          ],
+          "connection": "The Utah Jazz — the name never quite matched the mountains."
+        },
+        {
+          "category": "Movies",
+          "difficulty": 3,
+          "question": "What 1927 film, the first feature-length \"talkie,\" ended the silent era?",
+          "options": [
+            "Metropolis",
+            "The Jazz Singer",
+            "City Lights",
+            "Sunrise"
+          ],
+          "correct": 1,
+          "accept": [
+            "jazz singer",
+            "the jazz singer"
+          ],
+          "connection": "The Jazz Singer — the movies learned to talk."
+        },
+        {
+          "category": "Literature",
+          "difficulty": 4,
+          "question": "F. Scott Fitzgerald popularized what nickname for the 1920s era of flappers and speakeasies?",
+          "options": [
+            "The Roaring Renaissance",
+            "The Gilded Age",
+            "The Jazz Age",
+            "The Lost Decade"
+          ],
+          "correct": 2,
+          "accept": [
+            "jazz age",
+            "the jazz age"
+          ],
+          "connection": "The Jazz Age — Gatsby's decade."
+        },
+        {
+          "category": "TV",
+          "difficulty": 5,
+          "question": "On The Fresh Prince of Bel-Air, which recurring character gets repeatedly thrown out the Banks family's front door?",
+          "options": [
+            "Carlton",
+            "Jazz",
+            "Geoffrey",
+            "Ice Tray"
+          ],
+          "correct": 1,
+          "accept": [
+            "jazz",
+            "jazzy jeff"
+          ],
+          "connection": "Jazz — same jacket, same throw, every season."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-23",
+      "theme": "Spiders",
+      "themeAnswers": [
+        "spiders",
+        "spider",
+        "arachnids"
+      ],
+      "themeBlurb": "A web-slinger, eight legs, a fear with a fancy name, a literate barn spider, and Bowie's backing band — today crawled.",
+      "questions": [
+        {
+          "category": "Comics",
+          "difficulty": 1,
+          "question": "Photographer Peter Parker secretly fights crime as which superhero?",
+          "options": [
+            "Daredevil",
+            "Spider-Man",
+            "Ant-Man",
+            "Nightcrawler"
+          ],
+          "correct": 1,
+          "accept": [
+            "spiderman",
+            "spider man",
+            "spider-man"
+          ],
+          "connection": "Spider-Man."
+        },
+        {
+          "category": "Nature",
+          "difficulty": 2,
+          "question": "How many legs does a spider have?",
+          "options": [
+            "Six",
+            "Eight",
+            "Ten",
+            "Twelve"
+          ],
+          "correct": 1,
+          "accept": [
+            "8",
+            "eight"
+          ],
+          "connection": "Eight — two more than an insect, and the giveaway every time."
+        },
+        {
+          "category": "Language",
+          "difficulty": 3,
+          "question": "What is the scientific name for the fear of spiders?",
+          "options": [
+            "Entomophobia",
+            "Acrophobia",
+            "Arachnophobia",
+            "Herpetophobia"
+          ],
+          "correct": 2,
+          "accept": [
+            "arachnophobia",
+            "arachnaphobia"
+          ],
+          "connection": "Arachnophobia — from Arachne, the weaver of Greek myth."
+        },
+        {
+          "category": "Literature",
+          "difficulty": 4,
+          "question": "In E.B. White's classic, which spider spins words like \"SOME PIG\" into her web to save Wilbur?",
+          "options": [
+            "Matilda",
+            "Charlotte",
+            "Aragog",
+            "Shelob"
+          ],
+          "correct": 1,
+          "accept": [
+            "charlotte",
+            "charlottes web",
+            "charlotte a cavatica"
+          ],
+          "connection": "Charlotte — of Charlotte's Web."
+        },
+        {
+          "category": "Music",
+          "difficulty": 5,
+          "question": "David Bowie's Ziggy Stardust was backed by which band?",
+          "options": [
+            "The Diamond Dogs",
+            "The Spiders from Mars",
+            "The Thin White Dukes",
+            "The Starmen"
+          ],
+          "correct": 1,
+          "accept": [
+            "spiders from mars",
+            "the spiders from mars",
+            "spiders"
+          ],
+          "connection": "The Spiders from Mars."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-24",
+      "theme": "Ash",
+      "themeAnswers": [
+        "ash",
+        "ashes",
+        "things called ash"
+      ],
+      "themeBlurb": "A Pokémon trainer, a buried city — on the very anniversary of the eruption — a cricket urn, a smudged forehead, and the world tree. From dust to dust.",
+      "questions": [
+        {
+          "category": "Games",
+          "difficulty": 1,
+          "question": "Which Pokémon trainer from Pallet Town dreams of becoming a Pokémon Master?",
+          "options": [
+            "Gary Oak",
+            "Brock",
+            "Ash Ketchum",
+            "Red"
+          ],
+          "correct": 2,
+          "accept": [
+            "ash",
+            "ash ketchum"
+          ],
+          "connection": "Ash Ketchum — gotta catch 'em all."
+        },
+        {
+          "category": "History",
+          "difficulty": 2,
+          "question": "On August 24, 79 AD, Mount Vesuvius buried which Roman city in volcanic ash?",
+          "options": [
+            "Ostia",
+            "Pompeii",
+            "Capri",
+            "Ravenna"
+          ],
+          "correct": 1,
+          "accept": [
+            "pompeii",
+            "pompei"
+          ],
+          "connection": "Pompeii — buried 1,947 years ago today."
+        },
+        {
+          "category": "Sports",
+          "difficulty": 3,
+          "question": "England and Australia have contested which cricket series, named for a tiny urn, since 1882?",
+          "options": [
+            "The Ryder Cup",
+            "The Ashes",
+            "The Wisden Trophy",
+            "The Border-Gavaskar"
+          ],
+          "correct": 1,
+          "accept": [
+            "ashes",
+            "the ashes"
+          ],
+          "connection": "The Ashes — mourning 'the death of English cricket,' forever."
+        },
+        {
+          "category": "Culture",
+          "difficulty": 4,
+          "question": "Which Christian observance, marked with a smudge on the forehead, begins the season of Lent?",
+          "options": [
+            "Palm Sunday",
+            "Ash Wednesday",
+            "Good Friday",
+            "Epiphany"
+          ],
+          "correct": 1,
+          "accept": [
+            "ash wednesday"
+          ],
+          "connection": "Ash Wednesday."
+        },
+        {
+          "category": "Mythology",
+          "difficulty": 5,
+          "question": "Yggdrasil, the world tree of Norse mythology, is traditionally described as what kind of tree?",
+          "options": [
+            "An oak",
+            "A yew",
+            "An ash",
+            "An elm"
+          ],
+          "correct": 2,
+          "accept": [
+            "ash",
+            "ash tree",
+            "an ash"
+          ],
+          "connection": "An ash — the tree holding the nine worlds together."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-25",
+      "theme": "Monopoly",
+      "themeAnswers": [
+        "monopoly",
+        "the game monopoly",
+        "monopolies"
+      ],
+      "themeBlurb": "Two hundred dollars, a one-seller market, a New Jersey boardwalk, a forgotten inventor, and a fast-food promotion — do not pass GO.",
+      "questions": [
+        {
+          "category": "Board Games",
+          "difficulty": 1,
+          "question": "In Monopoly, how much money do you collect for passing GO?",
+          "options": [
+            "$100",
+            "$150",
+            "$200",
+            "$500"
+          ],
+          "correct": 2,
+          "accept": [
+            "200",
+            "200 dollars",
+            "two hundred",
+            "two hundred dollars",
+            "$200"
+          ],
+          "connection": "$200 — the game's heartbeat."
+        },
+        {
+          "category": "Business",
+          "difficulty": 2,
+          "question": "In economics, a market dominated by a single seller is called a what?",
+          "options": [
+            "An oligopoly",
+            "A cartel",
+            "A monopoly",
+            "A trust"
+          ],
+          "correct": 2,
+          "accept": [
+            "monopoly",
+            "a monopoly"
+          ],
+          "connection": "A monopoly — the game is named for the concept."
+        },
+        {
+          "category": "Geography",
+          "difficulty": 3,
+          "question": "The streets on the classic US Monopoly board are named after streets in which New Jersey city?",
+          "options": [
+            "Newark",
+            "Trenton",
+            "Atlantic City",
+            "Jersey City"
+          ],
+          "correct": 2,
+          "accept": [
+            "atlantic city"
+          ],
+          "connection": "Atlantic City — Boardwalk and Park Place are real places."
+        },
+        {
+          "category": "History",
+          "difficulty": 4,
+          "question": "Monopoly evolved from a 1904 board game by Lizzie Magie, designed to criticize land-grabbing. What was it called?",
+          "options": [
+            "The Banker's Game",
+            "The Landlord's Game",
+            "Rent Day",
+            "Property Rush"
+          ],
+          "correct": 1,
+          "accept": [
+            "landlords game",
+            "the landlords game",
+            "landlord game"
+          ],
+          "connection": "The Landlord's Game — invented to warn against monopolies, ironically."
+        },
+        {
+          "category": "Food",
+          "difficulty": 5,
+          "question": "Which fast-food chain has run a famous sticker-collecting promotion based on Monopoly since the 1980s?",
+          "options": [
+            "Burger King",
+            "Wendy's",
+            "McDonald's",
+            "KFC"
+          ],
+          "correct": 2,
+          "accept": [
+            "mcdonalds",
+            "mcdonald's",
+            "mickey ds"
+          ],
+          "connection": "McDonald's Monopoly — Boardwalk on a fry box."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-26",
+      "theme": "Dogs",
+      "themeAnswers": [
+        "dogs",
+        "dog",
+        "famous dogs"
+      ],
+      "themeBlurb": "A hundred and one puppies, a space pioneer, a three-headed guard, a one-hit wonder, and poker night on canvas — happy National Dog Day.",
+      "questions": [
+        {
+          "category": "Movies",
+          "difficulty": 1,
+          "question": "Which Disney film features Pongo, Perdita, and a very large number of spotted puppies?",
+          "options": [
+            "Lady and the Tramp",
+            "101 Dalmatians",
+            "Oliver & Company",
+            "Bolt"
+          ],
+          "correct": 1,
+          "accept": [
+            "101 dalmatians",
+            "one hundred and one dalmatians",
+            "dalmatians"
+          ],
+          "connection": "101 Dalmatians."
+        },
+        {
+          "category": "Space",
+          "difficulty": 2,
+          "question": "The first animal to orbit the Earth was a Soviet dog named what?",
+          "options": [
+            "Belka",
+            "Strelka",
+            "Laika",
+            "Zvezda"
+          ],
+          "correct": 2,
+          "accept": [
+            "laika",
+            "lika"
+          ],
+          "connection": "Laika — a Moscow stray who beat every human to orbit."
+        },
+        {
+          "category": "Mythology",
+          "difficulty": 3,
+          "question": "In Greek myth, what three-headed dog guards the entrance to the underworld?",
+          "options": [
+            "Orthrus",
+            "Cerberus",
+            "Fenrir",
+            "Anubis"
+          ],
+          "correct": 1,
+          "accept": [
+            "cerberus",
+            "kerberos"
+          ],
+          "connection": "Cerberus — Hades' very good boy."
+        },
+        {
+          "category": "Music",
+          "difficulty": 4,
+          "question": "\"Who Let the Dogs Out\" was a 2000 smash for which group?",
+          "options": [
+            "Lou Bega",
+            "Baha Men",
+            "Smash Mouth",
+            "OutKast"
+          ],
+          "correct": 1,
+          "accept": [
+            "baha men",
+            "the baha men",
+            "bahamen"
+          ],
+          "connection": "Baha Men — the question nobody has ever answered."
+        },
+        {
+          "category": "Art",
+          "difficulty": 5,
+          "question": "The famous series of paintings showing dogs playing poker was created by which American artist?",
+          "options": [
+            "Norman Rockwell",
+            "Grant Wood",
+            "C.M. Coolidge",
+            "Edward Hopper"
+          ],
+          "correct": 2,
+          "accept": [
+            "coolidge",
+            "cm coolidge",
+            "c m coolidge",
+            "cassius coolidge",
+            "cassius marcellus coolidge"
+          ],
+          "connection": "C.M. Coolidge — kitsch immortality, one poker table at a time."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-27",
+      "theme": "Trains",
+      "themeAnswers": [
+        "trains",
+        "train",
+        "railways",
+        "railroads"
+      ],
+      "themeBlurb": "A magical platform, a golden spike, a luxury line to Istanbul, a Japanese bullet, and a swing-era hit — all aboard.",
+      "questions": [
+        {
+          "category": "Movies",
+          "difficulty": 1,
+          "question": "The Hogwarts Express departs from Platform 9¾ at which London station?",
+          "options": [
+            "Paddington",
+            "Victoria",
+            "King's Cross",
+            "Waterloo"
+          ],
+          "correct": 2,
+          "accept": [
+            "kings cross",
+            "king's cross",
+            "kings cross station"
+          ],
+          "connection": "King's Cross — run at the wall between platforms 9 and 10."
+        },
+        {
+          "category": "History",
+          "difficulty": 2,
+          "question": "The golden spike driven in Utah in 1869 completed what American engineering feat?",
+          "options": [
+            "The Erie Canal",
+            "The Transcontinental Railroad",
+            "The Hoover Dam",
+            "Route 66"
+          ],
+          "correct": 1,
+          "accept": [
+            "transcontinental railroad",
+            "the transcontinental railroad",
+            "transcontinental railway"
+          ],
+          "connection": "The Transcontinental Railroad — coast to coast by rail."
+        },
+        {
+          "category": "Geography",
+          "difficulty": 3,
+          "question": "Which legendary luxury train ran between Paris and Istanbul?",
+          "options": [
+            "The Blue Train",
+            "The Orient Express",
+            "The Flying Scotsman",
+            "The Trans-Siberian"
+          ],
+          "correct": 1,
+          "accept": [
+            "orient express",
+            "the orient express"
+          ],
+          "connection": "The Orient Express — glamour, spies, and one famous fictional murder."
+        },
+        {
+          "category": "Science",
+          "difficulty": 4,
+          "question": "Japan's high-speed bullet trains are known by what Japanese name?",
+          "options": [
+            "Maglev",
+            "Shinkansen",
+            "Kodama",
+            "Hikari"
+          ],
+          "correct": 1,
+          "accept": [
+            "shinkansen",
+            "shinkasen"
+          ],
+          "connection": "Shinkansen — 200 mph on rails since 1964."
+        },
+        {
+          "category": "Music",
+          "difficulty": 5,
+          "question": "Which Glenn Miller swing hit shares its name with a Tennessee city and its famous train?",
+          "options": [
+            "In the Mood",
+            "Chattanooga Choo Choo",
+            "Take the 'A' Train",
+            "Tuxedo Junction"
+          ],
+          "correct": 1,
+          "accept": [
+            "chattanooga choo choo",
+            "chatanooga choo choo",
+            "chattanooga"
+          ],
+          "connection": "Chattanooga Choo Choo — track 29."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-28",
+      "tag": "brainrot",
+      "theme": "Drip",
+      "themeAnswers": [
+        "drip",
+        "the drip",
+        "dripping"
+      ],
+      "themeBlurb": "Style, splattered canvases, cave ceilings, slow coffee, and an ancient clock that counted falling water — today had drip in every sense.",
+      "questions": [
+        {
+          "category": "Internet",
+          "difficulty": 1,
+          "question": "In slang, complimenting someone's \"drip\" means praising their what?",
+          "options": [
+            "Dance moves",
+            "Style and outfit",
+            "Cooking",
+            "Confidence"
+          ],
+          "correct": 1,
+          "accept": [
+            "style",
+            "outfit",
+            "fashion",
+            "clothes",
+            "their style",
+            "style and outfit",
+            "fit"
+          ],
+          "connection": "Drip — when the fit is so good it's dripping."
+        },
+        {
+          "category": "Art",
+          "difficulty": 2,
+          "question": "Which American painter became famous for flinging and dripping paint onto huge canvases?",
+          "options": [
+            "Andy Warhol",
+            "Mark Rothko",
+            "Jackson Pollock",
+            "Roy Lichtenstein"
+          ],
+          "correct": 2,
+          "accept": [
+            "pollock",
+            "jackson pollock",
+            "pollack"
+          ],
+          "connection": "Jackson Pollock — drip painting, before it meant outfits."
+        },
+        {
+          "category": "Science",
+          "difficulty": 3,
+          "question": "Which cave formations hang from the ceiling, built drop by drop from dripping mineral water?",
+          "options": [
+            "Stalagmites",
+            "Stalactites",
+            "Geodes",
+            "Flowstones"
+          ],
+          "correct": 1,
+          "accept": [
+            "stalactites",
+            "stalactite",
+            "stalagtites"
+          ],
+          "connection": "Stalactites — hold tight to the ceiling. The drip built them."
+        },
+        {
+          "category": "Food",
+          "difficulty": 4,
+          "question": "Which brewing method makes coffee by slowly passing hot water through grounds in a filter?",
+          "options": [
+            "French press",
+            "Espresso",
+            "Drip brewing",
+            "Cold brew"
+          ],
+          "correct": 2,
+          "accept": [
+            "drip",
+            "drip brewing",
+            "drip coffee",
+            "pour over",
+            "pourover"
+          ],
+          "connection": "Drip coffee — the office standard."
+        },
+        {
+          "category": "History",
+          "difficulty": 5,
+          "question": "What was the ancient water clock — which measured time by dripping water — called?",
+          "options": [
+            "An astrolabe",
+            "A clepsydra",
+            "A sundial",
+            "An hourglass"
+          ],
+          "correct": 1,
+          "accept": [
+            "clepsydra",
+            "water clock",
+            "clepsidra"
+          ],
+          "connection": "The clepsydra — literally 'water thief.' Time measured in drips."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-29",
+      "theme": "Chocolate",
+      "themeAnswers": [
+        "chocolate",
+        "cocoa",
+        "cacao"
+      ],
+      "themeBlurb": "A sacred bean, a golden ticket, the Swiss appetite, Aztec currency, and the reason your dog can't have any — today was delicious.",
+      "questions": [
+        {
+          "category": "Food",
+          "difficulty": 1,
+          "question": "Chocolate is made from the beans of which tree?",
+          "options": [
+            "The carob tree",
+            "The cacao tree",
+            "The coffee tree",
+            "The vanilla orchid"
+          ],
+          "correct": 1,
+          "accept": [
+            "cacao",
+            "cocoa",
+            "cacao tree",
+            "the cacao tree",
+            "cocoa tree"
+          ],
+          "connection": "Cacao — Theobroma cacao, 'food of the gods.'"
+        },
+        {
+          "category": "Movies",
+          "difficulty": 2,
+          "question": "Charlie Bucket finds a golden ticket to whose chocolate factory?",
+          "options": [
+            "Augustus Gloop's",
+            "Willy Wonka's",
+            "Arthur Slugworth's",
+            "Bill Baker's"
+          ],
+          "correct": 1,
+          "accept": [
+            "willy wonka",
+            "wonka",
+            "wonkas"
+          ],
+          "connection": "Willy Wonka — the chocolate factory itself."
+        },
+        {
+          "category": "Geography",
+          "difficulty": 3,
+          "question": "Which European country famously eats the most chocolate per person?",
+          "options": [
+            "Belgium",
+            "France",
+            "Switzerland",
+            "Austria"
+          ],
+          "correct": 2,
+          "accept": [
+            "switzerland",
+            "swiss"
+          ],
+          "connection": "Switzerland — roughly 20 pounds per person a year."
+        },
+        {
+          "category": "History",
+          "difficulty": 4,
+          "question": "Which civilization drank bitter chocolate and used cacao beans as actual currency?",
+          "options": [
+            "The Romans",
+            "The Aztecs",
+            "The Vikings",
+            "The Persians"
+          ],
+          "correct": 1,
+          "accept": [
+            "aztecs",
+            "the aztecs",
+            "aztec"
+          ],
+          "connection": "The Aztecs — money that literally grew on trees."
+        },
+        {
+          "category": "Science",
+          "difficulty": 5,
+          "question": "Chocolate is toxic to dogs because of which compound?",
+          "options": [
+            "Capsaicin",
+            "Theobromine",
+            "Solanine",
+            "Tannin"
+          ],
+          "correct": 1,
+          "accept": [
+            "theobromine"
+          ],
+          "connection": "Theobromine — humans metabolize it easily; dogs can't."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-30",
+      "theme": "Mars",
+      "themeAnswers": [
+        "mars",
+        "the planet mars",
+        "things called mars"
+      ],
+      "themeBlurb": "A red planet, a war god, a pop hitmaker, a candy empire, and two moons named Fear and Dread — today was out of this world.",
+      "questions": [
+        {
+          "category": "Space",
+          "difficulty": 1,
+          "question": "Iron oxide dust gives which planet its famous rusty color?",
+          "options": [
+            "Venus",
+            "Jupiter",
+            "Mars",
+            "Mercury"
+          ],
+          "correct": 2,
+          "accept": [
+            "mars"
+          ],
+          "connection": "Mars — rusted red by iron oxide."
+        },
+        {
+          "category": "Mythology",
+          "difficulty": 2,
+          "question": "In Roman mythology, Mars was the god of what?",
+          "options": [
+            "The sea",
+            "War",
+            "The harvest",
+            "The forge"
+          ],
+          "correct": 1,
+          "accept": [
+            "war"
+          ],
+          "connection": "Mars — Rome's god of war, the planet's namesake."
+        },
+        {
+          "category": "Music",
+          "difficulty": 3,
+          "question": "\"Just the Way You Are\" and \"24K Magic\" are hits by which artist?",
+          "options": [
+            "The Weeknd",
+            "Usher",
+            "Bruno Mars",
+            "Jason Derulo"
+          ],
+          "correct": 2,
+          "accept": [
+            "bruno mars",
+            "bruno"
+          ],
+          "connection": "Bruno Mars."
+        },
+        {
+          "category": "Food",
+          "difficulty": 4,
+          "question": "Which family-owned candy giant makes M&M's, Snickers, and Twix?",
+          "options": [
+            "Hershey",
+            "Nestlé",
+            "Mars",
+            "Mondelez"
+          ],
+          "correct": 2,
+          "accept": [
+            "mars",
+            "mars inc",
+            "mars incorporated"
+          ],
+          "connection": "Mars, Incorporated — a candy empire with a planetary name."
+        },
+        {
+          "category": "Astronomy",
+          "difficulty": 5,
+          "question": "Mars has two small moons: Phobos and which other?",
+          "options": [
+            "Triton",
+            "Deimos",
+            "Io",
+            "Charon"
+          ],
+          "correct": 1,
+          "accept": [
+            "deimos"
+          ],
+          "connection": "Deimos — with Phobos, 'Fear' and 'Dread' orbit the war god."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-31",
+      "theme": "Orange",
+      "themeAnswers": [
+        "orange",
+        "the color orange",
+        "oranges"
+      ],
+      "themeBlurb": "A vitamin, a royal house, a Kubrick nightmare, a prison drama, and a chicken-or-egg question about the word itself — today ends August in orange.",
+      "questions": [
+        {
+          "category": "Food",
+          "difficulty": 1,
+          "question": "Oranges are famously packed with which vitamin?",
+          "options": [
+            "Vitamin A",
+            "Vitamin B12",
+            "Vitamin C",
+            "Vitamin D"
+          ],
+          "correct": 2,
+          "accept": [
+            "vitamin c",
+            "c"
+          ],
+          "connection": "Vitamin C — the orange's claim to fame."
+        },
+        {
+          "category": "History",
+          "difficulty": 2,
+          "question": "The Dutch royal family belongs to which house, sharing its name with a color?",
+          "options": [
+            "The House of Orange",
+            "The House of Bourbon",
+            "The House of Tudor",
+            "The House of Habsburg"
+          ],
+          "correct": 0,
+          "accept": [
+            "orange",
+            "house of orange",
+            "orange nassau",
+            "the house of orange"
+          ],
+          "connection": "The House of Orange — why the Netherlands plays in orange."
+        },
+        {
+          "category": "Movies",
+          "difficulty": 3,
+          "question": "Complete the title of Stanley Kubrick's 1971 dystopian film: \"A Clockwork ___\"",
+          "options": [
+            "Empire",
+            "Orange",
+            "Heart",
+            "Sunset"
+          ],
+          "correct": 1,
+          "accept": [
+            "orange",
+            "a clockwork orange",
+            "clockwork orange"
+          ],
+          "connection": "A Clockwork Orange."
+        },
+        {
+          "category": "TV",
+          "difficulty": 4,
+          "question": "The series \"Orange Is the New Black\" is set inside what kind of institution?",
+          "options": [
+            "A hospital",
+            "A women's prison",
+            "A law firm",
+            "A fashion house"
+          ],
+          "correct": 1,
+          "accept": [
+            "prison",
+            "a prison",
+            "womens prison",
+            "a womens prison",
+            "jail",
+            "federal prison"
+          ],
+          "connection": "A women's prison — the orange is the jumpsuit."
+        },
+        {
+          "category": "Language",
+          "difficulty": 5,
+          "question": "In English, which came first: orange the fruit or orange the color?",
+          "options": [
+            "The color",
+            "The fruit",
+            "Both at once",
+            "Neither — it was a place name"
+          ],
+          "correct": 1,
+          "accept": [
+            "fruit",
+            "the fruit"
+          ],
+          "connection": "The fruit — for centuries, the color was just called 'yellow-red.'"
         }
       ]
     }

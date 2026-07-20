@@ -1236,11 +1236,6 @@ body {
   border: 1.5px solid color-mix(in srgb, var(--rail) 55%, transparent);
   box-shadow: 0 2px 4px rgba(0,0,0,0.25);
 }
-.w-rung[data-rung="1"] { bottom: calc(var(--seg, 300px) * 1); }
-.w-rung[data-rung="2"] { bottom: calc(var(--seg, 300px) * 2); }
-.w-rung[data-rung="3"] { bottom: calc(var(--seg, 300px) * 3); }
-.w-rung[data-rung="4"] { bottom: calc(var(--seg, 300px) * 4); }
-.w-rung[data-rung="5"] { bottom: calc(var(--seg, 300px) * 5); }
 
 .w-rung.active {
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--w-accent) 45%, transparent), 0 2px 4px rgba(0,0,0,0.25);
@@ -2462,3 +2457,54 @@ body {
   margin-top: 5px;
 }
 .lb-pin-empty { border-top-style: solid; }
+
+/* ==========================================================================
+   v9.3 — continuous ladder structure
+   ========================================================================== */
+
+/* Rails + background rungs from ground to summit. Same coordinate space and
+   pan as the scoring rungs, so the climber is always ON the ladder. */
+.w-ladder {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 104px; /* scoring rungs are 84px — rails sit just outside them */
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 1;
+}
+/* the two rails */
+.w-ladder::before,
+.w-ladder::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  border-radius: 3px;
+  background: linear-gradient(
+    to right,
+    rgba(12, 14, 22, 0.68),
+    rgba(88, 96, 118, 0.55) 45%,
+    rgba(12, 14, 22, 0.68)
+  );
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.35);
+}
+.w-ladder::before { left: 6px; }
+.w-ladder::after { right: 6px; }
+
+/* background rungs: present but quiet, so the five scoring rungs still read */
+.w-lrung {
+  position: absolute;
+  left: 13px;
+  right: 13px;
+  height: 5px;
+  border-radius: 3px;
+  background: rgba(146, 156, 178, 0.30);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+}
+
+/* scoring rungs and climber sit above the structure */
+.w-rung { z-index: 2; }
+.w-summit { z-index: 2; }
+.climber { z-index: 3; }

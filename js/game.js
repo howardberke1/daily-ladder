@@ -304,6 +304,8 @@ export class Game {
       stage.style.setProperty("--shift", `${cam}px`);
     }
 
+    this.buildLadderStructure(stage);
+
     // Rungs sit at the altitude you actually reached, so the ladder itself
     // records the run: tight cluster = a slog, big gaps = a strong climb.
     document.querySelectorAll(".w-rung").forEach((el) => {
@@ -336,6 +338,39 @@ export class Game {
     this.updateWeather(progress);
     this.renderGrip();
     this.animateClimb();
+  }
+
+  /**
+   * The continuous ladder: two rails and evenly spaced background rungs
+   * running from the ground to the summit platform (plus a little overshoot
+   * for the bonus scramble). The five scoring rungs are highlighted markers
+   * *on* this structure — without it, a strong climber tops the last scoring
+   * rung and hauls himself into empty sky, which is exactly the bug.
+   * Rebuilt only when the segment size changes (i.e. on resize).
+   */
+  buildLadderStructure(stage) {
+    const host = $("w-ladder");
+    if (!host || !stage?.style?.getPropertyValue) return;
+
+    const seg = parseFloat(stage.style.getPropertyValue("--seg")) || 300;
+    const gh = parseFloat(stage.style.getPropertyValue("--gh")) || 140;
+    const key = `${Math.round(seg)}:${Math.round(gh)}`;
+    if (host.dataset.ladder === key) return;
+
+    // ground → summit + bonus overshoot, in the same coordinate space as rungs
+    const topUnits = SUMMIT_UNITS + BONUS_UNITS + 0.4;
+    const height = topUnits * seg + gh * 0.12;
+    host.style.height = `${Math.round(height)}px`;
+
+    // a background rung every half segment keeps the structure visually
+    // continuous at every altitude the climber can occupy
+    const stepUnits = 0.5;
+    let bars = "";
+    for (let u = 0; u <= topUnits; u += stepUnits) {
+      bars += `<div class="w-lrung" style="bottom:${Math.round(u * seg + gh * 0.12)}px"></div>`;
+    }
+    host.innerHTML = bars;
+    host.dataset.ladder = key;
   }
 
   renderGrip() {
@@ -440,7 +475,8 @@ export class Game {
     const raw = $("q-input").value;
     if (!raw.trim()) return;
 
-    if (answerMatches(raw, q.options[q.correct], q.accept)) {
+    const wrongs = q.options.filter((_, i) => i !== q.correct);
+    if (answerMatches(raw, q.options[q.correct], q.accept, wrongs)) {
       this.succeed(3, "green", `Typed it — full 3 points.`);
     } else {
       this.state.typedDone = true;

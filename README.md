@@ -156,6 +156,32 @@ than just share with friends).
 bash scripts/package.sh     # validates, then writes daily-ladder-v0.8.0.zip
 ```
 
+## Answer matching
+
+`js/match.js` grades typed guesses on a simple philosophy: **knowing the answer
+should count; typing should not be the test.** Tolerance scales with length —
+answers of 5+ letters forgive 1 typo, 8+ forgive 2, 12+ forgive 3. Answers of
+4 letters or fewer must be exact, because at that size one edit is usually a
+different word ("Mars"/"Mans"), not a typo. Transpositions count as one edit,
+accents and punctuation are stripped, π becomes "pi", and misspelled surnames
+still land ("armstong" → Neil Armstrong).
+
+The crucial rule is **comparative**: a fuzzy guess only counts if it is
+*strictly closer* to the right answer than to any wrong option, and typing a
+distractor verbatim is always wrong. So "vitamn c" passes while "Vitamin A"
+fails, and "Stalagmites" can never sneak into "Stalactites." Equidistant
+hybrids ("stalagtites") are rejected — when the distinguishing letter *is* the
+typo, no grader can know what the player meant, and ties go against the guess.
+The contract lives in a 255-question audit plus 18 unit cases (smoke11).
+
+## Content pipeline
+
+`data/puzzles.json` currently runs **2026-07-12 → 2026-08-31** (51 puzzles).
+Every Friday is tagged `brainrot`. Restock before the end date — the game
+shows an empty screen the day after the last puzzle. `node scripts/puzzle.mjs
+validate` enforces structure; the audit script above catches cross-matching
+options and duplicate questions.
+
 ## Leaderboards at scale
 
 Boards show the **top 20** in a scroll panel — the query is limited, so it
@@ -229,6 +255,18 @@ where you fell.
 
 The game rules are unchanged: you still never fail out, scoring is identical.
 Only the telling changed.
+
+The ladder itself is **continuous**: two rails plus a background rung every
+half segment, running from the ground past the summit (`buildLadderStructure`
+in game.js — rebuilt only on resize). The five scoring rungs are highlighted
+markers *on* that structure. Sized to `SUMMIT_UNITS + BONUS_UNITS + 0.4`, so
+no possible climb — even a perfect run plus the theme bonus — can top out
+above the structure and leave the climber hanging in empty sky.
+
+Note for future CSS: rung positions are driven by the `--rung-units` custom
+property on `.w-rung`. Don't add per-rung attribute-selector position rules
+(`.w-rung[data-rung="1"] { bottom: ... }`) — their higher specificity silently
+overrides the altitude rule, which is exactly the bug 0.9.6 fixed.
 
 Weather answers to performance too (`gripLevel()`): climb clean and the sky
 settles; keep missing and particles thicken and the vignette closes in. The
