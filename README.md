@@ -268,6 +268,13 @@ property on `.w-rung`. Don't add per-rung attribute-selector position rules
 (`.w-rung[data-rung="1"] { bottom: ... }`) — their higher specificity silently
 overrides the altitude rule, which is exactly the bug 0.9.6 fixed.
 
+The rails and rung texture (`.w-rail`, `.w-minor-rungs`) get their height from
+`--ladder-units`, computed in `sizeLadder()` as summit + bonus + the climber's
+screen offset + margin. Never hardcode a rail height: the original 6.6-segment
+cap was sized for the pre-0.9.1 climb and ended in mid-air once altitude
+doubled (fixed in 0.9.7). There is exactly ONE ladder structure — if you add
+climb visuals, extend these elements rather than adding a parallel system.
+
 Weather answers to performance too (`gripLevel()`): climb clean and the sky
 settles; keep missing and particles thicken and the vignette closes in. The
 grip meter on the left drains as you miss — visible stakes, never a fail state.

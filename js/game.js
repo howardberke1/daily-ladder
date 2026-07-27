@@ -302,9 +302,8 @@ export class Game {
       const cam = this.currentUnits() * seg;
       world.style.setProperty("--cam", `${cam}px`);
       stage.style.setProperty("--shift", `${cam}px`);
+      this.sizeLadder(stage, seg, gh);
     }
-
-    this.buildLadderStructure(stage);
 
     // Rungs sit at the altitude you actually reached, so the ladder itself
     // records the run: tight cluster = a slog, big gaps = a strong climb.
@@ -341,36 +340,19 @@ export class Game {
   }
 
   /**
-   * The continuous ladder: two rails and evenly spaced background rungs
-   * running from the ground to the summit platform (plus a little overshoot
-   * for the bonus scramble). The five scoring rungs are highlighted markers
-   * *on* this structure — without it, a strong climber tops the last scoring
-   * rung and hauls himself into empty sky, which is exactly the bug.
-   * Rebuilt only when the segment size changes (i.e. on resize).
+   * Sizes the ladder so it always outruns the climber.
+   *
+   * The rails and rung texture are CSS; their height is (--seg × --ladder-units).
+   * The units must exceed the maximum *visible* altitude: the summit, plus the
+   * theme-bonus scramble, plus the climber's fixed screen offset above the
+   * camera line (he sits at 31% of the stage, so at max camera pan his hands
+   * are nearly a full ground-height above the top rung line), plus reach room.
+   * Undersizing this is exactly the "climbing into thin air" bug.
    */
-  buildLadderStructure(stage) {
-    const host = $("w-ladder");
-    if (!host || !stage?.style?.getPropertyValue) return;
-
-    const seg = parseFloat(stage.style.getPropertyValue("--seg")) || 300;
-    const gh = parseFloat(stage.style.getPropertyValue("--gh")) || 140;
-    const key = `${Math.round(seg)}:${Math.round(gh)}`;
-    if (host.dataset.ladder === key) return;
-
-    // ground → summit + bonus overshoot, in the same coordinate space as rungs
-    const topUnits = SUMMIT_UNITS + BONUS_UNITS + 0.4;
-    const height = topUnits * seg + gh * 0.12;
-    host.style.height = `${Math.round(height)}px`;
-
-    // a background rung every half segment keeps the structure visually
-    // continuous at every altitude the climber can occupy
-    const stepUnits = 0.5;
-    let bars = "";
-    for (let u = 0; u <= topUnits; u += stepUnits) {
-      bars += `<div class="w-lrung" style="bottom:${Math.round(u * seg + gh * 0.12)}px"></div>`;
-    }
-    host.innerHTML = bars;
-    host.dataset.ladder = key;
+  sizeLadder(stage, seg, gh) {
+    const climberOffsetUnits = gh / seg;                 // screen offset → units
+    const units = SUMMIT_UNITS + BONUS_UNITS + climberOffsetUnits + 0.6;
+    stage.style.setProperty("--ladder-units", units.toFixed(2));
   }
 
   renderGrip() {

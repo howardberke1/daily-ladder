@@ -7,9 +7,10 @@
 // Displayed in the help modal footer so you can always confirm what's actually
 // live on dailyladder.app versus what you have locally.
 
-export const VERSION = "0.9.6";
+export const VERSION = "0.9.7";
 
 export const CHANGELOG = [
+  ["0.9.7", "Fix: ladder rails were capped at 6.6 segments — now sized past any climb"],
   ["0.9.6", "Continuous ladder: rails + rungs ground to summit; fixed rung positions"],
   ["0.9.5", "31 August puzzles + typo-tolerant comparative answer matching"],
   ["0.9.4", "Pinned own rank + player count on leaderboards; friends board capped"],

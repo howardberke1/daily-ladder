@@ -1219,7 +1219,11 @@ body {
   border-radius: 4px;
   background: linear-gradient(90deg, var(--rail), color-mix(in srgb, var(--rail) 70%, #000));
   bottom: calc(-0.4 * var(--gh, 140px));
-  height: calc(var(--seg, 300px) * 6.6 + var(--gh, 140px));
+  /* --ladder-units is set from JS to always exceed the maximum reachable
+     altitude (summit + theme bonus + the climber's screen offset). The old
+     hardcoded 6.6 was sized for the original 5-segment climb and ended in
+     mid-air once the meaningful climb doubled max altitude. */
+  height: calc(var(--seg, 300px) * var(--ladder-units, 13) + var(--gh, 140px));
   transform: translateY(0);
 }
 .w-rail-l { left: 0; }
@@ -1451,7 +1455,7 @@ body {
   position: absolute;
   left: 6px; right: 6px;
   bottom: calc(-0.4 * var(--gh, 140px));
-  height: calc(var(--seg, 300px) * 6.6 + var(--gh, 140px));
+  height: calc(var(--seg, 300px) * var(--ladder-units, 13) + var(--gh, 140px));
   background-image: repeating-linear-gradient(
     to top,
     var(--rung-minor) 0 7px,
@@ -2458,53 +2462,6 @@ body {
 }
 .lb-pin-empty { border-top-style: solid; }
 
-/* ==========================================================================
-   v9.3 — continuous ladder structure
-   ========================================================================== */
-
-/* Rails + background rungs from ground to summit. Same coordinate space and
-   pan as the scoring rungs, so the climber is always ON the ladder. */
-.w-ladder {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  width: 104px; /* scoring rungs are 84px — rails sit just outside them */
-  transform: translateX(-50%);
-  pointer-events: none;
-  z-index: 1;
-}
-/* the two rails */
-.w-ladder::before,
-.w-ladder::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 5px;
-  border-radius: 3px;
-  background: linear-gradient(
-    to right,
-    rgba(12, 14, 22, 0.68),
-    rgba(88, 96, 118, 0.55) 45%,
-    rgba(12, 14, 22, 0.68)
-  );
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.35);
-}
-.w-ladder::before { left: 6px; }
-.w-ladder::after { right: 6px; }
-
-/* background rungs: present but quiet, so the five scoring rungs still read */
-.w-lrung {
-  position: absolute;
-  left: 13px;
-  right: 13px;
-  height: 5px;
-  border-radius: 3px;
-  background: rgba(146, 156, 178, 0.30);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.35);
-}
-
-/* scoring rungs and climber sit above the structure */
 .w-rung { z-index: 2; }
 .w-summit { z-index: 2; }
 .climber { z-index: 3; }
